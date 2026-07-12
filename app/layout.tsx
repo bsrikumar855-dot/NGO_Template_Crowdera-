@@ -5,14 +5,14 @@
  * - Applies font variables
  * - Wraps app in ThemeProvider
  * - Sets global SEO defaults
- * - Renders Navbar + Footer placeholders
+ * - Renders production Navbar + Footer
  * - Progressive enhancement: renders without JS
  */
 import type { Metadata, Viewport } from "next";
 import { fontVariables } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/core/ThemeProvider";
-import { NavbarPlaceholder } from "@/components/navigation/NavbarPlaceholder";
-import { FooterPlaceholder } from "@/components/footer/FooterPlaceholder";
+import { Navbar } from "@/components/navigation/Navbar";
+import { Footer } from "@/components/footer/Footer";
 import { PageWrapper, MainContent } from "@/components/layout/PageWrapper";
 import { organization } from "@/content/organization";
 import { navigation } from "@/content/navigation";
@@ -34,8 +34,9 @@ export const metadata: Metadata = {
     organization.name,
     "donate",
     "volunteer",
+    "education",
   ],
-  authors: [{ name: organization.name, url: organization.donateUrl }],
+  authors: [{ name: organization.name }],
   creator: organization.name,
   robots: {
     index: true,
@@ -90,8 +91,8 @@ export default function RootLayout({
       <body>
         <ThemeProvider themeConfig={defaultTheme} defaultTheme="system">
           <PageWrapper>
-            {/* Site header — fixed, sticky */}
-            <NavbarPlaceholder
+            {/* Production Navbar — transparent on hero, filled on scroll */}
+            <Navbar
               nav={navigation}
               org={{
                 name: organization.name,
@@ -100,13 +101,13 @@ export default function RootLayout({
               }}
             />
 
-            {/* Page content */}
+            {/* Page content — pt-16 clears fixed 64px navbar */}
             <MainContent>
               {children}
             </MainContent>
 
-            {/* Site footer */}
-            <FooterPlaceholder
+            {/* Production Footer */}
+            <Footer
               footer={footer}
               org={{
                 name: organization.name,
