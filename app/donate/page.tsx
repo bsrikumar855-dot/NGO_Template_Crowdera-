@@ -299,10 +299,11 @@ export default function DonatePage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
+                    <label htmlFor="donor-name" className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                       Full Name *
                     </label>
                     <input
+                      id="donor-name"
                       type="text"
                       placeholder="e.g. Aisha Patel"
                       value={name}
@@ -317,10 +318,11 @@ export default function DonatePage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
+                    <label htmlFor="donor-email" className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
                       Email Address *
                     </label>
                     <input
+                      id="donor-email"
                       type="email"
                       placeholder="e.g. aisha@gmail.com"
                       value={email}
@@ -337,12 +339,13 @@ export default function DonatePage() {
 
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                    <label htmlFor="donor-pan" className="block text-xs font-bold text-muted-foreground uppercase tracking-wider">
                       PAN Card Number (Optional)
                     </label>
                     <span className="text-[10px] text-muted-foreground">Required for 80G tax receipt</span>
                   </div>
                   <input
+                    id="donor-pan"
                     type="text"
                     placeholder="ABCDE1234F"
                     value={pan}

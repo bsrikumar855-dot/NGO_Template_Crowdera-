@@ -1,29 +1,28 @@
 /**
  * content/demo_configs.ts
  *
- * Sample configurations for four cause areas:
- * - Education
- * - Healthcare
- * - Animal Welfare
- * - Environment
+ * Configs for:
+ * 1. Themes (Hope Blue, Forest Green, Healthcare Cyan, Sunrise Orange, Dark Neutral)
+ * 2. Templates (Hope Modern, Unity Clean, Impact Bold)
+ * 3. Organizations (Vidyalaya Foundation, HealAll Foundation, Paws & Claws, EcoShield)
  *
- * Demonstrates configuration-driven theme and section variant switching.
+ * Separates template layouts, branding themes, and organizational content.
  */
 import type { OrganizationConfig, HomepageConfig, ThemeConfig } from "@/types";
 
-/* ── Theme Presets ───────────────────────────────────────────── */
+/* ── 1. Branding Themes (Colors only) ────────────────────────── */
 
-// 1. Education Theme: Navy + Gold
-export const educationTheme: ThemeConfig = {
-  id: "theme-education",
-  name: "Education Blue",
+export const hopeBlueTheme: ThemeConfig = {
+  id: "theme-hope-blue",
+  name: "Hope Blue",
+  description: "Classic trust-focused corporate blue with gold accents",
   light: {
     colors: {
-      primary: "224 76% 30%",
+      primary: "220 80% 30%",
       primaryForeground: "0 0% 98%",
-      primarySubtle: "224 76% 95%",
-      secondary: "45 93% 47%",
-      secondaryForeground: "0 0% 8%",
+      primarySubtle: "220 80% 96%",
+      secondary: "38 90% 50%",
+      secondaryForeground: "0 0% 10%",
       neutral: {
         50: "220 20% 98%",
         100: "220 16% 95%",
@@ -37,26 +36,26 @@ export const educationTheme: ThemeConfig = {
         900: "220 16% 12%",
         950: "220 20% 6%",
       },
-      success: "152 60% 35%",
-      warning: "45 93% 47%",
+      success: "142 71% 35%",
+      warning: "38 90% 50%",
       error: "0 84% 52%",
       background: "220 20% 98%",
-      foreground: "224 30% 10%",
+      foreground: "220 15% 10%",
       surface: "0 0% 100%",
       surfaceElevated: "0 0% 100%",
       border: "220 14% 88%",
       muted: "220 16% 95%",
       mutedForeground: "220 10% 46%",
-      ring: "224 76% 30%",
+      ring: "220 80% 30%",
     },
   },
   dark: {
     colors: {
-      primary: "224 76% 55%",
-      primaryForeground: "224 30% 8%",
-      primarySubtle: "224 76% 12%",
-      secondary: "45 93% 60%",
-      secondaryForeground: "224 30% 6%",
+      primary: "220 80% 55%",
+      primaryForeground: "220 30% 8%",
+      primarySubtle: "220 80% 12%",
+      secondary: "38 80% 58%",
+      secondaryForeground: "220 30% 6%",
       neutral: {
         50: "222 20% 6%",
         100: "222 16% 9%",
@@ -70,8 +69,8 @@ export const educationTheme: ThemeConfig = {
         900: "222 14% 92%",
         950: "222 16% 97%",
       },
-      success: "152 60% 55%",
-      warning: "45 93% 65%",
+      success: "142 71% 55%",
+      warning: "38 90% 60%",
       error: "0 84% 65%",
       background: "222 25% 7%",
       foreground: "220 15% 94%",
@@ -80,165 +79,21 @@ export const educationTheme: ThemeConfig = {
       border: "222 14% 18%",
       muted: "222 16% 13%",
       mutedForeground: "222 10% 55%",
-      ring: "224 76% 55%",
+      ring: "220 80% 55%",
     },
   },
 };
 
-// 2. Healthcare Theme: Teal + Orange
-export const healthcareTheme: ThemeConfig = {
-  id: "theme-healthcare",
-  name: "Health Teal",
+export const forestGreenTheme: ThemeConfig = {
+  id: "theme-forest-green",
+  name: "Forest Green",
+  description: "Natural organic forest green with sage accents",
   light: {
     colors: {
-      primary: "174 84% 28%",
+      primary: "140 70% 25%",
       primaryForeground: "0 0% 98%",
-      primarySubtle: "174 84% 96%",
-      secondary: "24 95% 50%",
-      secondaryForeground: "0 0% 98%",
-      neutral: {
-        50: "180 8%  98%",
-        100: "180 6%  95%",
-        200: "180 5%  90%",
-        300: "180 4%  80%",
-        400: "180 3%  62%",
-        500: "180 3%  44%",
-        600: "180 4%  34%",
-        700: "180 5%  25%",
-        800: "180 6%  18%",
-        900: "180 8%  12%",
-        950: "180 10% 6%",
-      },
-      success: "142 71% 35%",
-      warning: "24 95% 50%",
-      error: "0 84% 52%",
-      background: "180 8% 98%",
-      foreground: "180 15% 10%",
-      surface: "0 0% 100%",
-      surfaceElevated: "0 0% 100%",
-      border: "180 5% 88%",
-      muted: "180 6% 95%",
-      mutedForeground: "180 3% 44%",
-      ring: "174 84% 28%",
-    },
-  },
-  dark: {
-    colors: {
-      primary: "174 65% 45%",
-      primaryForeground: "180 10% 5%",
-      primarySubtle: "174 84% 10%",
-      secondary: "24 85% 55%",
-      secondaryForeground: "180 10% 5%",
-      neutral: {
-        50: "180 10% 5%",
-        100: "180 8%  8%",
-        200: "180 6%  12%",
-        300: "180 5%  18%",
-        400: "180 4%  32%",
-        500: "180 3%  50%",
-        600: "180 4%  64%",
-        700: "180 5%  75%",
-        800: "180 6%  84%",
-        900: "180 8%  92%",
-        950: "180 10% 97%",
-      },
-      success: "142 71% 45%",
-      warning: "24 95% 60%",
-      error: "0 84% 60%",
-      background: "180 10% 6%",
-      foreground: "180 5% 92%",
-      surface: "180 8% 10%",
-      surfaceElevated: "180 6% 14%",
-      border: "180 5% 18%",
-      muted: "180 6% 14%",
-      mutedForeground: "180 3% 50%",
-      ring: "174 65% 45%",
-    },
-  },
-};
-
-// 3. Animal Welfare: Green + Brown
-export const animalTheme: ThemeConfig = {
-  id: "theme-animal",
-  name: "Animal Olive",
-  light: {
-    colors: {
-      primary: "84 62% 28%",
-      primaryForeground: "0 0% 98%",
-      primarySubtle: "84 62% 95%",
-      secondary: "32 74% 43%",
-      secondaryForeground: "0 0% 98%",
-      neutral: {
-        50: "60 9%   98%",
-        100: "60 7%   95%",
-        200: "60 6%   90%",
-        300: "60 5%   80%",
-        400: "60 4%   62%",
-        500: "60 4%   44%",
-        600: "60 5%   34%",
-        700: "60 6%   25%",
-        800: "60 7%   18%",
-        900: "60 9%   12%",
-        950: "60 12%  6%",
-      },
-      success: "142 71% 35%",
-      warning: "32 74% 43%",
-      error: "0 84% 52%",
-      background: "60 9% 98%",
-      foreground: "60 15% 10%",
-      surface: "0 0% 100%",
-      surfaceElevated: "0 0% 100%",
-      border: "60 6% 88%",
-      muted: "60 7% 95%",
-      mutedForeground: "60 4% 44%",
-      ring: "84 62% 28%",
-    },
-  },
-  dark: {
-    colors: {
-      primary: "84 50% 45%",
-      primaryForeground: "60 12% 5%",
-      primarySubtle: "84 62% 10%",
-      secondary: "32 68% 52%",
-      secondaryForeground: "60 12% 5%",
-      neutral: {
-        50: "60 12%  5%",
-        100: "60 9%   8%",
-        200: "60 7%   12%",
-        300: "60 6%   18%",
-        400: "60 5%   32%",
-        500: "60 4%   50%",
-        600: "60 5%   64%",
-        700: "60 6%   75%",
-        800: "60 7%   84%",
-        900: "60 9%   92%",
-        950: "60 12%  97%",
-      },
-      success: "142 71% 45%",
-      warning: "32 74% 55%",
-      error: "0 84% 60%",
-      background: "60 12%  6%",
-      foreground: "60 5%  92%",
-      surface: "60 8%  10%",
-      surfaceElevated: "60 6%  14%",
-      border: "60 5%  18%",
-      muted: "60 6%  14%",
-      mutedForeground: "60 4%  50%",
-      ring: "84 50% 45%",
-    },
-  },
-};
-
-// 4. Environment: Emerald + Forest
-export const environmentTheme: ThemeConfig = {
-  id: "theme-environment",
-  name: "Eco Forest",
-  light: {
-    colors: {
-      primary: "142 76% 23%",
-      primaryForeground: "0 0% 98%",
-      primarySubtle: "142 76% 95%",
-      secondary: "158 64% 45%",
+      primarySubtle: "140 70% 95%",
+      secondary: "90 40% 48%",
       secondaryForeground: "0 0% 98%",
       neutral: {
         50: "120 4%  98%",
@@ -254,7 +109,7 @@ export const environmentTheme: ThemeConfig = {
         950: "120 8%  6%",
       },
       success: "142 71% 35%",
-      warning: "158 64% 45%",
+      warning: "90 40% 48%",
       error: "0 84% 52%",
       background: "120 4% 98%",
       foreground: "120 10% 10%",
@@ -263,15 +118,15 @@ export const environmentTheme: ThemeConfig = {
       border: "120 3% 88%",
       muted: "120 3% 95%",
       mutedForeground: "120 2% 44%",
-      ring: "142 76% 23%",
+      ring: "140 70% 25%",
     },
   },
   dark: {
     colors: {
-      primary: "142 60% 40%",
+      primary: "140 60% 42%",
       primaryForeground: "120 8%  5%",
-      primarySubtle: "142 76% 8%",
-      secondary: "158 55% 52%",
+      primarySubtle: "140 70% 10%",
+      secondary: "90 35% 55%",
       secondaryForeground: "120 8%  5%",
       neutral: {
         50: "120 8%  5%",
@@ -286,8 +141,8 @@ export const environmentTheme: ThemeConfig = {
         900: "120 6%  92%",
         950: "120 8%  97%",
       },
-      success: "142 71% 40%",
-      warning: "158 64% 55%",
+      success: "142 71% 45%",
+      warning: "90 40% 60%",
       error: "0 84% 60%",
       background: "120 8%  6%",
       foreground: "120 4%  92%",
@@ -296,30 +151,348 @@ export const environmentTheme: ThemeConfig = {
       border: "120 4%  18%",
       muted: "120 5%  14%",
       mutedForeground: "120 2%  50%",
-      ring: "142 60% 40%",
+      ring: "140 60% 42%",
     },
   },
 };
 
-/* ── Cause Pre-configured Sets ───────────────────────────────── */
+export const healthcareCyanTheme: ThemeConfig = {
+  id: "theme-healthcare-cyan",
+  name: "Healthcare Cyan",
+  description: "Clinical diagnostic cyan with trustworthy indigo secondary",
+  light: {
+    colors: {
+      primary: "185 85% 30%",
+      primaryForeground: "0 0% 98%",
+      primarySubtle: "185 85% 95%",
+      secondary: "240 60% 50%",
+      secondaryForeground: "0 0% 98%",
+      neutral: {
+        50: "180 8%  98%",
+        100: "180 6%  95%",
+        200: "180 5%  90%",
+        300: "180 4%  80%",
+        400: "180 3%  62%",
+        500: "180 3%  44%",
+        600: "180 4%  34%",
+        700: "180 5%  25%",
+        800: "180 6%  18%",
+        900: "180 8%  12%",
+        950: "180 10% 6%",
+      },
+      success: "142 71% 35%",
+      warning: "240 60% 50%",
+      error: "0 84% 52%",
+      background: "180 8% 98%",
+      foreground: "180 15% 10%",
+      surface: "0 0% 100%",
+      surfaceElevated: "0 0% 100%",
+      border: "180 5% 88%",
+      muted: "180 6% 95%",
+      mutedForeground: "180 3% 44%",
+      ring: "185 85% 30%",
+    },
+  },
+  dark: {
+    colors: {
+      primary: "185 75% 45%",
+      primaryForeground: "180 10% 5%",
+      primarySubtle: "185 85% 10%",
+      secondary: "240 65% 62%",
+      secondaryForeground: "180 10% 5%",
+      neutral: {
+        50: "180 10% 5%",
+        100: "180 8%  8%",
+        200: "180 6%  12%",
+        300: "180 5%  18%",
+        400: "180 4%  32%",
+        500: "180 3%  50%",
+        600: "180 4%  64%",
+        700: "180 5%  75%",
+        800: "180 6%  84%",
+        900: "180 8%  92%",
+        950: "180 10% 97%",
+      },
+      success: "142 71% 45%",
+      warning: "240 65% 62%",
+      error: "0 84% 60%",
+      background: "180 10% 6%",
+      foreground: "180 5% 92%",
+      surface: "180 8% 10%",
+      surfaceElevated: "180 6% 14%",
+      border: "180 5% 18%",
+      muted: "180 6% 14%",
+      mutedForeground: "180 3% 50%",
+      ring: "185 75% 45%",
+    },
+  },
+};
 
-export interface CausePreset {
+export const sunriseOrangeTheme: ThemeConfig = {
+  id: "theme-sunrise-orange",
+  name: "Sunrise Orange",
+  description: "Energetic warning orange with warm yellow accent",
+  light: {
+    colors: {
+      primary: "24 95% 45%",
+      primaryForeground: "0 0% 98%",
+      primarySubtle: "24 95% 96%",
+      secondary: "48 95% 50%",
+      secondaryForeground: "0 0% 10%",
+      neutral: {
+        50: "30 20% 98%",
+        100: "30 15% 95%",
+        200: "30 13% 91%",
+        300: "30 10% 82%",
+        400: "30 9%  64%",
+        500: "30 8%  46%",
+        600: "30 10% 35%",
+        700: "30 12% 26%",
+        800: "30 13% 18%",
+        900: "30 15% 12%",
+        950: "30 20% 6%",
+      },
+      success: "142 71% 35%",
+      warning: "24 95% 45%",
+      error: "0 84% 52%",
+      background: "30 20% 98%",
+      foreground: "30 15% 10%",
+      surface: "0 0% 100%",
+      surfaceElevated: "0 0% 100%",
+      border: "30 13% 88%",
+      muted: "30 15% 95%",
+      mutedForeground: "30 9% 46%",
+      ring: "24 95% 45%",
+    },
+  },
+  dark: {
+    colors: {
+      primary: "24 85% 55%",
+      primaryForeground: "30 20% 6%",
+      primarySubtle: "24 95% 12%",
+      secondary: "48 85% 58%",
+      secondaryForeground: "30 20% 6%",
+      neutral: {
+        50: "30 20% 6%",
+        100: "30 13% 9%",
+        200: "30 12% 13%",
+        300: "30 10% 20%",
+        400: "30 9%  35%",
+        500: "30 8%  52%",
+        600: "30 9%  65%",
+        700: "30 10% 75%",
+        800: "30 12% 84%",
+        900: "30 13% 92%",
+        950: "30 15% 97%",
+      },
+      success: "142 71% 55%",
+      warning: "24 95% 55%",
+      error: "0 84% 65%",
+      background: "30 20% 7%",
+      foreground: "30 15% 94%",
+      surface: "30 15% 10%",
+      surfaceElevated: "30 13% 13%",
+      border: "30 12% 18%",
+      muted: "30 13% 13%",
+      mutedForeground: "30 9% 55%",
+      ring: "24 85% 55%",
+    },
+  },
+};
+
+export const darkNeutralTheme: ThemeConfig = {
+  id: "theme-dark-neutral",
+  name: "Dark Neutral",
+  description: "Professional slate gray with premium bright silver highlights",
+  light: {
+    colors: {
+      primary: "220 15% 15%",
+      primaryForeground: "0 0% 98%",
+      primarySubtle: "220 15% 92%",
+      secondary: "220 10% 85%",
+      secondaryForeground: "220 15% 10%",
+      neutral: {
+        50: "220 10% 98%",
+        100: "220 8%  95%",
+        200: "220 7%  90%",
+        300: "220 6%  80%",
+        400: "220 5%  62%",
+        500: "220 5%  44%",
+        600: "220 6%  34%",
+        700: "220 7%  25%",
+        800: "220 8%  18%",
+        900: "220 10% 12%",
+        950: "220 12% 6%",
+      },
+      success: "142 71% 35%",
+      warning: "220 10% 60%",
+      error: "0 84% 52%",
+      background: "220 10% 98%",
+      foreground: "220 15% 10%",
+      surface: "0 0% 100%",
+      surfaceElevated: "0 0% 100%",
+      border: "220 7% 88%",
+      muted: "220 8% 95%",
+      mutedForeground: "220 5% 44%",
+      ring: "220 15% 15%",
+    },
+  },
+  dark: {
+    colors: {
+      primary: "220 10% 85%",
+      primaryForeground: "220 15% 10%",
+      primarySubtle: "220 15% 25%",
+      secondary: "220 15% 25%",
+      secondaryForeground: "220 10% 90%",
+      neutral: {
+        50: "220 12% 6%",
+        100: "220 10% 9%",
+        200: "220 8%  13%",
+        300: "220 7%  20%",
+        400: "220 6%  35%",
+        500: "220 5%  52%",
+        600: "220 6%  65%",
+        700: "220 7%  75%",
+        800: "220 8%  84%",
+        900: "220 10% 92%",
+        950: "220 12% 97%",
+      },
+      success: "142 71% 55%",
+      warning: "220 10% 80%",
+      error: "0 84% 65%",
+      background: "220 12% 8%",
+      foreground: "220 5%  92%",
+      surface: "220 10% 12%",
+      surfaceElevated: "220 8%  16%",
+      border: "220 8%  20%",
+      muted: "220 8%  16%",
+      mutedForeground: "220 5%  55%",
+      ring: "220 10% 85%",
+    },
+  },
+};
+
+export const demoThemes: Record<string, ThemeConfig> = {
+  "hope-blue": hopeBlueTheme,
+  "forest-green": forestGreenTheme,
+  "healthcare-cyan": healthcareCyanTheme,
+  "sunrise-orange": sunriseOrangeTheme,
+  "dark-neutral": darkNeutralTheme,
+};
+
+/* ── 2. Structural Templates (Layout & typography presets) ───── */
+
+export interface TemplatePreset {
+  id: string;
   name: string;
+  description: string;
+  typography: {
+    fontDisplay: string;
+    fontBody: string;
+  };
+  radius: {
+    sm: string;
+    base: string;
+    md: string;
+    lg: string;
+    xl: string;
+  };
+  variants: {
+    hero: "image" | "video" | "carousel";
+    about: "text-image" | "image-text" | "text-only" | "icon-grid";
+    gallery: "grid" | "masonry" | "carousel";
+    cta: "centered" | "split" | "image-background" | "minimal";
+  };
+}
+
+export const demoTemplates: Record<string, TemplatePreset> = {
+  "hope-modern": {
+    id: "hope-modern",
+    name: "Hope Modern Layout",
+    description: "Sleek card interfaces, circular bounds, elegant Jakarta headings",
+    typography: {
+      fontDisplay: "Plus Jakarta Sans",
+      fontBody: "Inter",
+    },
+    radius: {
+      sm: "6px",
+      base: "12px",
+      md: "18px",
+      lg: "24px",
+      xl: "32px",
+    },
+    variants: {
+      hero: "carousel",
+      about: "text-image",
+      gallery: "masonry",
+      cta: "split",
+    },
+  },
+  "unity-clean": {
+    id: "unity-clean",
+    name: "Unity Clean Layout",
+    description: "Sharp minimal profiles, dense grids, academic typography",
+    typography: {
+      fontDisplay: "Outfit",
+      fontBody: "Inter",
+    },
+    radius: {
+      sm: "2px",
+      base: "4px",
+      md: "6px",
+      lg: "8px",
+      xl: "12px",
+    },
+    variants: {
+      hero: "image",
+      about: "text-only",
+      gallery: "grid",
+      cta: "minimal",
+    },
+  },
+  "impact-bold": {
+    id: "impact-bold",
+    name: "Impact Bold Layout",
+    description: "Ultra-rounded glass borders, dense icon arrays, cinematic media focus",
+    typography: {
+      fontDisplay: "Plus Jakarta Sans",
+      fontBody: "Inter",
+    },
+    radius: {
+      sm: "8px",
+      base: "16px",
+      md: "24px",
+      lg: "32px",
+      xl: "48px",
+    },
+    variants: {
+      hero: "video",
+      about: "icon-grid",
+      gallery: "carousel",
+      cta: "image-background",
+    },
+  },
+};
+
+/* ── 3. Organizations Content ────────────────────────────────── */
+
+export interface OrgDemoPreset {
+  id: string;
+  name: string;
+  tagline: string;
   causeType: string;
-  icon: string;
   org: OrganizationConfig;
-  theme: ThemeConfig;
   homepage: HomepageConfig;
 }
 
-export const causePresets: Record<string, CausePreset> = {
+export const demoOrganizations: Record<string, OrgDemoPreset> = {
   education: {
-    name: "Education Access",
+    id: "org-education",
+    name: "Vidyalaya Foundation",
+    tagline: "Empowering Underprivileged Minds Through Learning",
     causeType: "Education",
-    icon: "GraduationCap",
-    theme: educationTheme,
     org: {
-      id: "demo-education",
+      id: "org-edu-config",
       name: "Vidyalaya Foundation",
       tagline: "Empowering Underprivileged Minds Through Learning",
       description: "Providing quality education and digital training.",
@@ -338,7 +511,7 @@ export const causePresets: Record<string, CausePreset> = {
         variant: "carousel",
         slides: [
           {
-            id: "slide-1",
+            id: "slide-edu-1",
             headline: "Knowledge is Freedom & Opportunity",
             subheadline: "Directly funding K-12 education, scholarships, and resources for rural schools.",
             media: { src: "/images/hero/hero-1.jpg", alt: "Classroom", width: 1200, height: 600 },
@@ -408,12 +581,12 @@ export const causePresets: Record<string, CausePreset> = {
     },
   },
   healthcare: {
-    name: "Healthcare Support",
+    id: "org-healthcare",
+    name: "HealAll Foundation",
+    tagline: "Bringing Quality Medical Care to Underserved Communities",
     causeType: "Healthcare",
-    icon: "HeartPulse",
-    theme: healthcareTheme,
     org: {
-      id: "demo-healthcare",
+      id: "org-health-config",
       name: "HealAll Foundation",
       tagline: "Bringing Quality Medical Care to Underserved Communities",
       description: "Operating mobile clinics, medicine drives, and mental health checkups.",
@@ -432,7 +605,7 @@ export const causePresets: Record<string, CausePreset> = {
         variant: "video",
         slides: [
           {
-            id: "slide-1",
+            id: "slide-health-1",
             headline: "Healing Lives, One Village at a Time",
             subheadline: "Providing healthcare camps, essential medicines, and maternal care support.",
             media: { src: "/images/hero/hero-2.jpg", alt: "Doctor with child", width: 1200, height: 600 },
@@ -505,12 +678,12 @@ export const causePresets: Record<string, CausePreset> = {
     },
   },
   animal: {
-    name: "Animal Welfare",
+    id: "org-animal",
+    name: "Paws & Claws Rescue",
+    tagline: "Voicing the Needs of Stray Animals",
     causeType: "Animal Welfare",
-    icon: "PawPrint",
-    theme: animalTheme,
     org: {
-      id: "demo-animal",
+      id: "org-animal-config",
       name: "Paws & Claws Rescue",
       tagline: "Voicing the Needs of Stray Animals",
       description: "Dedicated to rescuing, treating, sterilizing, and finding homes for stray dogs and cats.",
@@ -529,7 +702,7 @@ export const causePresets: Record<string, CausePreset> = {
         variant: "image",
         slides: [
           {
-            id: "slide-1",
+            id: "slide-animal-1",
             headline: "Provide Shelters & Healing for Abandoned Paws",
             subheadline: "Rescuing injured strays, managing foster networks, and funding vaccinations.",
             media: { src: "/images/hero/hero-3.jpg", alt: "Happy rescued dog", width: 1200, height: 600 },
@@ -598,12 +771,12 @@ export const causePresets: Record<string, CausePreset> = {
     },
   },
   environment: {
-    name: "Environment Protection",
+    id: "org-environment",
+    name: "EcoShield Foundation",
+    tagline: "Restoring Ecosystems and Fighting Climate Change",
     causeType: "Environment",
-    icon: "TreeDeciduous",
-    theme: environmentTheme,
     org: {
-      id: "demo-environment",
+      id: "org-env-config",
       name: "EcoShield Foundation",
       tagline: "Restoring Ecosystems and Fighting Climate Change",
       description: "Organizing mass afforestation drives, lake restorations, and clean energy promotion.",
@@ -622,7 +795,7 @@ export const causePresets: Record<string, CausePreset> = {
         variant: "carousel",
         slides: [
           {
-            id: "slide-1",
+            id: "slide-env-1",
             headline: "Let's Plant a Future for Our Planet",
             subheadline: "Help us plant 100,000 native saplings in degraded forest corridors.",
             media: { src: "/images/hero/hero-1.jpg", alt: "Planting trees", width: 1200, height: 600 },
@@ -674,7 +847,7 @@ export const causePresets: Record<string, CausePreset> = {
       },
       news: {
         variant: "timeline",
-        badge: "Updates",
+        badge: "Journal",
         headline: "Green News",
         items: [
           { id: "n1", title: "Inauguration of the Pallikaranai Marsh Nursery", summary: "10,000 wetland saplings.", date: "2024-07-20", href: "#", image: { src: "/images/news/news-1.jpg", alt: "Nursery" } },

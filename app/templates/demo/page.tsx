@@ -1,24 +1,41 @@
 /**
  * app/templates/demo/page.tsx
  *
- * Interactive Template Engine Showcase.
- * Allows users to toggle between 4 cause configurations (Education, Healthcare, Animal Welfare, Environment)
- * and see the entire theme, metadata, and section variants update dynamically.
+ * Interactive Template Engine Showcase & Live Customizer Panel.
+ * Demonstrates total modular separation of Template, Theme, and Organization.
+ * Features a floating customizable builder inspector, marketplace spec sheets,
+ * responsive switches, and instant client-side token remapping.
  */
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import {
-  GraduationCap,
-  HeartPulse,
-  PawPrint,
-  TreeDeciduous,
-  Shield,
-  Layers,
-  Settings,
-  Info,
-  CheckCircle2,
   Sparkles,
+  Layers,
+  Palette,
+  Briefcase,
+  Eye,
+  EyeOff,
+  Settings,
+  Shield,
+  Smartphone,
+  Tablet,
+  Monitor,
+  CheckCircle,
+  HelpCircle,
+  Activity,
+  AlertCircle,
+  CornerDownRight,
+  TrendingUp,
+  Moon,
+  Sun,
+  Layout,
+  ExternalLink,
+  ChevronRight,
+  Sliders,
+  Maximize2,
+  Minimize2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/core/Container";
@@ -26,25 +43,52 @@ import { Heading } from "@/components/core/Heading";
 import { Text } from "@/components/core/Text";
 import { Badge } from "@/components/core/Badge";
 import { Button } from "@/components/core/Button";
-import { causePresets, CausePreset } from "@/content/demo_configs";
 import { templateMetadata } from "@/config/template";
+import {
+  demoThemes,
+  demoTemplates,
+  demoOrganizations,
+  OrgDemoPreset,
+  TemplatePreset,
+} from "@/content/demo_configs";
 import {
   HeroSection,
   AboutSection,
   GallerySection,
   CallToActionSection,
 } from "@/components/sections";
+import type { HeroConfig, AboutConfig, GalleryConfig, CtaBandConfig, ThemeConfig } from "@/types";
 
 export default function TemplateDemoShowcase() {
-  const [activePresetKey, setActivePresetKey] = React.useState<string>("education");
-  const [previewMode, setPreviewMode] = React.useState<"light" | "dark">("light");
+  // ── 1. Engine Core States ───────────────────────────────────
+  const [selectedOrgKey, setSelectedOrgKey] = React.useState<string>("education");
+  const [selectedThemeKey, setSelectedThemeKey] = React.useState<string>("hope-blue");
+  const [selectedTemplateKey, setSelectedTemplateKey] = React.useState<string>("hope-modern");
 
-  const activePreset = causePresets[activePresetKey] || causePresets.education;
-  const { theme, org, homepage } = activePreset;
+  // ── 2. Live Layout Overrides ────────────────────────────────
+  const [heroVariant, setHeroVariant] = React.useState<"image" | "video" | "carousel" | "default">("default");
+  const [aboutVariant, setAboutVariant] = React.useState<"text-image" | "image-text" | "text-only" | "icon-grid" | "default">("default");
+  const [galleryVariant, setGalleryVariant] = React.useState<"grid" | "masonry" | "carousel" | "default">("default");
+  const [ctaVariant, setCtaVariant] = React.useState<"centered" | "split" | "image-background" | "minimal" | "default">("default");
 
-  // Helper to build CSS variables scoped to our preview panel
-  const buildScopedThemeVars = (preset: CausePreset, mode: "light" | "dark") => {
-    const themeConfig = preset.theme;
+  // ── 3. Interface Settings ───────────────────────────────────
+  const [isPreviewDarkMode, setIsPreviewDarkMode] = React.useState<boolean>(false);
+  const [isAnimationEnabled, setIsAnimationEnabled] = React.useState<boolean>(true);
+  const [isPanelVisible, setIsPanelVisible] = React.useState<boolean>(true);
+  const [isSpecPanelExpanded, setIsSpecPanelExpanded] = React.useState<boolean>(false);
+
+  // ── 4. Retrieve Active Config Layers ───────────────────────
+  const activeOrg = demoOrganizations[selectedOrgKey] || demoOrganizations.education;
+  const activeTheme = demoThemes[selectedThemeKey] || demoThemes["hope-blue"];
+  const activeTemplate = demoTemplates[selectedTemplateKey] || demoTemplates["hope-modern"];
+
+  // ── 5. Build Dynamic CSS Variables Injection ───────────────
+  const buildScopedThemeVars = (
+    themeConfig: ThemeConfig,
+    templatePreset: TemplatePreset,
+    mode: "light" | "dark",
+    animations: boolean
+  ) => {
     const modeConfig = mode === "dark" ? themeConfig.dark ?? themeConfig.light : themeConfig.light;
     if (!modeConfig) return "";
 
@@ -55,6 +99,7 @@ export default function TemplateDemoShowcase() {
       rules.push(`  ${name}: ${value};`);
     };
 
+    // Colors
     add("--color-primary", colors.primary);
     add("--color-primary-foreground", colors.primaryForeground);
     add("--color-primary-subtle", colors.primarySubtle);
@@ -77,256 +122,490 @@ export default function TemplateDemoShowcase() {
       });
     }
 
-    return `.demo-preview-scope {\n${rules.join("\n")}\n}`;
+    // Typography
+    add("--font-display", `var(--font-${templatePreset.typography.fontDisplay.toLowerCase().replace(/\s/g, "-")}), system-ui, sans-serif`);
+    add("--font-body", `var(--font-${templatePreset.typography.fontBody.toLowerCase().replace(/\s/g, "-")}), system-ui, sans-serif`);
+
+    // Border Radius Mapping
+    add("--radius-sm", templatePreset.radius.sm);
+    add("--radius-base", templatePreset.radius.base);
+    add("--radius-md", templatePreset.radius.md);
+    add("--radius-lg", templatePreset.radius.lg);
+    add("--radius-xl", templatePreset.radius.xl);
+
+    // Animations / Transitions control
+    if (!animations) {
+      add("--transition-duration-base", "0s");
+      add("--transition-duration-slow", "0s");
+      add("--transition-duration-fast", "0s");
+    }
+
+    return `
+      .demo-preview-scope {
+        ${rules.join("\n")}
+      }
+      .demo-preview-scope .font-display {
+        font-family: var(--font-display) !important;
+      }
+      .demo-preview-scope p, 
+      .demo-preview-scope span, 
+      .demo-preview-scope a, 
+      .demo-preview-scope button, 
+      .demo-preview-scope label, 
+      .demo-preview-scope input {
+        font-family: var(--font-body) !important;
+      }
+      .demo-preview-scope .rounded-sm { border-radius: var(--radius-sm) !important; }
+      .demo-preview-scope .rounded-md { border-radius: var(--radius-base) !important; }
+      .demo-preview-scope .rounded-lg { border-radius: var(--radius-md) !important; }
+      .demo-preview-scope .rounded-xl { border-radius: var(--radius-lg) !important; }
+      .demo-preview-scope .rounded-2xl { border-radius: var(--radius-lg) !important; }
+      .demo-preview-scope .rounded-3xl { border-radius: var(--radius-xl) !important; }
+    `;
   };
 
-  const cssVars = buildScopedThemeVars(activePreset, previewMode);
+  const dynamicCss = React.useMemo(() => {
+    return buildScopedThemeVars(
+      activeTheme,
+      activeTemplate,
+      isPreviewDarkMode ? "dark" : "light",
+      isAnimationEnabled
+    );
+  }, [activeTheme, activeTemplate, isPreviewDarkMode, isAnimationEnabled]);
 
-  const presetsList = [
-    { key: "education", name: "Education", icon: GraduationCap, color: "text-blue-500 bg-blue-500/10" },
-    { key: "healthcare", name: "Healthcare", icon: HeartPulse, color: "text-teal-500 bg-teal-500/10" },
-    { key: "animal", name: "Animal Welfare", icon: PawPrint, color: "text-amber-500 bg-amber-500/10" },
-    { key: "environment", name: "Environment", icon: TreeDeciduous, color: "text-green-500 bg-green-500/10" },
+  // ── 6. Assemble Overridden Configs for Live Rendering ──────
+  const finalHeroConfig: HeroConfig = {
+    ...activeOrg.homepage.hero,
+    variant: heroVariant === "default" ? activeTemplate.variants.hero : heroVariant,
+  };
+
+  const finalAboutConfig: AboutConfig = {
+    ...activeOrg.homepage.about,
+    variant: aboutVariant === "default" ? activeTemplate.variants.about : aboutVariant,
+  };
+
+  const finalGalleryConfig: GalleryConfig = {
+    ...activeOrg.homepage.gallery,
+    variant: galleryVariant === "default" ? activeTemplate.variants.gallery : galleryVariant,
+  };
+
+  const finalCtaConfig: CtaBandConfig = {
+    ...activeOrg.homepage.ctaBand,
+    variant: ctaVariant === "default" ? activeTemplate.variants.cta : ctaVariant,
+    theme: activeTheme.id === "theme-dark-neutral" ? "dark" : (activeOrg.homepage.ctaBand.theme === "image" ? "image" : "primary"),
+  };
+
+  // Helper lists for selectors
+  const orgOptions = [
+    { key: "education", name: "Vidyalaya (Education)", desc: "Schools & Tech Centers" },
+    { key: "healthcare", name: "HealAll (Healthcare)", desc: "Clinics & Camps" },
+    { key: "animal", name: "Paws & Claws (Animals)", desc: "Trauma Shelters" },
+    { key: "environment", name: "EcoShield (Planet)", desc: "Lakes & Miyawaki" },
+  ];
+
+  const themeOptions = [
+    { key: "hope-blue", name: "Hope Blue", color: "bg-blue-600 border-blue-400" },
+    { key: "forest-green", name: "Forest Green", color: "bg-emerald-800 border-emerald-600" },
+    { key: "healthcare-cyan", name: "Healthcare Cyan", color: "bg-cyan-600 border-cyan-400" },
+    { key: "sunrise-orange", name: "Sunrise Orange", color: "bg-amber-600 border-amber-400" },
+    { key: "dark-neutral", name: "Dark Neutral", color: "bg-neutral-800 border-neutral-600" },
+  ];
+
+  const templateOptions = [
+    { key: "hope-modern", name: "Hope Modern", desc: "Rounded cards & Jakarta font" },
+    { key: "unity-clean", name: "Unity Clean", desc: "Sharp borders & Outfit font" },
+    { key: "impact-bold", name: "Impact Bold", desc: "Thick glass shapes & Jakarta font" },
   ];
 
   return (
     <>
-      {/* Inject colors dynamically for the preview scope */}
-      <style dangerouslySetInnerHTML={{ __html: cssVars }} />
+      {/* Inject Scoped Style overrides */}
+      <style dangerouslySetInnerHTML={{ __html: dynamicCss }} />
 
-      <div className="min-h-screen bg-muted/30 pt-20 pb-16 font-sans">
+      <main className="min-h-screen bg-muted/20 pt-24 pb-16 font-sans relative overflow-x-hidden">
         <Container size="xl" className="flex flex-col gap-8">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-6">
+          {/* Header Title */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-border pb-6">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="h-5 w-5 text-primary" />
-                <Badge variant="primary" size="sm">Template Engine Showcase</Badge>
+                <Sparkles className="h-4.5 w-4.5 text-primary" />
+                <Badge variant="primary" size="sm">Template Engine v1.0.0</Badge>
               </div>
-              <Heading as="h1" size="3xl">
-                Dynamic Theme & Layout Switcher
+              <Heading as="h1" size="3xl" className="tracking-tight">
+                Branding & Layout Personalization Sandbox
               </Heading>
-              <Text className="text-muted-foreground mt-2 max-w-2xl">
-                Experience the absolute flexibility of the Crowdera NGO template. Switch between sample causes to see how branding tokens and section variants update instantly without writing or duplicating a single line of code.
+              <Text className="text-muted-foreground mt-2 max-w-3xl">
+                Observe the complete decoupling of structural templates, visual colors, and organization copy. Customize tokens in the floating builder on the right.
               </Text>
             </div>
-
-            {/* Sandbox Theme Switcher */}
-            <div className="flex items-center gap-3 self-start md:self-center bg-surface border border-border p-1.5 rounded-xl shadow-elevation-1">
-              <span className="text-xs font-semibold px-2 text-muted-foreground uppercase tracking-wide">
-                Preview Mode
-              </span>
-              <button
-                onClick={() => setPreviewMode("light")}
-                className={cn(
-                  "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
-                  previewMode === "light"
-                    ? "bg-primary text-primary-foreground shadow"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
+            <div className="flex gap-2">
+              <Button
+                variant={isPanelVisible ? "primary" : "outline"}
+                size="sm"
+                onClick={() => setIsPanelVisible(!isPanelVisible)}
+                leadingIcon={isPanelVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               >
-                Light Theme
-              </button>
-              <button
-                onClick={() => setPreviewMode("dark")}
-                className={cn(
-                  "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
-                  previewMode === "dark"
-                    ? "bg-neutral-900 text-neutral-100 shadow"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
-              >
-                Dark Theme
-              </button>
+                {isPanelVisible ? "Hide Builder" : "Customize Live"}
+              </Button>
             </div>
           </div>
 
-          {/* Setup / Config Dashboard */}
+          {/* MAIN GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Control Sidebar */}
-            <div className="lg:col-span-1 flex flex-col gap-6">
-              {/* Presets Switcher Card */}
-              <div className="bg-surface border border-border rounded-2xl p-5 shadow-elevation-1">
-                <Heading as="h2" size="sm" className="mb-4 font-bold flex items-center gap-2">
-                  <Settings className="h-4 w-4 text-primary" />
-                  Select Organization Config
-                </Heading>
-                <div className="flex flex-col gap-2">
-                  {presetsList.map((preset) => {
-                    const Icon = preset.icon;
-                    const isActive = activePresetKey === preset.key;
-                    return (
-                      <button
-                        key={preset.key}
-                        onClick={() => setActivePresetKey(preset.key)}
-                        className={cn(
-                          "w-full flex items-center gap-3 p-3.5 rounded-xl text-left transition-all duration-base",
-                          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-                          isActive
-                            ? "bg-primary text-primary-foreground shadow-elevation-2 translate-x-1"
-                            : "hover:bg-muted text-foreground bg-muted/40"
-                        )}
-                      >
-                        <span
-                          className={cn(
-                            "h-8 w-8 rounded-lg flex items-center justify-center flex-shrink-0",
-                            isActive ? "bg-white/20 text-white" : preset.color
-                          )}
-                        >
-                          <Icon className="h-4.5 w-4.5" />
-                        </span>
-                        <div>
-                          <p className="font-semibold text-sm leading-tight">{preset.name}</p>
-                          <p className={cn("text-[10px] mt-0.5", isActive ? "text-white/70" : "text-muted-foreground")}>
-                            {preset.key === "education"
-                              ? "Teal & Gold • Carousel"
-                              : preset.key === "healthcare"
-                              ? "Teal & Orange • Video"
-                              : preset.key === "animal"
-                              ? "Olive & Brown • Image"
-                              : "Emerald • Image BG"}
-                          </p>
+            {/* Left Column: Spec Registry Cards (Span 3 if panel visible, else 4) */}
+            <div className={cn("transition-all duration-300", isPanelVisible ? "lg:col-span-3" : "lg:col-span-4")}>
+              <div className="flex flex-col gap-8">
+                {/* Marketplace Listing Spec Sheet (Phase 6) */}
+                <div className="bg-surface border border-border rounded-3xl p-6 shadow-elevation-1 transition-all">
+                  <div className="flex justify-between items-center border-b border-border pb-4 mb-4">
+                    <div className="flex items-center gap-3">
+                      <Layout className="h-5 w-5 text-primary" />
+                      <Heading as="h2" size="sm" className="font-bold">
+                        Professional Template Metadata Specs
+                      </Heading>
+                    </div>
+                    <button
+                      onClick={() => setIsSpecPanelExpanded(!isSpecPanelExpanded)}
+                      className="text-xs text-primary font-semibold hover:underline"
+                    >
+                      {isSpecPanelExpanded ? "Hide Details" : "View Full Spec Sheet"}
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                    <div className="p-3 bg-muted/40 rounded-2xl border border-border/40">
+                      <span className="text-muted-foreground font-semibold block mb-1">Template Engine</span>
+                      <p className="font-bold text-foreground">{activeTemplate.name}</p>
+                    </div>
+                    <div className="p-3 bg-muted/40 rounded-2xl border border-border/40">
+                      <span className="text-muted-foreground font-semibold block mb-1">Active Brand Theme</span>
+                      <p className="font-bold text-foreground flex items-center gap-1.5">
+                        <span className={cn("h-3 w-3 rounded-full inline-block border", demoThemes[selectedThemeKey]?.light ? "bg-primary" : "bg-neutral-600")} />
+                        {activeTheme.name}
+                      </p>
+                    </div>
+                    <div className="p-3 bg-muted/40 rounded-2xl border border-border/40">
+                      <span className="text-muted-foreground font-semibold block mb-1">Organization Copy</span>
+                      <p className="font-bold text-foreground truncate">{activeOrg.name}</p>
+                    </div>
+                    <div className="p-3 bg-muted/40 rounded-2xl border border-border/40">
+                      <span className="text-muted-foreground font-semibold block mb-1">Production Status</span>
+                      <Badge variant="success" size="sm">Ready for Launch</Badge>
+                    </div>
+                  </div>
+
+                  {/* Expanded specifications table (marketplace style) */}
+                  {isSpecPanelExpanded && (
+                    <div className="mt-6 pt-6 border-t border-border grid grid-cols-1 md:grid-cols-2 gap-8 text-xs animate-fade-in">
+                      <div>
+                        <Heading as="h3" size="xs" className="font-bold mb-3">Core Performance Targets</Heading>
+                        <div className="flex flex-col gap-2.5">
+                          <div className="flex justify-between border-b border-border/60 pb-1.5">
+                            <span className="text-muted-foreground">Lighthouse Speed Index Target</span>
+                            <span className="font-semibold text-foreground">&gt; 96%</span>
+                          </div>
+                          <div className="flex justify-between border-b border-border/60 pb-1.5">
+                            <span className="text-muted-foreground">Accessibility Compliance</span>
+                            <span className="font-semibold text-foreground">WCAG 2.1 AA Compliant</span>
+                          </div>
+                          <div className="flex justify-between border-b border-border/60 pb-1.5">
+                            <span className="text-muted-foreground">Semantic Validations</span>
+                            <span className="font-semibold text-foreground">HTML5 W3C Compliant</span>
+                          </div>
+                          <div className="flex justify-between pb-1.5">
+                            <span className="text-muted-foreground">SEO Index Readiness</span>
+                            <span className="font-semibold text-foreground">Static Metatags Ready</span>
+                          </div>
                         </div>
+                      </div>
+
+                      <div>
+                        <Heading as="h3" size="xs" className="font-bold mb-3">Modular Layout Specifications</Heading>
+                        <div className="flex flex-col gap-2.5">
+                          <div className="flex justify-between border-b border-border/60 pb-1.5">
+                            <span className="text-muted-foreground">Active Hero Layout</span>
+                            <span className="font-mono text-primary font-semibold">{finalHeroConfig.variant}</span>
+                          </div>
+                          <div className="flex justify-between border-b border-border/60 pb-1.5">
+                            <span className="text-muted-foreground">Active About Layout</span>
+                            <span className="font-mono text-primary font-semibold">{finalAboutConfig.variant}</span>
+                          </div>
+                          <div className="flex justify-between border-b border-border/60 pb-1.5">
+                            <span className="text-muted-foreground">Active Gallery Layout</span>
+                            <span className="font-mono text-primary font-semibold">{finalGalleryConfig.variant}</span>
+                          </div>
+                          <div className="flex justify-between pb-1.5">
+                            <span className="text-muted-foreground">Active CTA Layout</span>
+                            <span className="font-mono text-primary font-semibold">{finalCtaConfig.variant}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Scoped Preview Screen Container */}
+                <div className="border border-border rounded-[32px] overflow-hidden shadow-elevation-3 bg-surface">
+                  {/* Sandbox Toolbar */}
+                  <div className="bg-neutral-900 text-white px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <span>Live Render Engine Preview Screen</span>
+                      <span className="bg-white/10 px-2 py-0.5 rounded text-[10px] uppercase font-mono ml-2">
+                        {isPreviewDarkMode ? "Dark-Mode View" : "Light-Mode View"}
+                      </span>
+                    </div>
+
+                    {/* Quick Preview Toggles */}
+                    <div className="flex items-center gap-3">
+                      {/* Light/Dark Toggle */}
+                      <button
+                        onClick={() => setIsPreviewDarkMode(!isPreviewDarkMode)}
+                        className="p-1.5 bg-white/10 hover:bg-white/20 rounded-lg transition-colors flex items-center gap-1.5"
+                        title="Toggle dark mode preview"
+                        aria-label="Toggle preview dark mode"
+                      >
+                        {isPreviewDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                        <span>{isPreviewDarkMode ? "Light Mode" : "Dark Mode"}</span>
                       </button>
-                    );
-                  })}
-                </div>
-              </div>
 
-              {/* Template Registry Metadata Info */}
-              <div className="bg-surface border border-border rounded-2xl p-5 shadow-elevation-1 text-xs">
-                <Heading as="h3" size="xs" className="mb-3 font-bold flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-primary" />
-                  Template Metadata
-                </Heading>
-                <div className="flex flex-col gap-3">
-                  <div>
-                    <span className="text-muted-foreground font-semibold">Active Org</span>
-                    <p className="font-semibold text-foreground mt-0.5">{org.name}</p>
+                      {/* Animation Toggle */}
+                      <button
+                        onClick={() => setIsAnimationEnabled(!isAnimationEnabled)}
+                        className={cn(
+                          "px-2.5 py-1.5 rounded-lg transition-colors text-[10px] uppercase font-bold",
+                          isAnimationEnabled ? "bg-primary text-primary-foreground" : "bg-white/10 text-neutral-300"
+                        )}
+                        aria-label="Toggle Animations"
+                      >
+                        {isAnimationEnabled ? "Motion: On" : "Motion: Off"}
+                      </button>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-muted-foreground font-semibold">Active Theme</span>
-                    <p className="font-mono text-foreground bg-muted p-1 rounded mt-0.5">{theme.name}</p>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground font-semibold">Cause Type</span>
-                    <p className="font-semibold text-foreground mt-0.5 capitalize">{org.causeType}</p>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground font-semibold">Template ID</span>
-                    <code className="block p-1 bg-muted rounded font-mono text-[10px] mt-0.5">
-                      {templateMetadata.id}
-                    </code>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground font-semibold">Version</span>
-                    <p className="mt-0.5 text-foreground">{templateMetadata.version}</p>
+
+                  {/* Scoped Render Container (Theme HSL color tokens apply inside here) */}
+                  <div className={cn(
+                    "demo-preview-scope overflow-hidden transition-colors duration-500 min-h-[60vh]",
+                    isPreviewDarkMode ? "bg-neutral-950 text-neutral-100 dark" : "bg-white text-neutral-900"
+                  )}>
+                    {/* Render Core Sections */}
+                    <HeroSection config={finalHeroConfig} />
+                    <AboutSection config={finalAboutConfig} />
+                    <GallerySection config={finalGalleryConfig} />
+                    <CallToActionSection config={finalCtaConfig} />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Layout Configuration Table */}
-            <div className="lg:col-span-3 flex flex-col gap-6">
-              <div className="bg-surface border border-border rounded-2xl p-6 shadow-elevation-1">
-                <Heading as="h2" size="sm" className="mb-4 font-bold flex items-center gap-2 border-b border-border pb-3">
-                  <Layers className="h-4.5 w-4.5 text-primary" />
-                  Variant Composition Mapping
-                </Heading>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
-                  <div className="p-3.5 bg-muted/40 rounded-xl border border-border/60">
-                    <span className="text-muted-foreground font-semibold block mb-1">Hero Section</span>
-                    <Badge variant="primary" size="sm">{homepage.hero.variant || "carousel"}</Badge>
-                    <p className="text-[10px] text-muted-foreground mt-1.5">
-                      {homepage.hero.variant === "carousel"
-                        ? "Horizontal slider with autoplay"
-                        : homepage.hero.variant === "video"
-                        ? "Rich video backdrop + text overlays"
-                        : "Single dramatic static image"}
-                    </p>
+            {/* Right Column: Floating/Sticky Builder Panel (Phase 5) */}
+            {isPanelVisible && (
+              <aside className="lg:col-span-1 flex flex-col gap-6 animate-fade-in relative z-20">
+                <div className="bg-surface border border-border rounded-3xl p-5 shadow-elevation-3 sticky top-24 flex flex-col gap-6 max-h-[85vh] overflow-y-auto">
+                  
+                  {/* Panel Title */}
+                  <div className="flex justify-between items-center border-b border-border pb-3">
+                    <div className="flex items-center gap-2">
+                      <Settings className="h-4.5 w-4.5 text-primary" />
+                      <Heading as="h3" size="xs" className="font-bold">
+                        Live Config Customizer
+                      </Heading>
+                    </div>
+                    <button
+                      onClick={() => setIsPanelVisible(false)}
+                      className="text-xs text-muted-foreground hover:text-foreground p-1"
+                      aria-label="Close builder panel"
+                    >
+                      <Minimize2 className="h-4 w-4" />
+                    </button>
                   </div>
 
-                  <div className="p-3.5 bg-muted/40 rounded-xl border border-border/60">
-                    <span className="text-muted-foreground font-semibold block mb-1">About Section</span>
-                    <Badge variant="secondary" size="sm">{homepage.about.variant || "text-image"}</Badge>
-                    <p className="text-[10px] text-muted-foreground mt-1.5">
-                      {homepage.about.variant === "text-image"
-                        ? "Text left, large media card right"
-                        : homepage.about.variant === "icon-grid"
-                        ? "Core stories + four support icons"
-                        : homepage.about.variant === "image-text"
-                        ? "Media card left, stories right"
-                        : "Simple centered text block"}
-                    </p>
+                  {/* 1. SELECT TEMPLATE (Layout & Fonts) */}
+                  <div className="flex flex-col gap-2.5">
+                    <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                      1. Structural Template
+                    </label>
+                    <div className="flex flex-col gap-1.5">
+                      {templateOptions.map((t) => {
+                        const isSelected = selectedTemplateKey === t.key;
+                        return (
+                          <button
+                            key={t.key}
+                            onClick={() => setSelectedTemplateKey(t.key)}
+                            className={cn(
+                              "w-full text-left p-3 rounded-xl border text-xs transition-all duration-base",
+                              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                              isSelected
+                                ? "border-primary bg-primary/5 font-semibold text-primary shadow-sm"
+                                : "border-border bg-muted/30 text-foreground hover:bg-muted/70"
+                            )}
+                          >
+                            <span className="block font-bold">{t.name}</span>
+                            <span className="text-[10px] text-muted-foreground block mt-0.5">{t.desc}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
 
-                  <div className="p-3.5 bg-muted/40 rounded-xl border border-border/60">
-                    <span className="text-muted-foreground font-semibold block mb-1">Gallery Section</span>
-                    <Badge variant="outline" size="sm">{homepage.gallery.variant || "masonry"}</Badge>
-                    <p className="text-[10px] text-muted-foreground mt-1.5">
-                      {homepage.gallery.variant === "masonry"
-                        ? "Dynamic variable heights grid"
-                        : homepage.gallery.variant === "grid"
-                        ? "Equal-sized aspect square grid"
-                        : "Horizontal scrolling slides"}
-                    </p>
+                  {/* 2. SELECT THEME (HSL Colors) */}
+                  <div className="flex flex-col gap-2.5">
+                    <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                      2. Branding Theme
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {themeOptions.map((th) => {
+                        const isSelected = selectedThemeKey === th.key;
+                        return (
+                          <button
+                            key={th.key}
+                            onClick={() => setSelectedThemeKey(th.key)}
+                            className={cn(
+                              "h-10 w-10 rounded-xl border flex items-center justify-center transition-all",
+                              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                              isSelected
+                                ? "border-primary ring-2 ring-primary/40 scale-105"
+                                : "border-border hover:scale-105"
+                            )}
+                            title={th.name}
+                            aria-label={`Select ${th.name} theme`}
+                          >
+                            <span className={cn("h-6 w-6 rounded-lg shadow-inner", th.color)} />
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
 
-                  <div className="p-3.5 bg-muted/40 rounded-xl border border-border/60">
-                    <span className="text-muted-foreground font-semibold block mb-1">CTA Section</span>
-                    <Badge variant="success" size="sm">{homepage.ctaBand.variant || "centered"}</Badge>
-                    <p className="text-[10px] text-muted-foreground mt-1.5">
-                      {homepage.ctaBand.variant === "split"
-                        ? "Two-column description and action button"
-                        : homepage.ctaBand.variant === "minimal"
-                        ? "Compact horizontal navigation row"
-                        : homepage.ctaBand.variant === "image-background"
-                        ? "Image background with dark overlay"
-                        : "Center-aligned large headline action block"}
-                    </p>
+                  {/* 3. SELECT ORGANIZATION CONTENT */}
+                  <div className="flex flex-col gap-2.5">
+                    <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                      3. Organization Copy
+                    </label>
+                    <div className="flex flex-col gap-1.5">
+                      {orgOptions.map((o) => {
+                        const isSelected = selectedOrgKey === o.key;
+                        return (
+                          <button
+                            key={o.key}
+                            onClick={() => setSelectedOrgKey(o.key)}
+                            className={cn(
+                              "w-full text-left p-3 rounded-xl border text-xs transition-all duration-base",
+                              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                              isSelected
+                                ? "border-primary bg-primary/5 font-semibold text-primary shadow-sm"
+                                : "border-border bg-muted/30 text-foreground hover:bg-muted/70"
+                            )}
+                          >
+                            <span className="block font-bold">{o.name}</span>
+                            <span className="text-[10px] text-muted-foreground block mt-0.5">{o.desc}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
+
+                  {/* 4. LAYOUT VARIANT OVERRIDES */}
+                  <div className="flex flex-col gap-3 pt-3 border-t border-border">
+                    <Heading as="h4" size="xs" className="font-bold text-[10px] text-muted-foreground uppercase tracking-widest">
+                      4. Layout Overrides
+                    </Heading>
+
+                    {/* Hero Override */}
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] text-muted-foreground font-semibold">Hero Layout</label>
+                      <select
+                        value={heroVariant}
+                        onChange={(e) => setHeroVariant(e.target.value as any)}
+                        className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
+                      >
+                        <option value="default">Use Template Default ({activeTemplate.variants.hero})</option>
+                        <option value="carousel">Carousel Slider</option>
+                        <option value="video">Video Background</option>
+                        <option value="image">Static Hero Image</option>
+                      </select>
+                    </div>
+
+                    {/* About Override */}
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] text-muted-foreground font-semibold">About Layout</label>
+                      <select
+                        value={aboutVariant}
+                        onChange={(e) => setAboutVariant(e.target.value as any)}
+                        className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
+                      >
+                        <option value="default">Use Template Default ({activeTemplate.variants.about})</option>
+                        <option value="text-image">Text left, Image right</option>
+                        <option value="image-text">Image left, Text right</option>
+                        <option value="text-only">Text Center Only</option>
+                        <option value="icon-grid">Interactive Icon Grid</option>
+                      </select>
+                    </div>
+
+                    {/* Gallery Override */}
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] text-muted-foreground font-semibold">Gallery Layout</label>
+                      <select
+                        value={galleryVariant}
+                        onChange={(e) => setGalleryVariant(e.target.value as any)}
+                        className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
+                      >
+                        <option value="default">Use Template Default ({activeTemplate.variants.gallery})</option>
+                        <option value="masonry">Variable Height Masonry</option>
+                        <option value="grid">Fixed Aspect Grid</option>
+                        <option value="carousel">Horizontal Carousel</option>
+                      </select>
+                    </div>
+
+                    {/* CTA Override */}
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] text-muted-foreground font-semibold">CTA Band Layout</label>
+                      <select
+                        value={ctaVariant}
+                        onChange={(e) => setCtaVariant(e.target.value as any)}
+                        className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
+                      >
+                        <option value="default">Use Template Default ({activeTemplate.variants.cta})</option>
+                        <option value="split">Two Column Split</option>
+                        <option value="centered">Center Action Box</option>
+                        <option value="image-background">Overlay Image BG</option>
+                        <option value="minimal">Compact Row</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Reset Defaults button */}
+                  <Button
+                    variant="outline"
+                    size="xs"
+                    onClick={() => {
+                      setHeroVariant("default");
+                      setAboutVariant("default");
+                      setGalleryVariant("default");
+                      setCtaVariant("default");
+                    }}
+                    className="mt-2"
+                  >
+                    Reset Variant Overrides
+                  </Button>
                 </div>
-
-                <div className="mt-5 p-3.5 bg-primary/5 rounded-xl border border-primary/20 flex gap-2 text-xs text-foreground">
-                  <Info className="h-4.5 w-4.5 text-primary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-semibold block text-primary">How this works under the hood</span>
-                    <Text size="xs" className="mt-1 text-muted-foreground">
-                      Each section component reads a <code>variant</code> property from the active configuration object. By supplying a new config, the layout instantly restructures itself, loads the corresponding media assets, and changes Tailwind theme tokens — achieving a customized appearance in milliseconds.
-                    </Text>
-                  </div>
-                </div>
-              </div>
-
-              {/* Live Preview Wrapper */}
-              <div className="border border-border rounded-3xl overflow-hidden shadow-elevation-3">
-                {/* Sandbox Ribbon */}
-                <div className="bg-neutral-900 text-white px-5 py-3 flex items-center justify-between text-xs font-semibold">
-                  <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                    <span>Live Interactive Sandbox Container</span>
-                  </div>
-                  <span className="text-[10px] tracking-wide uppercase px-2 py-0.5 bg-white/10 rounded">
-                    Scope: .demo-preview-scope
-                  </span>
-                </div>
-
-                {/* Scoped Preview Screen */}
-                <div className={cn(
-                  "demo-preview-scope overflow-hidden transition-colors duration-500",
-                  previewMode === "dark" ? "bg-neutral-950 text-neutral-100 dark" : "bg-white text-neutral-900"
-                )}>
-                  {/* Render Core Sections */}
-                  <HeroSection config={homepage.hero} />
-                  <AboutSection config={homepage.about} />
-                  <GallerySection config={homepage.gallery} />
-                  <CallToActionSection config={homepage.ctaBand} />
-                </div>
-              </div>
-            </div>
+              </aside>
+            )}
           </div>
         </Container>
-      </div>
+
+        {/* Floating Customizer Button (if panel hidden) */}
+        {!isPanelVisible && (
+          <button
+            onClick={() => setIsPanelVisible(true)}
+            className="fixed bottom-6 right-6 h-12 w-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-elevation-4 border border-primary/20 hover:scale-105 hover:shadow-elevation-5 transition-transform z-30 animate-bounce"
+            title="Open customization customizer panel"
+            aria-label="Open customization customizer panel"
+          >
+            <Sliders className="h-5 w-5" />
+          </button>
+        )}
+      </main>
     </>
   );
 }
