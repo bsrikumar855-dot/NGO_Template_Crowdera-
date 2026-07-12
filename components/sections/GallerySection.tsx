@@ -15,6 +15,7 @@ import { Container } from "@/components/core/Container";
 import { Button } from "@/components/core/Button";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { SectionHeader } from "./SectionHeader";
+import { motion } from "framer-motion";
 import type { GalleryConfig, GalleryItem, ImageAsset, VideoAsset } from "@/types";
 
 /* ── Type guards ─────────────────────────────────────────────── */
@@ -36,7 +37,7 @@ function GalleryThumbnail({
   const isImg = isImageAsset(media);
 
   return (
-    <button
+    <motion.button
       onClick={() => onClick(index)}
       aria-label={item.caption ?? `View ${item.type} ${index + 1}`}
       className={cn(
@@ -46,6 +47,11 @@ function GalleryThumbnail({
         // Masonry heights — alternate tall/short
         index % 3 === 0 ? "aspect-[4/5]" : index % 3 === 1 ? "aspect-video" : "aspect-square"
       )}
+      whileHover={{
+        scale: 1.025,
+        boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4)",
+      }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
     >
       {isImg ? (
         <Image
@@ -96,7 +102,7 @@ function GalleryThumbnail({
           <p className="text-white text-xs line-clamp-2">{item.caption}</p>
         </div>
       )}
-    </button>
+    </motion.button>
   );
 }
 
@@ -275,7 +281,7 @@ function GalleryCarousel({
                 className="flex-shrink-0"
                 style={{ width: `calc((100% - ${(visibleCount - 1) * 16}px) / ${visibleCount})` }}
               >
-                <button
+                <motion.button
                   onClick={() => onItemClick(i)}
                   aria-label={item.caption ?? `View ${item.type} ${i + 1}`}
                   className={cn(
@@ -283,6 +289,11 @@ function GalleryCarousel({
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                     "cursor-zoom-in aspect-video block"
                   )}
+                  whileHover={{
+                    scale: 1.025,
+                    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4)",
+                  }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
                 >
                   {isImg ? (
                     <Image
@@ -324,7 +335,7 @@ function GalleryCarousel({
                       <p className="text-white text-xs line-clamp-1">{item.caption}</p>
                     </div>
                   )}
-                </button>
+                </motion.button>
               </div>
             );
           })}

@@ -13,6 +13,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, ChevronDown, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/core/Button";
+import { motion } from "framer-motion";
 import type { HeroConfig, HeroSlide, ImageAsset, VideoAsset } from "@/types";
 
 /* ── Type guard helpers ──────────────────────────────────────── */
@@ -91,6 +92,40 @@ function VideoMedia({
   );
 }
 
+/* ── Motion Variants ────────────────────────────────────────── */
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1], // easeOutExpo
+    },
+  },
+};
+
+const ctaVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
 /* ── Single Slide ────────────────────────────────────────────── */
 function HeroSlideContent({
   slide,
@@ -143,39 +178,40 @@ function HeroSlideContent({
       {/* Content */}
       <div className="absolute inset-0 z-[3] flex items-center">
         <div className="w-full max-w-[--container-max] mx-auto px-[--container-padding]">
-          <div className="max-w-3xl">
-            <h1
+          <motion.div
+            className="max-w-3xl"
+            initial="hidden"
+            animate={isActive ? "visible" : "hidden"}
+            variants={containerVariants}
+          >
+            <motion.h1
+              variants={itemVariants}
               className={cn(
                 "font-display font-bold text-white text-balance",
                 "text-[clamp(2.5rem,8vw,6.5rem)]",
                 "leading-[1.05] tracking-tight",
-                "mb-6 drop-shadow-sm",
-                isActive && "animate-fade-in-up"
+                "mb-6 drop-shadow-sm"
               )}
             >
               {headline}
-            </h1>
+            </motion.h1>
 
             {subheadline && (
-              <p
+              <motion.p
+                variants={itemVariants}
                 className={cn(
                   "text-white/85 text-[clamp(1rem,1.5vw,1.375rem)]",
-                  "leading-relaxed mb-8 max-w-xl drop-shadow-sm",
-                  isActive && "animate-fade-in"
+                  "leading-relaxed mb-8 max-w-xl drop-shadow-sm"
                 )}
-                style={{ animationDelay: "120ms" }}
               >
                 {subheadline}
-              </p>
+              </motion.p>
             )}
 
             {(primaryCta || secondaryCta) && (
-              <div
-                className={cn(
-                  "flex flex-wrap gap-4",
-                  isActive && "animate-fade-in"
-                )}
-                style={{ animationDelay: "220ms" }}
+              <motion.div
+                variants={ctaVariants}
+                className="flex flex-wrap gap-4"
               >
                 {primaryCta && (
                   <Link href={primaryCta.href} target={primaryCta.external ? "_blank" : undefined}>
@@ -196,9 +232,9 @@ function HeroSlideContent({
                     </Button>
                   </Link>
                 )}
-              </div>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

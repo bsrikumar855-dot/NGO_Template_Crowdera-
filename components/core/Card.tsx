@@ -5,9 +5,11 @@
  * Composable: Card, CardHeader, CardBody, CardFooter, CardImage.
  * Used by Programs, News, Testimonials sections.
  */
+"use client";
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 /* ── Card Root ──────────────────────────────────────────────── */
 const cardVariants = cva(
@@ -24,24 +26,20 @@ const cardVariants = cva(
       variant: {
         default: [
           "shadow-elevation-1",
-          "hover:shadow-elevation-3 hover:scale-[1.02]",
-          "hover:border-[hsl(38_95%_54%/0.25)] hover:shadow-[0_8px_28px_-4px_rgb(0_0_0/0.65),0_0_0_1px_hsl(38_95%_54%/0.12),inset_0_1px_0_hsl(38_95%_54%/0.10)]",
+          "hover:border-[hsl(38_95%_54%/0.25)]",
         ],
         elevated: [
           "shadow-elevation-3",
-          "hover:shadow-elevation-4 hover:scale-[1.02]",
         ],
         flat: [
           "shadow-none bg-transparent border-transparent",
-          "hover:bg-[hsl(240_14%_12%/0.6)] hover:scale-[1.02]",
         ],
         glass: [
           "glass-strong shadow-elevation-2",
-          "hover:shadow-elevation-3 hover:scale-[1.02]",
         ],
         outlined: [
           "shadow-none border-2 bg-transparent",
-          "hover:border-primary/50 hover:shadow-elevation-1 hover:scale-[1.02]",
+          "hover:border-primary/50",
         ],
       },
       interactive: {
@@ -64,10 +62,26 @@ export interface CardProps
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, interactive, as: Tag = "div", ...props }, ref) => {
+    const Component = Tag === "div" ? motion.div : Tag;
+
+    const hoverProps = interactive && Tag === "div"
+      ? {
+          whileHover: {
+            scale: 1.025,
+            boxShadow: "0 12px 30px -4px rgba(0, 0, 0, 0.45), 0 4px 12px -2px rgba(0, 0, 0, 0.3)",
+          },
+          transition: {
+            duration: 0.2,
+            ease: "easeInOut",
+          },
+        }
+      : {};
+
     return (
-      <Tag
-        ref={ref}
+      <Component
+        ref={ref as any}
         className={cn(cardVariants({ variant, interactive }), className)}
+        {...hoverProps}
         {...props}
       />
     );
