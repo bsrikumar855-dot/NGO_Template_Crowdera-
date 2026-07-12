@@ -29,14 +29,38 @@ import { Breadcrumb } from "@/components/core/Breadcrumb";
 import { donateConfig, DonationTier } from "@/content/donate";
 import { faqItems } from "@/content/faq";
 
+const TIER_MAPPING: Record<string, string> = {
+  // Slugs from /programs cards
+  "scholarships": "tier-scholarship",
+  "digital": "tier-digital",
+  "mentorship": "tier-scholarship",
+  "skills": "tier-digital",
+  
+  // Custom query parameters from individual program details CTA
+  "student": "tier-scholarship",
+  "classroom": "tier-digital",
+  "lab": "tier-digital",
+};
+
 export default function DonateContent() {
   const searchParams = useSearchParams();
   const preselectedTier = searchParams.get("tier");
 
+  const resolvedTierId = React.useMemo(() => {
+    if (!preselectedTier) return null;
+    const cleanTier = preselectedTier.toLowerCase().trim();
+    if (TIER_MAPPING[cleanTier]) return TIER_MAPPING[cleanTier];
+    
+    const match = donateConfig.donationTiers.find(
+      (t) => t.id.toLowerCase().includes(cleanTier) || cleanTier.includes(t.id.replace("tier-", "").toLowerCase())
+    );
+    return match ? match.id : null;
+  }, [preselectedTier]);
+
   // Determine starting amount based on preselected tier
   const getInitialAmount = () => {
-    if (preselectedTier) {
-      const match = donateConfig.donationTiers.find((t) => t.id.includes(preselectedTier));
+    if (resolvedTierId) {
+      const match = donateConfig.donationTiers.find((t) => t.id === resolvedTierId);
       if (match) return match.amount;
     }
     const defaultSuggested = donateConfig.donationTiers.find((t) => t.suggested);
@@ -61,14 +85,14 @@ export default function DonateContent() {
 
   // Sync preselected query parameter
   React.useEffect(() => {
-    if (preselectedTier) {
-      const match = donateConfig.donationTiers.find((t) => t.id.includes(preselectedTier));
+    if (resolvedTierId) {
+      const match = donateConfig.donationTiers.find((t) => t.id === resolvedTierId);
       if (match) {
         setSelectedAmount(match.amount);
         setIsCustom(false);
       }
     }
-  }, [preselectedTier]);
+  }, [resolvedTierId]);
 
   const activeAmount = isCustom ? Number(customAmount) || 0 : selectedAmount;
 
