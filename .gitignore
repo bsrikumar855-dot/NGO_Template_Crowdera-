@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+dist/
+.env
+.env.local
+.env.production
+.env.*.local
+*.log
+.DS_Store
+Thumbs.db
+public/images/

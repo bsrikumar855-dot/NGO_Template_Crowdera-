@@ -1,0 +1,437 @@
+/*
+ * ╔══════════════════════════════════════════════════════════════════╗
+ * ║         CROWDERA NGO TEMPLATE — GLOBAL DESIGN TOKEN LAYER       ║
+ * ║                                                                  ║
+ * ║  This file defines ALL CSS custom properties (design tokens).   ║
+ * ║  To re-theme the template for a new organization, override      ║
+ * ║  only the tokens in :root (light) and .dark (dark) blocks.      ║
+ * ║  Never hardcode values inside components.                        ║
+ * ╚══════════════════════════════════════════════════════════════════╝
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────────────────────────────────────────
+   1. FONT IMPORTS  (loaded via next/font — these are fallback stacks)
+   ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* ── Font Stacks ── */
+    --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+    /* ── Modular Type Scale (ratio 1.25) — fluid via clamp() ── */
+    --text-xs:   0.64rem;           /* 10.24px */
+    --text-sm:   0.8rem;            /* 12.8px  */
+    --text-base: 1rem;              /* 16px    */
+    --text-md:   1.25rem;           /* 20px    */
+    --text-lg:   1.563rem;          /* 25px    */
+    --text-xl:   1.953rem;          /* 31.25px */
+    --text-2xl:  2.441rem;          /* 39px    */
+    --text-3xl:  3.052rem;          /* 48.8px  */
+    --text-4xl:  3.815rem;          /* 61px    */
+    --text-5xl:  4.768rem;          /* 76.3px  */
+    --text-hero: clamp(3rem, 8vw + 1rem, 7rem); /* fluid hero */
+
+    /* ── Line Heights ── */
+    --leading-hero: 1.05;
+    --leading-display: 1.15;
+    --leading-tight: 1.3;
+    --leading-body: 1.6;
+
+    /* ── Spacing (8px base unit) ── */
+    --space-1:  4px;
+    --space-2:  8px;
+    --space-3:  12px;
+    --space-4:  16px;
+    --space-5:  20px;
+    --space-6:  24px;
+    --space-8:  32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+    --space-32: 128px;
+    --space-40: 160px;
+    --space-48: 192px;
+    --space-56: 224px;
+    --space-64: 256px;
+
+    /* ── Container Widths ── */
+    --container-sm:  640px;
+    --container-md:  768px;
+    --container-lg:  1024px;
+    --container-xl:  1280px;
+    --container-max: 1440px;
+    --container-padding: clamp(1rem, 4vw, 2.5rem);
+
+    /* ── Border Radius ── */
+    --radius-sm:  4px;
+    --radius-base: 8px;
+    --radius-md:  12px;
+    --radius-lg:  16px;
+    --radius-xl:  24px;
+    --radius-2xl: 32px;
+    --radius-3xl: 48px;
+
+    /* ── Animation / Motion ── */
+    --duration-instant: 80ms;
+    --duration-fast:    150ms;
+    --duration-base:    250ms;
+    --duration-slow:    400ms;
+    --duration-slower:  700ms;
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bouncy: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* ── Grid ── */
+    --grid-cols-desktop: 12;
+    --grid-cols-tablet:   8;
+    --grid-cols-mobile:   4;
+    --grid-gap: var(--space-6);
+
+    /* ── Elevation / Shadows (light mode) ── */
+    --shadow-elevation-1: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-elevation-2: 0 4px 6px -1px rgb(0 0 0 / 0.07),
+                          0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-elevation-3: 0 10px 15px -3px rgb(0 0 0 / 0.08),
+                          0 4px 6px -4px rgb(0 0 0 / 0.05);
+    --shadow-elevation-4: 0 20px 25px -5px rgb(0 0 0 / 0.10),
+                          0 8px 10px -6px rgb(0 0 0 / 0.05);
+    --shadow-elevation-5: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    --shadow-glow: 0 0 20px 5px rgb(255 255 255 / 0.08);
+    --shadow-glow-primary: 0 0 30px 8px hsl(var(--color-primary) / 0.25);
+
+    /* ══════════════════════════════════════════════════
+       LIGHT MODE COLOR TOKENS
+       ══════════════════════════════════════════════════
+       Default palette: Warm Slate + Teal-Green primary
+       Organizations OVERRIDE --color-primary & secondary
+       ══════════════════════════════════════════════════ */
+
+    /* Primary — Crowdera default: deep teal-green */
+    --color-primary: 163 72% 29%;          /* hsl(163, 72%, 29%) */
+    --color-primary-foreground: 0 0% 98%;
+    --color-primary-subtle: 163 72% 95%;
+
+    /* Secondary — warm amber accent */
+    --color-secondary: 38 92% 50%;         /* hsl(38, 92%, 50%) */
+    --color-secondary-foreground: 0 0% 10%;
+
+    /* Neutral scale — warm slate */
+    --color-neutral-50:  220 20% 98%;
+    --color-neutral-100: 220 15% 95%;
+    --color-neutral-200: 220 13% 91%;
+    --color-neutral-300: 220 10% 82%;
+    --color-neutral-400: 220 9%  64%;
+    --color-neutral-500: 220 8%  46%;
+    --color-neutral-600: 220 10% 35%;
+    --color-neutral-700: 220 12% 26%;
+    --color-neutral-800: 220 13% 18%;
+    --color-neutral-900: 220 15% 12%;
+    --color-neutral-950: 220 20% 6%;
+
+    /* Semantic */
+    --color-success: 142 71% 35%;
+    --color-warning: 38 92% 50%;
+    --color-error:   0 84% 52%;
+
+    /* Surfaces */
+    --color-background:      220 20% 98%;
+    --color-foreground:      220 15% 10%;
+    --color-surface:         0 0% 100%;
+    --color-surface-elevated: 0 0% 100%;
+    --color-border:          220 13% 88%;
+    --color-muted:           220 15% 95%;
+    --color-muted-foreground: 220 9% 46%;
+    --color-ring:            163 72% 29%;
+  }
+
+  /* ════════════════════════════════════════════════════
+     DARK MODE COLOR TOKENS (first-class, not inverted)
+     ════════════════════════════════════════════════════ */
+  .dark {
+    /* Primary stays vibrant in dark mode */
+    --color-primary: 163 62% 48%;
+    --color-primary-foreground: 0 0% 5%;
+    --color-primary-subtle: 163 72% 12%;
+
+    /* Secondary — slightly muted in dark */
+    --color-secondary: 38 82% 55%;
+    --color-secondary-foreground: 220 20% 6%;
+
+    /* Neutral scale inverted for dark */
+    --color-neutral-50:  220 15% 6%;
+    --color-neutral-100: 220 13% 9%;
+    --color-neutral-200: 220 12% 13%;
+    --color-neutral-300: 220 10% 20%;
+    --color-neutral-400: 220 9%  35%;
+    --color-neutral-500: 220 8%  52%;
+    --color-neutral-600: 220 9%  65%;
+    --color-neutral-700: 220 10% 75%;
+    --color-neutral-800: 220 12% 84%;
+    --color-neutral-900: 220 13% 92%;
+    --color-neutral-950: 220 15% 97%;
+
+    /* Semantic */
+    --color-success: 142 71% 55%;
+    --color-warning: 38 92% 65%;
+    --color-error:   0 84% 65%;
+
+    /* Surfaces */
+    --color-background:      220 20% 7%;
+    --color-foreground:      220 15% 94%;
+    --color-surface:         220 15% 10%;
+    --color-surface-elevated: 220 13% 13%;
+    --color-border:          220 12% 18%;
+    --color-muted:           220 13% 13%;
+    --color-muted-foreground: 220 9%  55%;
+    --color-ring:            163 62% 48%;
+
+    /* Shadows subtler in dark mode */
+    --shadow-elevation-1: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+    --shadow-elevation-2: 0 4px 6px -1px rgb(0 0 0 / 0.4),
+                          0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-elevation-3: 0 10px 15px -3px rgb(0 0 0 / 0.5),
+                          0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-elevation-4: 0 20px 25px -5px rgb(0 0 0 / 0.6),
+                          0 8px 10px -6px rgb(0 0 0 / 0.4);
+    --shadow-elevation-5: 0 25px 50px -12px rgb(0 0 0 / 0.8);
+    --shadow-glow: 0 0 20px 5px rgb(255 255 255 / 0.04);
+    --shadow-glow-primary: 0 0 30px 8px hsl(var(--color-primary) / 0.35);
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   2. BASE LAYER — Global Resets & Defaults
+   ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: hsl(var(--color-border));
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    scroll-behavior: smooth;
+  }
+
+  /* Respect reduced-motion globally */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    background-color: hsl(var(--color-background));
+    color: hsl(var(--color-foreground));
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    min-height: 100dvh;
+  }
+
+  /* ── Headings ── */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: var(--leading-display);
+    letter-spacing: -0.025em;
+    color: hsl(var(--color-foreground));
+  }
+
+  /* ── Focus States — accessible, brand-colored ── */
+  :focus-visible {
+    outline: 2px solid hsl(var(--color-primary));
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Links ── */
+  a {
+    color: hsl(var(--color-primary));
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-smooth),
+                text-decoration-color var(--duration-fast) var(--ease-smooth);
+  }
+  a:hover {
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--color-primary) / 0.5);
+  }
+
+  /* ── Images ── */
+  img, video {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* ── Form Defaults ── */
+  input, textarea, select, button {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  /* ── Selection ── */
+  ::selection {
+    background-color: hsl(var(--color-primary) / 0.2);
+    color: hsl(var(--color-foreground));
+  }
+
+  /* ── Scrollbar Styling ── */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--color-neutral-100));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--color-neutral-300));
+    border-radius: var(--radius-full);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--color-neutral-400));
+  }
+
+  /* ── Horizontal Rule ── */
+  hr {
+    border-color: hsl(var(--color-border));
+    border-top-width: 1px;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   3. COMPONENT LAYER — Reusable patterns
+   ─────────────────────────────────────────────────────────────────── */
+@layer components {
+  /* ── Container ── */
+  .container-template {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+  }
+
+  /* ── Section Padding ── */
+  .section-padding {
+    padding-top: clamp(var(--space-16), 6vw, var(--space-24));
+    padding-bottom: clamp(var(--space-16), 6vw, var(--space-24));
+  }
+
+  /* ── Gradient Text ── */
+  .text-gradient-primary {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--color-primary)) 0%,
+      hsl(var(--color-secondary)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ── Glass Card ── */
+  .glass {
+    background: hsl(var(--color-surface) / 0.7);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid hsl(var(--color-border) / 0.6);
+  }
+
+  /* ── Shimmer skeleton ── */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--color-neutral-200)) 25%,
+      hsl(var(--color-neutral-100)) 50%,
+      hsl(var(--color-neutral-200)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* ── Focus ring reusable ── */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* ── Screen reader only ── */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* ── Overlay ── */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--color-neutral-950) / 0.2) 0%,
+      hsl(var(--color-neutral-950) / 0.6) 100%
+    );
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   4. UTILITY LAYER — Helpers
+   ─────────────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* ── Text Balance ── */
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* ── Animate on reduced motion ── */
+  .motion-safe\:animate-fade-in {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: fade-in var(--duration-base) var(--ease-smooth) forwards;
+    }
+  }
+
+  /* ── Numeric tabular ── */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Truncation ── */
+  .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+  .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+  .line-clamp-4 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+}
