@@ -9,7 +9,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { CheckCircle2, User, Mail, Phone, BookOpen, Compass, Users } from "lucide-react";
+import { CheckCircle2, BookOpen, Compass, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/core/Container";
 import { Section } from "@/components/core/Section";

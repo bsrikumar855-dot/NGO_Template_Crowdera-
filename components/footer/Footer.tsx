@@ -25,6 +25,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  Heart,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/core/Container";

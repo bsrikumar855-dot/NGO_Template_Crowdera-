@@ -30,7 +30,6 @@ import {
   demoThemes,
   demoTemplates,
   demoOrganizations,
-  OrgDemoPreset,
   TemplatePreset,
 } from "@/content/demo_configs";
 import {

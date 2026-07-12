@@ -84,7 +84,6 @@ function buildCSSVars(config: ThemeConfig, mode: "light" | "dark", selector: str
 export function ThemeProvider({
   children,
   themeConfig,
-  defaultTheme = "dark",
 }: ThemeProviderProps) {
   // Lock themeConfig to use dark colors for both :root and .dark selectors
   const forcedDarkConfig = themeConfig ? {
