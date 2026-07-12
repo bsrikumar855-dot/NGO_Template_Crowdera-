@@ -9,4 +9,3 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
-public/images/
