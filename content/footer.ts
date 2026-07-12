@@ -24,11 +24,10 @@ export const footer: FooterConfig = {
       id: "organization",
       heading: "Organization",
       links: [
-        { label: "About Us", href: "/about" },
-        { label: "Our Team", href: "/about#team" },
-        { label: "Annual Reports", href: "/reports" },
-        { label: "Partners", href: "/partners" },
-        { label: "Careers", href: "/careers" },
+        { label: "About Us", href: "/#about" },
+        { label: "Our Team", href: "/#about" },
+        { label: "Annual Reports", href: "/news/annual-impact-report-2024" },
+        { label: "Partners", href: "/#gallery" },
       ],
     },
     {
@@ -47,9 +46,9 @@ export const footer: FooterConfig = {
       links: [
         { label: "Donate", href: "/donate" },
         { label: "Volunteer", href: "/volunteer" },
-        { label: "Corporate Partnership", href: "/corporate" },
-        { label: "Fundraise", href: "/fundraise" },
-        { label: "Events", href: "/events" },
+        { label: "Corporate Partnership", href: "/donate" },
+        { label: "Fundraise", href: "/donate" },
+        { label: "Events", href: "/#news" },
       ],
     },
   ],
@@ -69,9 +68,9 @@ export const footer: FooterConfig = {
   legal: {
     copyright: "© {year} Crowdera. All rights reserved. Registered NGO: NGO-2014-MH-04521",
     links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Use", href: "/terms" },
-      { label: "Cookie Policy", href: "/cookies" },
+      { label: "Privacy Policy", href: "/legal/privacy" },
+      { label: "Terms of Use", href: "/legal/terms" },
+      { label: "Cookie Policy", href: "/legal/cookies" },
     ],
   },
 };
