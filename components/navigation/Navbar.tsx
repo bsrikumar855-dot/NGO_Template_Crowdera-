@@ -246,6 +246,20 @@ export function Navbar({ nav, org, className }: NavbarProps) {
               </div>
             )}
 
+            {/* Customize Live Button */}
+            <Link href="/templates/demo" className="hidden sm:block">
+              <Button
+                variant="outline"
+                size="sm"
+                className={cn(
+                  !scrolled && "shadow-elevation-1",
+                  isOnHero ? "text-white border-white/20 hover:bg-white/10 hover:text-white" : ""
+                )}
+              >
+                Customize Live
+              </Button>
+            </Link>
+
             {/* Donate CTA */}
             <Link href={nav.cta.href} className="hidden sm:block">
               <Button
@@ -328,6 +342,11 @@ export function Navbar({ nav, org, className }: NavbarProps) {
                   <ThemeToggle isScrolled={true} />
                 </div>
               )}
+              <Link href="/templates/demo" onClick={() => setIsOpen(false)}>
+                <Button variant="outline" fullWidth size="lg">
+                  Customize Live
+                </Button>
+              </Link>
               <Link href={nav.cta.href} onClick={() => setIsOpen(false)}>
                 <Button variant="donate" fullWidth size="lg">
                   {nav.cta.label}
