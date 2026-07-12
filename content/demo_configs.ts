@@ -964,4 +964,599 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
       },
     },
   },
+  humanitarian: {
+    id: "org-humanitarian",
+    name: "Bridgeway Relief",
+    tagline: "Delivering Aid Where It's Needed Most",
+    causeType: "Humanitarian",
+    org: {
+      id: "org-humanitarian-config",
+      name: "Bridgeway Relief",
+      tagline: "Delivering Aid Where It's Needed Most",
+      description: "Providing food security, clean water, and emergency shelter to displaced and vulnerable communities.",
+      logo: { src: "/images/logo.svg", alt: "Bridgeway Relief Logo", width: 180, height: 40 },
+      logoDark: { src: "/images/logo-dark.svg", alt: "Bridgeway Relief Logo", width: 180, height: 40 },
+      founded: 2011,
+      causeType: "humanitarian",
+      contact: { email: "hello@bridgewayrelief.org", phone: "+91 99999 33333", address: { street: "8 Unity Lane", city: "Chennai", state: "TN", zip: "600001", country: "India" } },
+      social: [{ platform: "facebook", href: "#" }],
+      donateUrl: "/donate",
+      volunteerUrl: "#",
+    },
+    homepage: {
+      seo: { title: "Bridgeway Relief", description: "Humanitarian aid NGO" },
+      hero: {
+        variant: "carousel",
+        slides: [
+          {
+            id: "slide-hum-1",
+            headline: "No One Should Face Crisis Alone",
+            subheadline: "Emergency food, water, and shelter for families displaced by conflict and hardship.",
+            media: { src: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=1200&auto=format&fit=crop", alt: "Relief workers distributing aid", width: 1200, height: 600 },
+            overlayOpacity: 0.45,
+            primaryCta: { label: "Give Emergency Aid", href: "/donate" },
+            secondaryCta: { label: "Learn More", href: "/#about" },
+          },
+        ],
+      },
+      impactStory: {
+        panels: [
+          {
+            id: "panel-hum-problem",
+            image: { src: "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?q=80&w=1200&auto=format&fit=crop", alt: "Families facing displacement" },
+            eyebrow: "The Problem",
+            headline: "Millions Displaced, Basic Needs Unmet",
+            body: "Conflict, climate shocks, and economic collapse leave families without food, clean water, or safe shelter."
+          },
+          {
+            id: "panel-hum-response",
+            image: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop", alt: "Aid distribution in progress" },
+            eyebrow: "Our Response",
+            headline: "Rapid, On-the-Ground Relief",
+            body: "We deploy mobile aid units within 48 hours of a crisis, delivering food kits, clean water, and emergency shelter."
+          },
+          {
+            id: "panel-hum-outcome",
+            image: { src: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1200&auto=format&fit=crop", alt: "Family resettled safely" },
+            eyebrow: "The Outcome",
+            headline: "Stability Restored, Dignity Preserved",
+            body: "Families move from crisis to stability with sustained support — over 80,000 people reached last year alone."
+          }
+        ]
+      },
+      about: {
+        variant: "text-image",
+        badge: "Who We Are",
+        headline: "Aid That Reaches the Last Mile",
+        body: ["Bridgeway Relief operates in the hardest-to-reach regions, partnering with local volunteers who understand the terrain and the need."],
+        media: { src: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=800&auto=format&fit=crop", alt: "Relief team", width: 600, height: 450 },
+        cta: { label: "Our Mission", href: "/#about" },
+      },
+      stats: {
+        theme: "primary",
+        items: [
+          { id: "h1", value: 80000, label: "People Reached", icon: "Users" },
+          { id: "h2", value: 22, label: "Active Relief Sites", icon: "MapPin" },
+        ],
+      },
+      programs: {
+        variant: "carousel",
+        badge: "Our Focus",
+        headline: "Relief Programs",
+        items: [
+          { id: "hp1", image: { src: "https://images.unsplash.com/photo-1541802645635-11f2286a7482?q=80&w=600&auto=format&fit=crop", alt: "Food distribution" }, badge: "Food Security", title: "Emergency Food Kits", description: "Nutrition packages for families in crisis.", cta: { label: "View Details", href: "/programs" }, tags: ["Food", "Emergency"] },
+          { id: "hp2", image: { src: "https://images.unsplash.com/photo-1541256580214-6f4d5a5e2a5c?q=80&w=600&auto=format&fit=crop", alt: "Clean water access" }, badge: "Water", title: "Clean Water Access", description: "Portable filtration units for displaced communities.", cta: { label: "View Details", href: "/programs" }, tags: ["Water", "Health"] },
+        ],
+      },
+      testimonials: {
+        variant: "carousel",
+        badge: "Voices",
+        headline: "Stories From the Field",
+        items: [
+          { id: "ht1", quote: "When our village flooded, Bridgeway was there within two days.", authorName: "Fatima R.", authorRole: "Relief Recipient" },
+        ],
+      },
+      gallery: {
+        variant: "masonry",
+        badge: "Field Gallery",
+        headline: "Work in Action",
+        items: [
+          { id: "hg1", type: "image", media: { src: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=800&auto=format&fit=crop", alt: "Aid distribution" }, category: "Distribution" },
+          { id: "hg2", type: "image", media: { src: "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?q=80&w=800&auto=format&fit=crop", alt: "Shelter site" }, category: "Shelter" },
+        ],
+      },
+      news: {
+        variant: "cards",
+        badge: "Updates",
+        headline: "Latest Headlines",
+        items: [
+          { id: "hn1", slug: "flood-response-2024", title: "Rapid Response to Regional Flooding", summary: "Mobile units deployed within 48 hours.", date: "2024-08-12", href: "#", image: { src: "https://images.unsplash.com/photo-1541802645635-11f2286a7482?q=80&w=800&auto=format&fit=crop", alt: "Flood response" } },
+        ],
+      },
+      ctaBand: {
+        variant: "split",
+        theme: "primary",
+        badge: "Take Action",
+        headline: "Crisis Doesn't Wait. Neither Do We.",
+        subheadline: "Your donation funds rapid emergency response.",
+        primaryCta: { label: "Donate Now", href: "/donate" },
+      },
+    },
+  },
+  faithBased: {
+    id: "org-faith-based",
+    name: "Grace & Light Mission",
+    tagline: "Serving Communities Through Faith and Compassion",
+    causeType: "Faith-Based",
+    org: {
+      id: "org-faith-config",
+      name: "Grace & Light Mission",
+      tagline: "Serving Communities Through Faith and Compassion",
+      description: "Faith-rooted outreach providing food, counseling, and community support to families in need.",
+      logo: { src: "/images/logo.svg", alt: "Grace & Light Logo", width: 180, height: 40 },
+      logoDark: { src: "/images/logo-dark.svg", alt: "Grace & Light Logo", width: 180, height: 40 },
+      founded: 2005,
+      causeType: "faith-based",
+      contact: { email: "office@graceandlight.org", phone: "+91 99999 44444", address: { street: "3 Chapel Road", city: "Bengaluru", state: "KA", zip: "560001", country: "India" } },
+      social: [{ platform: "facebook", href: "#" }],
+      donateUrl: "/donate",
+      volunteerUrl: "#",
+    },
+    homepage: {
+      seo: { title: "Grace & Light Mission", description: "Faith-based community outreach NGO" },
+      hero: {
+        variant: "image",
+        slides: [
+          {
+            id: "slide-faith-1",
+            headline: "Faith in Action, Compassion for All",
+            subheadline: "Weekly meal programs, counseling, and community fellowship open to everyone, regardless of belief.",
+            media: { src: "https://images.unsplash.com/photo-1438032005730-c779502df39b?q=80&w=1200&auto=format&fit=crop", alt: "Community gathering", width: 1200, height: 600 },
+            overlayOpacity: 0.4,
+            primaryCta: { label: "Support Our Mission", href: "/donate" },
+            secondaryCta: { label: "Learn More", href: "/#about" },
+          },
+        ],
+      },
+      impactStory: {
+        panels: [
+          {
+            id: "panel-faith-problem",
+            image: { src: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1200&auto=format&fit=crop", alt: "Family in need" },
+            eyebrow: "The Problem",
+            headline: "Isolation and Hardship in Our Neighborhoods",
+            body: "Many families face hardship without a support network — no one to turn to in difficult seasons of life."
+          },
+          {
+            id: "panel-faith-response",
+            image: { src: "https://images.unsplash.com/photo-1438032005730-c779502df39b?q=80&w=1200&auto=format&fit=crop", alt: "Community meal program" },
+            eyebrow: "Our Response",
+            headline: "A Community Table, Open to All",
+            body: "Weekly meal programs, free counseling, and a welcoming community space for anyone who needs it."
+          },
+          {
+            id: "panel-faith-outcome",
+            image: { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop", alt: "Families reconnected" },
+            eyebrow: "The Outcome",
+            headline: "Renewed Hope, Rebuilt Connection",
+            body: "Over 3,000 families served this year, many finding not just meals but lasting community."
+          }
+        ]
+      },
+      about: {
+        variant: "text-image",
+        badge: "Who We Are",
+        headline: "Rooted in Faith, Open to Everyone",
+        body: ["Grace & Light Mission serves the whole community — regardless of background or belief — through practical, hands-on care."],
+        media: { src: "https://images.unsplash.com/photo-1438032005730-c779502df39b?q=80&w=800&auto=format&fit=crop", alt: "Community fellowship", width: 600, height: 450 },
+        cta: { label: "Our Mission", href: "/#about" },
+      },
+      stats: {
+        theme: "primary",
+        items: [
+          { id: "f1", value: 3000, label: "Families Served", icon: "Users" },
+          { id: "f2", value: 15, label: "Community Programs", icon: "Heart" },
+        ],
+      },
+      programs: {
+        variant: "carousel",
+        badge: "Our Focus",
+        headline: "Outreach Programs",
+        items: [
+          { id: "fp1", image: { src: "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?q=80&w=600&auto=format&fit=crop", alt: "Community meal" }, badge: "Nutrition", title: "Weekly Community Meals", description: "Free meals open to all, no questions asked.", cta: { label: "View Details", href: "/programs" }, tags: ["Meals", "Community"] },
+          { id: "fp2", image: { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=600&auto=format&fit=crop", alt: "Counseling session" }, badge: "Support", title: "Free Family Counseling", description: "Confidential support for families in crisis.", cta: { label: "View Details", href: "/programs" }, tags: ["Counseling", "Family"] },
+        ],
+      },
+      testimonials: {
+        variant: "carousel",
+        badge: "Voices",
+        headline: "Stories of Grace",
+        items: [
+          { id: "ft1", quote: "They welcomed us with no judgment, just kindness — exactly when we needed it most.", authorName: "Joseph M.", authorRole: "Community Member" },
+        ],
+      },
+      gallery: {
+        variant: "masonry",
+        badge: "Field Gallery",
+        headline: "Work in Action",
+        items: [
+          { id: "fg1", type: "image", media: { src: "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?q=80&w=800&auto=format&fit=crop", alt: "Community meal" }, category: "Meals" },
+          { id: "fg2", type: "image", media: { src: "https://images.unsplash.com/photo-1438032005730-c779502df39b?q=80&w=800&auto=format&fit=crop", alt: "Fellowship gathering" }, category: "Fellowship" },
+        ],
+      },
+      news: {
+        variant: "cards",
+        badge: "Updates",
+        headline: "Latest Headlines",
+        items: [
+          { id: "fn1", slug: "community-kitchen-expansion", title: "Community Kitchen Expands to Second Site", summary: "New location will double weekly meal capacity.", date: "2024-09-02", href: "#", image: { src: "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?q=80&w=800&auto=format&fit=crop", alt: "Kitchen expansion" } },
+        ],
+      },
+      ctaBand: {
+        variant: "split",
+        theme: "primary",
+        badge: "Take Action",
+        headline: "Be a Light for Someone Today.",
+        subheadline: "Your support keeps our doors — and our table — open.",
+        primaryCta: { label: "Donate Now", href: "/donate" },
+      },
+    },
+  },
+  communityDevelopment: {
+    id: "org-community-development",
+    name: "Neighborhood Forward",
+    tagline: "Building Stronger, Self-Sustaining Communities",
+    causeType: "Community Development",
+    org: {
+      id: "org-community-config",
+      name: "Neighborhood Forward",
+      tagline: "Building Stronger, Self-Sustaining Communities",
+      description: "Local infrastructure, skills training, and small business support for underserved neighborhoods.",
+      logo: { src: "/images/logo.svg", alt: "Neighborhood Forward Logo", width: 180, height: 40 },
+      logoDark: { src: "/images/logo-dark.svg", alt: "Neighborhood Forward Logo", width: 180, height: 40 },
+      founded: 2016,
+      causeType: "community",
+      contact: { email: "connect@neighborhoodforward.org", phone: "+91 99999 55555", address: { street: "21 Main Street", city: "Pune", state: "MH", zip: "411001", country: "India" } },
+      social: [{ platform: "facebook", href: "#" }],
+      donateUrl: "/donate",
+      volunteerUrl: "#",
+    },
+    homepage: {
+      seo: { title: "Neighborhood Forward", description: "Community development NGO" },
+      hero: {
+        variant: "carousel",
+        slides: [
+          {
+            id: "slide-comm-1",
+            headline: "Stronger Neighborhoods, Built Together",
+            subheadline: "Local infrastructure, job training, and small business grants for underserved communities.",
+            media: { src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop", alt: "Community building project", width: 1200, height: 600 },
+            overlayOpacity: 0.45,
+            primaryCta: { label: "Support the Cause", href: "/donate" },
+            secondaryCta: { label: "Learn More", href: "/#about" },
+          },
+        ],
+      },
+      impactStory: {
+        panels: [
+          {
+            id: "panel-comm-problem",
+            image: { src: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1200&auto=format&fit=crop", alt: "Underserved neighborhood" },
+            eyebrow: "The Problem",
+            headline: "Underinvestment Traps Neighborhoods in Cycles of Poverty",
+            body: "Lack of infrastructure, job access, and capital keeps entire communities from moving forward."
+          },
+          {
+            id: "panel-comm-response",
+            image: { src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop", alt: "Job training session" },
+            eyebrow: "Our Response",
+            headline: "Skills, Capital, and Infrastructure — Together",
+            body: "We combine vocational training, microloans, and public space renewal to build lasting local capacity."
+          },
+          {
+            id: "panel-comm-outcome",
+            image: { src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200&auto=format&fit=crop", alt: "Thriving local business" },
+            eyebrow: "The Outcome",
+            headline: "Locally Owned, Self-Sustaining Growth",
+            body: "Over 400 small businesses launched and 12 neighborhoods revitalized through resident-led projects."
+          }
+        ]
+      },
+      about: {
+        variant: "text-image",
+        badge: "Who We Are",
+        headline: "Investing in the People Who Know the Neighborhood Best",
+        body: ["Neighborhood Forward partners directly with residents to design and lead the projects that matter most to them."],
+        media: { src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop", alt: "Community workshop", width: 600, height: 450 },
+        cta: { label: "Our Mission", href: "/#about" },
+      },
+      stats: {
+        theme: "primary",
+        items: [
+          { id: "c1", value: 400, label: "Businesses Launched", icon: "Store" },
+          { id: "c2", value: 12, label: "Neighborhoods Revitalized", icon: "Building2" },
+        ],
+      },
+      programs: {
+        variant: "carousel",
+        badge: "Our Focus",
+        headline: "Development Programs",
+        items: [
+          { id: "cp1", image: { src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600&auto=format&fit=crop", alt: "Skills training" }, badge: "Workforce", title: "Vocational Skills Training", description: "Job-ready training in trades and technology.", cta: { label: "View Details", href: "/programs" }, tags: ["Jobs", "Training"] },
+          { id: "cp2", image: { src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=600&auto=format&fit=crop", alt: "Small business grant" }, badge: "Economic", title: "Microloan & Grant Fund", description: "Startup capital for resident-owned businesses.", cta: { label: "View Details", href: "/programs" }, tags: ["Microloans", "Business"] },
+        ],
+      },
+      testimonials: {
+        variant: "carousel",
+        badge: "Voices",
+        headline: "Community Voices",
+        items: [
+          { id: "ct1", quote: "The microloan let me open my shop. Now I hire three of my neighbors.", authorName: "Deepak S.", authorRole: "Small Business Owner" },
+        ],
+      },
+      gallery: {
+        variant: "masonry",
+        badge: "Field Gallery",
+        headline: "Work in Action",
+        items: [
+          { id: "cg1", type: "image", media: { src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=800&auto=format&fit=crop", alt: "Community project" }, category: "Infrastructure" },
+          { id: "cg2", type: "image", media: { src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop", alt: "Training session" }, category: "Training" },
+        ],
+      },
+      news: {
+        variant: "cards",
+        badge: "Updates",
+        headline: "Latest Headlines",
+        items: [
+          { id: "cn1", slug: "microloan-fund-milestone", title: "Microloan Fund Crosses 400 Businesses Funded", summary: "A milestone year for resident-led entrepreneurship.", date: "2024-10-05", href: "#", image: { src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=800&auto=format&fit=crop", alt: "Business milestone" } },
+        ],
+      },
+      ctaBand: {
+        variant: "split",
+        theme: "primary",
+        badge: "Take Action",
+        headline: "Invest in a Neighborhood's Future.",
+        subheadline: "Your donation funds training, capital, and infrastructure.",
+        primaryCta: { label: "Donate Now", href: "/donate" },
+      },
+    },
+  },
+  artsCulture: {
+    id: "org-arts-culture",
+    name: "Canvas Collective",
+    tagline: "Keeping Culture Alive Through Art and Expression",
+    causeType: "Arts & Culture",
+    org: {
+      id: "org-arts-config",
+      name: "Canvas Collective",
+      tagline: "Keeping Culture Alive Through Art and Expression",
+      description: "Free arts education, cultural preservation, and public art programs for underserved communities.",
+      logo: { src: "/images/logo.svg", alt: "Canvas Collective Logo", width: 180, height: 40 },
+      logoDark: { src: "/images/logo-dark.svg", alt: "Canvas Collective Logo", width: 180, height: 40 },
+      founded: 2013,
+      causeType: "arts",
+      contact: { email: "studio@canvascollective.org", phone: "+91 99999 66666", address: { street: "56 Gallery Ave", city: "Jaipur", state: "RJ", zip: "302001", country: "India" } },
+      social: [{ platform: "facebook", href: "#" }],
+      donateUrl: "/donate",
+      volunteerUrl: "#",
+    },
+    homepage: {
+      seo: { title: "Canvas Collective", description: "Arts & culture nonprofit" },
+      hero: {
+        variant: "carousel",
+        slides: [
+          {
+            id: "slide-arts-1",
+            headline: "Every Child Deserves a Canvas",
+            subheadline: "Free art, music, and dance education for kids who'd otherwise never hold a paintbrush.",
+            media: { src: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1200&auto=format&fit=crop", alt: "Children painting", width: 1200, height: 600 },
+            overlayOpacity: 0.4,
+            primaryCta: { label: "Fund a Program", href: "/donate" },
+            secondaryCta: { label: "Learn More", href: "/#about" },
+          },
+        ],
+      },
+      impactStory: {
+        panels: [
+          {
+            id: "panel-arts-problem",
+            image: { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop", alt: "Underfunded arts programs" },
+            eyebrow: "The Problem",
+            headline: "Arts Education Is the First Thing Cut",
+            body: "When budgets shrink, art, music, and cultural programs disappear first — and with them, a vital outlet for expression."
+          },
+          {
+            id: "panel-arts-response",
+            image: { src: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1200&auto=format&fit=crop", alt: "Free art class" }, 
+            eyebrow: "Our Response",
+            headline: "Free Studios, Open to Every Child",
+            body: "We run free after-school art, music, and traditional dance classes taught by working local artists."
+          },
+          {
+            id: "panel-arts-outcome",
+            image: { src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=1200&auto=format&fit=crop", alt: "Youth art exhibition" },
+            eyebrow: "The Outcome",
+            headline: "A New Generation of Local Artists",
+            body: "Over 200 students have shown work in public exhibitions, and 3 traditional art forms have been actively revived."
+          }
+        ]
+      },
+      about: {
+        variant: "text-image",
+        badge: "Who We Are",
+        headline: "Culture Is Something You Practice, Not Just Preserve",
+        body: ["Canvas Collective keeps traditional and contemporary art forms alive by putting them directly in the hands of the next generation."],
+        media: { src: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=800&auto=format&fit=crop", alt: "Art studio", width: 600, height: 450 },
+        cta: { label: "Our Mission", href: "/#about" },
+      },
+      stats: {
+        theme: "primary",
+        items: [
+          { id: "a1", value: 200, label: "Young Artists Trained", icon: "Palette" },
+          { id: "a2", value: 3, label: "Traditional Art Forms Revived", icon: "Sparkles" },
+        ],
+      },
+      programs: {
+        variant: "carousel",
+        badge: "Our Focus",
+        headline: "Cultural Programs",
+        items: [
+          { id: "ap1", image: { src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop", alt: "Art class" }, badge: "Education", title: "Free After-School Art Studio", description: "Painting, sculpture, and design taught by local artists.", cta: { label: "View Details", href: "/programs" }, tags: ["Art", "Youth"] },
+          { id: "ap2", image: { src: "https://images.unsplash.com/photo-1518972734183-c62e0c3b8fdc?q=80&w=600&auto=format&fit=crop", alt: "Traditional dance" }, badge: "Heritage", title: "Traditional Dance Preservation", description: "Passing regional dance forms to the next generation.", cta: { label: "View Details", href: "/programs" }, tags: ["Dance", "Heritage"] },
+        ],
+      },
+      testimonials: {
+        variant: "carousel",
+        badge: "Voices",
+        headline: "Stories From the Studio",
+        items: [
+          { id: "at1", quote: "I never thought a kid like me would have work in a real gallery. Canvas Collective made it happen.", authorName: "Ananya K.", authorRole: "Student Artist, age 16" },
+        ],
+      },
+      gallery: {
+        variant: "masonry",
+        badge: "Field Gallery",
+        headline: "Work in Action",
+        items: [
+          { id: "ag1", type: "image", media: { src: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=800&auto=format&fit=crop", alt: "Art studio session" }, category: "Studio" },
+          { id: "ag2", type: "image", media: { src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=800&auto=format&fit=crop", alt: "Youth exhibition" }, category: "Exhibition" },
+        ],
+      },
+      news: {
+        variant: "cards",
+        badge: "Updates",
+        headline: "Latest Headlines",
+        items: [
+          { id: "an1", slug: "youth-exhibition-2024", title: "Youth Artists Debut at City Gallery", summary: "12 students showed original work to the public for the first time.", date: "2024-06-18", href: "#", image: { src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=800&auto=format&fit=crop", alt: "Exhibition opening" } },
+        ],
+      },
+      ctaBand: {
+        variant: "split",
+        theme: "primary",
+        badge: "Take Action",
+        headline: "Give a Child a Canvas.",
+        subheadline: "Your support keeps free arts education open to all.",
+        primaryCta: { label: "Donate Now", href: "/donate" },
+      },
+    },
+  },
+  disasterRelief: {
+    id: "org-disaster-relief",
+    name: "Rapid Response Corps",
+    tagline: "First In, Last Out — Disaster Response You Can Count On",
+    causeType: "Disaster Relief",
+    org: {
+      id: "org-disaster-config",
+      name: "Rapid Response Corps",
+      tagline: "First In, Last Out — Disaster Response You Can Count On",
+      description: "Search and rescue, emergency medical response, and long-term rebuilding after natural disasters.",
+      logo: { src: "/images/logo.svg", alt: "Rapid Response Corps Logo", width: 180, height: 40 },
+      logoDark: { src: "/images/logo-dark.svg", alt: "Rapid Response Corps Logo", width: 180, height: 40 },
+      founded: 2009,
+      causeType: "disaster-relief",
+      contact: { email: "dispatch@rapidresponsecorps.org", phone: "+91 99999 77777", address: { street: "9 Response Way", city: "Kolkata", state: "WB", zip: "700001", country: "India" } },
+      social: [{ platform: "facebook", href: "#" }],
+      donateUrl: "/donate",
+      volunteerUrl: "#",
+    },
+    homepage: {
+      seo: { title: "Rapid Response Corps", description: "Disaster relief NGO" },
+      hero: {
+        variant: "video",
+        slides: [
+          {
+            id: "slide-disaster-1",
+            headline: "When Disaster Strikes, We're Already Moving",
+            subheadline: "Search and rescue, emergency medical care, and rebuilding support within hours of a crisis.",
+            media: { src: "https://images.unsplash.com/photo-1547683905-f686c993aae5?q=80&w=1200&auto=format&fit=crop", alt: "Emergency response team", width: 1200, height: 600 },
+            overlayOpacity: 0.5,
+            primaryCta: { label: "Fund Rapid Response", href: "/donate" },
+            secondaryCta: { label: "Learn More", href: "/#about" },
+          },
+        ],
+      },
+      impactStory: {
+        panels: [
+          {
+            id: "panel-disaster-problem",
+            image: { src: "https://images.unsplash.com/photo-1547683905-f686c993aae5?q=80&w=1200&auto=format&fit=crop", alt: "Disaster aftermath" },
+            eyebrow: "The Problem",
+            headline: "The First 72 Hours Decide Everything",
+            body: "In the critical window after a disaster, delayed response costs lives — yet most aid takes days to arrive."
+          },
+          {
+            id: "panel-disaster-response",
+            image: { src: "https://images.unsplash.com/photo-1552083375-1447ce886485?q=80&w=1200&auto=format&fit=crop", alt: "Search and rescue team" },
+            eyebrow: "Our Response",
+            headline: "Pre-Positioned Teams, Rapid Deployment",
+            body: "Our trained rescue and medical teams are pre-positioned in high-risk regions, deploying within hours, not days."
+          },
+          {
+            id: "panel-disaster-outcome",
+            image: { src: "https://images.unsplash.com/photo-1516937941344-00b4e0337589?q=80&w=1200&auto=format&fit=crop", alt: "Community rebuilding" },
+            eyebrow: "The Outcome",
+            headline: "Lives Saved, Communities Rebuilt",
+            body: "Over 15,000 people rescued or treated, with long-term rebuilding support in every region we respond to."
+          }
+        ]
+      },
+      about: {
+        variant: "text-image",
+        badge: "Who We Are",
+        headline: "Trained, Positioned, and Ready Before the Crisis Hits",
+        body: ["Rapid Response Corps combines professional search-and-rescue training with deep local partnerships to respond faster than anyone else."],
+        media: { src: "https://images.unsplash.com/photo-1552083375-1447ce886485?q=80&w=800&auto=format&fit=crop", alt: "Response team training", width: 600, height: 450 },
+        cta: { label: "Our Mission", href: "/#about" },
+      },
+      stats: {
+        theme: "primary",
+        items: [
+          { id: "d1", value: 15000, label: "People Rescued or Treated", icon: "Users" },
+          { id: "d2", value: 6, label: "Avg. Hours to Deploy", icon: "Clock" },
+        ],
+      },
+      programs: {
+        variant: "carousel",
+        badge: "Our Focus",
+        headline: "Response Programs",
+        items: [
+          { id: "dp1", image: { src: "https://images.unsplash.com/photo-1552083375-1447ce886485?q=80&w=600&auto=format&fit=crop", alt: "Search and rescue" }, badge: "Rescue", title: "Search & Rescue Teams", description: "Trained crews deployed within hours of a disaster.", cta: { label: "View Details", href: "/programs" }, tags: ["Rescue", "Emergency"] },
+          { id: "dp2", image: { src: "https://images.unsplash.com/photo-1516937941344-00b4e0337589?q=80&w=600&auto=format&fit=crop", alt: "Rebuilding effort" }, badge: "Recovery", title: "Long-Term Rebuilding", description: "Housing and infrastructure support after the cameras leave.", cta: { label: "View Details", href: "/programs" }, tags: ["Rebuilding", "Housing"] },
+        ],
+      },
+      testimonials: {
+        variant: "carousel",
+        badge: "Voices",
+        headline: "Stories From the Response",
+        items: [
+          { id: "dt1", quote: "They pulled my family out of the water before the second wave hit. I owe them everything.", authorName: "Ravi T.", authorRole: "Flood Survivor" },
+        ],
+      },
+      gallery: {
+        variant: "masonry",
+        badge: "Field Gallery",
+        headline: "Work in Action",
+        items: [
+          { id: "dg1", type: "image", media: { src: "https://images.unsplash.com/photo-1547683905-f686c993aae5?q=80&w=800&auto=format&fit=crop", alt: "Response deployment" }, category: "Deployment" },
+          { id: "dg2", type: "image", media: { src: "https://images.unsplash.com/photo-1516937941344-00b4e0337589?q=80&w=800&auto=format&fit=crop", alt: "Rebuilding site" }, category: "Rebuilding" },
+        ],
+      },
+      news: {
+        variant: "cards",
+        badge: "Updates",
+        headline: "Latest Headlines",
+        items: [
+          { id: "dn1", slug: "cyclone-response-deployment", title: "Teams Deployed Ahead of Coastal Cyclone", summary: "Pre-positioned units activated 12 hours before landfall.", date: "2024-11-03", href: "#", image: { src: "https://images.unsplash.com/photo-1547683905-f686c993aae5?q=80&w=800&auto=format&fit=crop", alt: "Cyclone deployment" } },
+        ],
+      },
+      ctaBand: {
+        variant: "split",
+        theme: "primary",
+        badge: "Take Action",
+        headline: "Help Us Get There Faster.",
+        subheadline: "Your donation funds pre-positioned rapid response teams.",
+        primaryCta: { label: "Donate Now", href: "/donate" },
+      },
+    },
+  },
 };

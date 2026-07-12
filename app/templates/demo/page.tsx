@@ -183,6 +183,11 @@ export default function TemplateDemoShowcase() {
     { key: "healthcare", name: "HealAll (Healthcare)", desc: "Clinics & Camps" },
     { key: "animal", name: "Paws & Claws (Animals)", desc: "Trauma Shelters" },
     { key: "environment", name: "EcoShield (Planet)", desc: "Lakes & Miyawaki" },
+    { key: "humanitarian", name: "Bridgeway (Humanitarian)", desc: "Food, Water & Shelter" },
+    { key: "faithBased", name: "Grace & Light (Faith-Based)", desc: "Outreach & Support" },
+    { key: "communityDevelopment", name: "Forward (Community)", desc: "Infrastructure & Skills" },
+    { key: "artsCulture", name: "Canvas (Arts & Culture)", desc: "Preservation & Studios" },
+    { key: "disasterRelief", name: "Response Corps (Disaster)", desc: "Search & Rescue" },
   ];
 
   const themeOptions = [
