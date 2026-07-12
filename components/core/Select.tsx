@@ -177,7 +177,7 @@ export interface SelectProps {
   options: SelectOption[];
   value?: string;
   defaultValue?: string;
-  onValueChange?: (value: string) => void;
+  onValueChange?: (_value: string) => void;
   disabled?: boolean;
   required?: boolean;
   error?: string;
@@ -199,7 +199,8 @@ export function Select({
   hint,
   wrapperClassName,
 }: SelectProps) {
-  const selectId = id ?? `select-${React.useId()}`;
+  const uniqueId = React.useId();
+  const selectId = id ?? `select-${uniqueId}`;
   const errorId = `${selectId}-error`;
 
   return (

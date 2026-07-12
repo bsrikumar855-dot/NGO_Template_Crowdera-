@@ -21,7 +21,7 @@ import type { StatsConfig, StatItem } from "@/types";
 
 /* ── Dynamic Lucide icon ─────────────────────────────────────── */
 function DynamicIcon({ name, className }: { name: string; className?: string }) {
-  const Icon = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[name];
+  const Icon = (LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[name];
   if (!Icon) return null;
   return <Icon className={className} />;
 }
@@ -63,9 +63,9 @@ function StatCard({
       className={cn(
         "flex flex-col items-center text-center gap-4 p-6 rounded-2xl",
         "transition-all duration-slow",
-        isPrimary && "bg-white/10 backdrop-blur-sm border border-white/15",
-        !isPrimary && theme === "dark" && "bg-neutral-800/50 border border-neutral-700",
-        !isPrimary && theme === "light" && "bg-surface border border-border shadow-elevation-1"
+        isPrimary && "bg-white/10 backdrop-blur-md border border-[hsl(38_95%_54%/0.20)] shadow-[0_0_24px_4px_hsl(38_95%_54%/0.12)]",
+        !isPrimary && theme === "dark" && "bg-[hsl(240_14%_9%/0.80)] backdrop-blur-[16px] border border-[hsl(240_12%_22%/0.6)]",
+        !isPrimary && theme === "light" && "glass-card"
       )}
     >
       {item.icon && (

@@ -106,8 +106,10 @@ function HeroSlideContent({
   return (
     <div
       className={cn(
-        "absolute inset-0 transition-opacity duration-700 ease-smooth",
-        isActive ? "opacity-100 z-10" : "opacity-0 z-0"
+        "absolute inset-0 transition-all duration-700 ease-smooth",
+        isActive
+          ? "opacity-100 z-10 pointer-events-auto visible"
+          : "opacity-0 z-0 pointer-events-none invisible"
       )}
       aria-hidden={!isActive}
     >
@@ -145,7 +147,7 @@ function HeroSlideContent({
             <h1
               className={cn(
                 "font-display font-bold text-white text-balance",
-                "text-[clamp(2rem,5vw+0.5rem,5rem)]",
+                "text-[clamp(2.5rem,8vw,6.5rem)]",
                 "leading-[1.05] tracking-tight",
                 "mb-6 drop-shadow-sm",
                 isActive && "animate-fade-in-up"
@@ -269,7 +271,7 @@ export function HeroSection({ config }: HeroSectionProps) {
     <section
       aria-label="Hero banner"
       className="relative w-full overflow-hidden bg-neutral-950"
-      style={{ minHeight: "min(90vh, 800px)", height: "min(90vh, 800px)" }}
+      style={{ minHeight: "100dvh", height: "100dvh" }}
       onKeyDown={isMultiple ? handleKeyDown : undefined}
     >
       {/* Slides */}
@@ -348,7 +350,7 @@ export function HeroSection({ config }: HeroSectionProps) {
           aria-hidden="true"
         >
           <span className="text-white/50 text-xs tracking-widest uppercase">Scroll</span>
-          <ChevronDown className="h-4 w-4 text-white/50 animate-bounce" />
+          <ChevronDown className="h-4 w-4 text-white/50 motion-safe:animate-bounce" />
         </div>
       )}
     </section>

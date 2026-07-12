@@ -15,17 +15,18 @@ const sectionVariants = cva(
     variants: {
       /** Background surface variant */
       surface: {
-        default:  "bg-background",
-        muted:    "bg-muted",
+        default:  "bg-[hsl(240_18%_6%)]",
+        muted:    "bg-[hsl(240_16%_8%)]",
         primary:  "bg-primary text-primary-foreground",
-        dark:     "bg-neutral-950 text-neutral-50",
-        image:    "bg-neutral-950 text-neutral-50", /* for background images */
+        dark:     "bg-[hsl(240_20%_4%)] text-neutral-50",
+        image:    "bg-neutral-950 text-neutral-50",
         transparent: "bg-transparent",
       },
       /** Vertical padding scale */
       padding: {
         none: "",
         sm:   "py-8  md:py-12",
+        md:   "py-12 md:py-16",
         base: "py-12 md:py-16 lg:py-20",
         lg:   "py-16 md:py-20 lg:py-24",
         xl:   "py-20 md:py-24 lg:py-32",

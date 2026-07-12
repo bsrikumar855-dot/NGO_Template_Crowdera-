@@ -143,8 +143,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
+    const uniqueId = React.useId();
     const [showPassword, setShowPassword] = React.useState(false);
-    const inputId = id ?? `input-${React.useId()}`;
+    const inputId = id ?? `input-${uniqueId}`;
     const errorId = `${inputId}-error`;
     const hintId = `${inputId}-hint`;
     const resolvedState = error ? "error" : state;

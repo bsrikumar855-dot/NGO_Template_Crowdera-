@@ -22,6 +22,9 @@ const badgeVariants = cva(
         default: [
           "bg-primary/10 text-primary border-primary/20",
         ],
+        primary: [
+          "bg-primary/10 text-primary border-primary/20",
+        ],
         secondary: [
           "bg-secondary/10 text-secondary-foreground border-secondary/20",
         ],

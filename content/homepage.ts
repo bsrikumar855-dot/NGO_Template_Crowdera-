@@ -4,15 +4,17 @@
  * Homepage section configuration objects.
  * Every section on the homepage renders from this file.
  * Swap this file to re-skin for any organization.
+ *
+ * Images: Generated AI images — Indian education NGO context
  */
 import type { HomepageConfig } from "@/types";
 
 export const homepage: HomepageConfig = {
   seo: {
-    title: "Vidyalaya Foundation — Empowering Education for All",
+    title: "Crowdera — Empowering Education for All",
     description:
-      "Vidyalaya Foundation eliminates educational inequality by providing scholarships, digital classrooms, and mentorship to underprivileged children across India.",
-    ogImage: "/images/og-image.jpg",
+      "Crowdera eliminates educational inequality by providing scholarships, digital classrooms, and mentorship to underprivileged children across India.",
+    ogImage: "/images/generated/hero-1.png",
     keywords: [
       "NGO",
       "education",
@@ -36,15 +38,15 @@ export const homepage: HomepageConfig = {
         subheadline:
           "Join us in making quality education accessible to every child, regardless of their circumstances.",
         media: {
-          src: "/images/hero/hero-1.jpg",
-          alt: "Children studying in a bright classroom",
+          src: "/images/generated/hero-1.png",
+          alt: "Indian children sitting on the floor of a modest rural classroom, looking up with hopeful bright eyes. Books and worn notebooks scattered on the floor with warm golden hour light streaming through a window.",
           width: 1920,
           height: 1080,
           priority: true,
         },
-        overlayOpacity: 0.5,
+        overlayOpacity: 0.55,
         primaryCta: { label: "Donate Today", href: "/donate", variant: "donate" },
-        secondaryCta: { label: "Learn More", href: "/about", variant: "ghost" },
+        secondaryCta: { label: "Learn More", href: "/#about", variant: "ghost" },
       },
       {
         id: "hero-2",
@@ -52,8 +54,8 @@ export const homepage: HomepageConfig = {
         subheadline:
           "Your contribution directly funds scholarships, books, and digital tools for children in need.",
         media: {
-          src: "/images/hero/hero-2.jpg",
-          alt: "A girl receiving a scholarship certificate",
+          src: "/images/generated/hero-2.png",
+          alt: "Young Indian girl student standing on stage receiving a scholarship certificate, her face showing immense pride. Other students clap in the background with marigold garland decorations.",
           width: 1920,
           height: 1080,
         },
@@ -67,8 +69,8 @@ export const homepage: HomepageConfig = {
         subheadline:
           "Technology should not be a privilege. Help us set up digital learning centres in remote schools.",
         media: {
-          src: "/images/hero/hero-3.jpg",
-          alt: "Students using tablets in a rural classroom",
+          src: "/images/generated/hero-3.png",
+          alt: "Indian children in a rural school sharing a tablet device, faces lit by the screen glow. A young female teacher guides them. The classroom has mud walls with a solar panel visible through the window.",
           width: 1920,
           height: 1080,
         },
@@ -79,23 +81,59 @@ export const homepage: HomepageConfig = {
     ],
   },
 
+  /* ── Impact Story ─────────────────────────────────────────── */
+  impactStory: {
+    panels: [
+      {
+        id: "panel-problem",
+        image: {
+          src: "/images/generated/impact-problem.png",
+          alt: "A young Indian boy sitting alone under a neem tree with a torn notebook, trying to study in a rural village without proper school infrastructure.",
+        },
+        eyebrow: "The Problem",
+        headline: "Educational Inequality in Rural Villages",
+        body: "Millions of children in rural areas lack access to basic classrooms, textbooks, and qualified teachers. The accident of birth severely limits their career aspirations, trapping generations in poverty.",
+      },
+      {
+        id: "panel-response",
+        image: {
+          src: "/images/generated/impact-response.png",
+          alt: "An NGO worker setting up a digital classroom in a rural Indian school, unpacking tablets while excited children peer through the doorway. A solar panel is being installed on the roof.",
+        },
+        eyebrow: "Our Response",
+        headline: "Delivering Infrastructure and Scholarships",
+        body: "We set up solar-powered classrooms, distribute learning tablets, and sponsor full academic scholarships. By bringing modern tech and cover fees directly to remote villages, we level the playing field.",
+      },
+      {
+        id: "panel-outcome",
+        image: {
+          src: "/images/generated/impact-outcome.png",
+          alt: "A young Indian girl in graduation cap and gown standing with her proud parents in front of their village home. She holds a college admission letter with marigold garlands around her neck.",
+        },
+        eyebrow: "The Outcome",
+        headline: "First-Generation Scholars Succeeding",
+        body: "Our graduates are breaking barriers — entering top universities, securing coding jobs, and uplifting their communities. With a 94% retention rate, we turn potential into measurable progress.",
+      },
+    ],
+  },
+
   /* ── About ────────────────────────────────────────────────── */
   about: {
     layout: "text-image",
     badge: "Our Story",
     headline: "We Believe Education is the Greatest Equalizer",
     body: [
-      "Founded in 2014, Vidyalaya Foundation began with a single school, three volunteers, and an unwavering belief: that the accident of birth should never determine the ceiling of a child's ambition.",
+      "Founded in 2014, Crowdera began with a single school, three volunteers, and an unwavering belief: that the accident of birth should never determine the ceiling of a child's ambition.",
       "Today, we operate 47 learning centres across 6 Indian states, delivering structured academic support, mentorship, and digital skill training to over 12,000 children from underprivileged households.",
       "Our model is transparent, measurable, and community-driven. Every rupee donated maps directly to a child's learning journey — trackable in real time through our impact dashboard.",
     ],
     media: {
-      src: "/images/about/team-working.jpg",
-      alt: "Vidyalaya volunteers working with children in a classroom",
+      src: "/images/generated/about.png",
+      alt: "Young Indian volunteers in matching t-shirts sitting in a circle with children in a community center, reading storybooks together. Hand-painted educational murals on the walls.",
       width: 800,
       height: 600,
     },
-    cta: { label: "Read Our Story", href: "/about", variant: "secondary" },
+    cta: { label: "Read Our Story", href: "/#about", variant: "secondary" },
     stats: [
       { value: "12K+", label: "Children Reached" },
       { value: "47", label: "Learning Centres" },
@@ -109,7 +147,7 @@ export const homepage: HomepageConfig = {
     headline: "Numbers That Tell Our Story",
     subheadline:
       "Radical transparency is at the core of everything we do. Here is our impact — verified and audited annually.",
-    theme: "primary",
+    theme: "dark",
     countDuration: 2000,
     items: [
       {
@@ -158,8 +196,8 @@ export const homepage: HomepageConfig = {
       {
         id: "program-scholarships",
         image: {
-          src: "/images/programs/scholarships.jpg",
-          alt: "A student with a scholarship award letter",
+          src: "/images/generated/program-scholarships.png",
+          alt: "Indian schoolgirl in pressed uniform writing diligently in a fresh notebook with new textbooks beside her, sunlight falling across her desk.",
           width: 800,
           height: 500,
         },
@@ -174,8 +212,8 @@ export const homepage: HomepageConfig = {
       {
         id: "program-digital",
         image: {
-          src: "/images/programs/digital-classrooms.jpg",
-          alt: "Students using laptops in a digital classroom",
+          src: "/images/generated/program-digital.png",
+          alt: "Indian children huddled around a tablet in a rural school, faces lit with wonder and excitement. A new projector screen and solar panel visible in the classroom.",
           width: 800,
           height: 500,
         },
@@ -190,8 +228,8 @@ export const homepage: HomepageConfig = {
       {
         id: "program-mentorship",
         image: {
-          src: "/images/programs/mentorship.jpg",
-          alt: "A mentor and student reviewing study materials",
+          src: "/images/generated/program-mentorship.png",
+          alt: "Indian professional mentoring a teenage student at a desk, looking at a laptop together. Community center setting with charts and whiteboard behind them.",
           width: 800,
           height: 500,
         },
@@ -206,8 +244,8 @@ export const homepage: HomepageConfig = {
       {
         id: "program-skills",
         image: {
-          src: "/images/programs/skills.jpg",
-          alt: "Youth learning vocational skills",
+          src: "/images/generated/program-vocational.png",
+          alt: "Young Indian adults in a vocational workshop — one learning to sew, another learning to code. An instructor guides them in a clean workshop setting.",
           width: 800,
           height: 500,
         },
@@ -233,16 +271,10 @@ export const homepage: HomepageConfig = {
       {
         id: "testimonial-1",
         quote:
-          "I never thought I'd finish school. Vidyalaya gave me not just a scholarship, but a belief that I belong here.",
+          "I never thought I'd finish school. Crowdera gave me not just a scholarship, but a belief that I belong here.",
         authorName: "Priya Sharma",
         authorRole: "Scholarship Recipient",
         authorOrg: "Class XII, Government High School, Pune",
-        authorImage: {
-          src: "/images/testimonials/priya.jpg",
-          alt: "Priya Sharma",
-          width: 80,
-          height: 80,
-        },
         rating: 5,
         featured: true,
       },
@@ -253,12 +285,6 @@ export const homepage: HomepageConfig = {
         authorName: "Rajan Mehta",
         authorRole: "Corporate Mentor",
         authorOrg: "Senior Engineer, Infosys",
-        authorImage: {
-          src: "/images/testimonials/rajan.jpg",
-          alt: "Rajan Mehta",
-          width: 80,
-          height: 80,
-        },
         rating: 5,
       },
       {
@@ -268,12 +294,6 @@ export const homepage: HomepageConfig = {
         authorName: "Dr. Sunita Kapoor",
         authorRole: "Donor since 2019",
         authorOrg: "Paediatrician, AIIMS Delhi",
-        authorImage: {
-          src: "/images/testimonials/sunita.jpg",
-          alt: "Dr. Sunita Kapoor",
-          width: 80,
-          height: 80,
-        },
         rating: 5,
       },
     ],
@@ -293,8 +313,8 @@ export const homepage: HomepageConfig = {
         id: "gallery-1",
         type: "image",
         media: {
-          src: "/images/gallery/classroom-1.jpg",
-          alt: "Children learning in a bright modern classroom",
+          src: "/images/generated/program-digital.png",
+          alt: "Indian children learning with a tablet in a bright classroom with solar-powered equipment",
           width: 800,
           height: 600,
         },
@@ -305,8 +325,8 @@ export const homepage: HomepageConfig = {
         id: "gallery-2",
         type: "image",
         media: {
-          src: "/images/gallery/event-1.jpg",
-          alt: "Annual scholarship ceremony with children on stage",
+          src: "/images/generated/gallery-ceremony.png",
+          alt: "Annual scholarship ceremony with Indian children on stage decorated with marigold garlands",
           width: 800,
           height: 1000,
         },
@@ -317,8 +337,8 @@ export const homepage: HomepageConfig = {
         id: "gallery-3",
         type: "image",
         media: {
-          src: "/images/gallery/children-1.jpg",
-          alt: "Three smiling children holding their certificates",
+          src: "/images/generated/gallery-children.png",
+          alt: "Three Indian children holding up their artwork and certificates, beaming with pride in school uniforms",
           width: 800,
           height: 600,
         },
@@ -329,8 +349,8 @@ export const homepage: HomepageConfig = {
         id: "gallery-4",
         type: "image",
         media: {
-          src: "/images/gallery/volunteers-1.jpg",
-          alt: "Volunteers working with students in a rural school",
+          src: "/images/generated/gallery-volunteers.png",
+          alt: "Indian volunteers helping children with homework under a banyan tree in a rural setting",
           width: 800,
           height: 600,
         },
@@ -341,8 +361,8 @@ export const homepage: HomepageConfig = {
         id: "gallery-5",
         type: "image",
         media: {
-          src: "/images/gallery/classroom-2.jpg",
-          alt: "Student using a tablet for the first time",
+          src: "/images/generated/gallery-tablet.png",
+          alt: "Young Indian boy using a tablet for the first time, eyes wide with wonder as the screen illuminates his face",
           width: 800,
           height: 1000,
         },
@@ -353,8 +373,8 @@ export const homepage: HomepageConfig = {
         id: "gallery-6",
         type: "image",
         media: {
-          src: "/images/gallery/event-2.jpg",
-          alt: "Community gathering for fundraiser walk",
+          src: "/images/generated/gallery-walkathon.png",
+          alt: "Indian community fundraiser walkathon with families and children carrying Walk for Education banners",
           width: 800,
           height: 600,
         },
@@ -368,15 +388,15 @@ export const homepage: HomepageConfig = {
   news: {
     badge: "Latest Updates",
     headline: "News & Stories",
-    subheadline: "What's happening at Vidyalaya — field updates, reports, and impact stories.",
+    subheadline: "What's happening at Crowdera — field updates, reports, and impact stories.",
     postsPerRow: 3,
     items: [
       {
         id: "news-1",
         slug: "digital-classroom-launch-vidarbha",
         image: {
-          src: "/images/news/news-1.jpg",
-          alt: "Officials inaugurating a new digital classroom in Vidarbha",
+          src: "/images/generated/news-classroom.png",
+          alt: "Officials and NGO team cutting a ribbon at the inauguration of a new digital classroom in rural India with excited school children gathered around",
           width: 800,
           height: 450,
         },
@@ -393,8 +413,8 @@ export const homepage: HomepageConfig = {
         id: "news-2",
         slug: "annual-impact-report-2024",
         image: {
-          src: "/images/news/news-2.jpg",
-          alt: "Cover of Vidyalaya 2024 Annual Impact Report",
+          src: "/images/generated/impact-response.png",
+          alt: "Indian NGO team presenting impact data with charts showing children reached and funds deployed",
           width: 800,
           height: 450,
         },
@@ -411,8 +431,8 @@ export const homepage: HomepageConfig = {
         id: "news-3",
         slug: "priya-sharma-iit-admission",
         image: {
-          src: "/images/news/news-3.jpg",
-          alt: "Priya Sharma celebrating her IIT admission",
+          src: "/images/generated/impact-outcome.png",
+          alt: "Young Indian woman celebrating her graduation with proud parents in front of their village home",
           width: 800,
           height: 450,
         },
@@ -431,7 +451,7 @@ export const homepage: HomepageConfig = {
 
   /* ── CTA Band ─────────────────────────────────────────────── */
   ctaBand: {
-    theme: "primary",
+    theme: "dark",
     badge: "Make A Difference",
     headline: "One Donation. One Child. One Future Changed Forever.",
     subheadline:

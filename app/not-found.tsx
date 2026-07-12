@@ -11,7 +11,6 @@ import { Container } from "@/components/core/Container";
 import { Heading } from "@/components/core/Heading";
 import { Text } from "@/components/core/Text";
 import { Button } from "@/components/core/Button";
-import { navigation } from "@/content/navigation";
 
 export default function NotFoundPage() {
   return (

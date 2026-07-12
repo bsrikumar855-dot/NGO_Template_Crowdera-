@@ -7,7 +7,7 @@
 "use client";
 
 import * as React from "react";
-import { Info, X, Shield, Settings, Check } from "lucide-react";
+import { Info, X, Shield, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { templateMetadata } from "@/config/template";
 

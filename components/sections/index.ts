@@ -28,3 +28,9 @@ export type { NewsSectionProps } from "./NewsSection";
 
 export { CallToActionSection } from "./CallToActionSection";
 export type { CallToActionSectionProps } from "./CallToActionSection";
+
+export { ImpactStorySection } from "./ImpactStorySection";
+export type { ImpactStorySectionProps } from "./ImpactStorySection";
+
+export { MarqueeSection } from "./MarqueeSection";
+export type { MarqueeSectionProps } from "./MarqueeSection";

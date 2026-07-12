@@ -22,6 +22,7 @@ import "@/app/globals.css";
 
 /* ── SEO Metadata ───────────────────────────────────────────── */
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ngo-template.crowdera.co"),
   title: {
     default: `${organization.name} — ${organization.tagline}`,
     template: `%s | ${organization.name}`,
@@ -68,8 +69,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d0f14" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0608" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -89,7 +89,7 @@ export default function RootLayout({
       className={fontVariables}
     >
       <body>
-        <ThemeProvider themeConfig={defaultTheme} defaultTheme="system">
+        <ThemeProvider themeConfig={defaultTheme} defaultTheme="dark">
           <PageWrapper>
             {/* Production Navbar — transparent on hero, filled on scroll */}
             <Navbar

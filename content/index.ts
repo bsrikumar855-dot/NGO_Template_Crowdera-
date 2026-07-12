@@ -8,5 +8,5 @@ export { homepage } from "./homepage";
 export { programsList } from "./programs";
 export { donateConfig } from "./donate";
 export { faqItems } from "./faq";
-export { causePresets } from "./demo_configs";
+export { demoOrganizations as causePresets } from "./demo_configs";
 

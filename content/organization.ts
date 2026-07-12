@@ -10,21 +10,21 @@
 import type { OrganizationConfig } from "@/types";
 
 export const organization: OrganizationConfig = {
-  id: "vidyalaya-foundation",
-  name: "Vidyalaya Foundation",
+  id: "crowdera-foundation",
+  name: "Crowdera",
   tagline: "Every child deserves a future worth dreaming about.",
   description:
-    "Vidyalaya Foundation works to eliminate educational inequality by providing quality learning resources, scholarships, and mentorship programs to children from underserved communities across India.",
+    "Crowdera works to eliminate educational inequality by providing quality learning resources, scholarships, and mentorship programs to children from underserved communities across India.",
   logo: {
     src: "/images/logo.svg",
-    alt: "Vidyalaya Foundation",
+    alt: "Crowdera",
     width: 180,
     height: 40,
     priority: true,
   },
   logoDark: {
     src: "/images/logo-dark.svg",
-    alt: "Vidyalaya Foundation",
+    alt: "Crowdera",
     width: 180,
     height: 40,
     priority: true,
@@ -35,8 +35,8 @@ export const organization: OrganizationConfig = {
   founded: 2014,
   causeType: "education",
   contact: {
-    email: "hello@vidyalaya.org",
-    phone: "+91 98765 43210",
+    email: "bsrikumar855@gmail.com",
+    phone: "+91 81224 56608",
     address: {
       street: "24, Sankalp Nagar, Andheri East",
       city: "Mumbai",
@@ -46,13 +46,13 @@ export const organization: OrganizationConfig = {
     },
   },
   social: [
-    { platform: "facebook", href: "https://facebook.com/vidyalayafoundation" },
-    { platform: "instagram", href: "https://instagram.com/vidyalaya_org" },
-    { platform: "twitter", href: "https://twitter.com/vidyalaya_org" },
-    { platform: "linkedin", href: "https://linkedin.com/company/vidyalaya-foundation" },
-    { platform: "youtube", href: "https://youtube.com/@vidyalayafoundation" },
+    { platform: "facebook", href: "https://facebook.com/crowdera" },
+    { platform: "instagram", href: "https://instagram.com/crowdera" },
+    { platform: "twitter", href: "https://twitter.com/crowdera" },
+    { platform: "linkedin", href: "https://linkedin.com/company/crowdera" },
+    { platform: "youtube", href: "https://youtube.com/@crowdera" },
   ],
-  donateUrl: "https://crowdera.com/vidyalaya/donate",
-  volunteerUrl: "https://crowdera.com/vidyalaya/volunteer",
-  crowderaOrgId: "vidyalaya-2014",
+  donateUrl: "https://crowdera.com/donate",
+  volunteerUrl: "https://crowdera.com/volunteer",
+  crowderaOrgId: "crowdera-2014",
 };

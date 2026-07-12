@@ -18,6 +18,7 @@ import type { Metadata } from "next";
 import { homepage } from "@/content/homepage";
 import {
   HeroSection,
+  ImpactStorySection,
   AboutSection,
   ImpactStatsSection,
   ProgramsSection,
@@ -25,6 +26,7 @@ import {
   GallerySection,
   NewsSection,
   CallToActionSection,
+  MarqueeSection,
 } from "@/components/sections";
 import { TemplateMetadataBadge } from "@/components/core/TemplateMetadataBadge";
 
@@ -58,6 +60,16 @@ export default function HomePage() {
        */}
       <div id="hero" className="-mt-16">
         <HeroSection config={homepage.hero} />
+      </div>
+
+      <MarqueeSection />
+
+      {/*
+       * ── IMPACT STORY ──────────────────────────────────────
+       * Scroll-scrubbed narrative panels (problem -> response -> outcome)
+       */}
+      <div id="impact-story">
+        <ImpactStorySection config={homepage.impactStory} />
       </div>
 
       {/*

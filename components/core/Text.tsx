@@ -60,7 +60,7 @@ const textVariants = cva("", {
 type TextElement = "p" | "span" | "div" | "label" | "small" | "strong" | "em";
 
 export interface TextProps
-  extends React.HTMLAttributes<HTMLElement>,
+  extends Omit<React.HTMLAttributes<HTMLElement>, "color">,
     VariantProps<typeof textVariants> {
   as?: TextElement;
 }
@@ -83,7 +83,7 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
   ) => {
     return (
       <Tag
-        ref={ref as React.Ref<HTMLParagraphElement>}
+        ref={ref as React.Ref<any>}
         className={cn(
           textVariants({ size, color, weight, leading, align, balance, pretty }),
           className

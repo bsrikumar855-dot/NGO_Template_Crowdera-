@@ -9,33 +9,16 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import {
-  Sparkles,
-  Layers,
-  Palette,
-  Briefcase,
-  Eye,
-  EyeOff,
   Settings,
-  Shield,
-  Smartphone,
-  Tablet,
-  Monitor,
-  CheckCircle,
-  HelpCircle,
-  Activity,
-  AlertCircle,
-  CornerDownRight,
-  TrendingUp,
   Moon,
   Sun,
-  Layout,
-  ExternalLink,
-  ChevronRight,
-  Sliders,
-  Maximize2,
   Minimize2,
+  Sliders,
+  Sparkles,
+  Eye,
+  EyeOff,
+  Layout,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/core/Container";
@@ -43,7 +26,6 @@ import { Heading } from "@/components/core/Heading";
 import { Text } from "@/components/core/Text";
 import { Badge } from "@/components/core/Badge";
 import { Button } from "@/components/core/Button";
-import { templateMetadata } from "@/config/template";
 import {
   demoThemes,
   demoTemplates,
@@ -53,6 +35,7 @@ import {
 } from "@/content/demo_configs";
 import {
   HeroSection,
+  ImpactStorySection,
   AboutSection,
   GallerySection,
   CallToActionSection,
@@ -390,6 +373,7 @@ export default function TemplateDemoShowcase() {
                   )}>
                     {/* Render Core Sections */}
                     <HeroSection config={finalHeroConfig} />
+                    <ImpactStorySection config={activeOrg.homepage.impactStory} />
                     <AboutSection config={finalAboutConfig} />
                     <GallerySection config={finalGalleryConfig} />
                     <CallToActionSection config={finalCtaConfig} />

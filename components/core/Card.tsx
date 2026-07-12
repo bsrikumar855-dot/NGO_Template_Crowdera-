@@ -13,33 +13,35 @@ import { cn } from "@/lib/utils";
 const cardVariants = cva(
   [
     "relative flex flex-col",
-    "rounded-lg overflow-hidden",
-    "bg-surface",
-    "border border-border",
-    "transition-all duration-base ease-smooth",
+    "rounded-xl overflow-hidden",
+    "bg-[hsl(240_14%_9%/0.80)] backdrop-blur-[16px]",
+    "border border-[hsl(240_12%_22%/0.6)]",
+    "transition-all duration-[var(--motion-duration-fast)] ease-[var(--motion-ease-base)]",
+    "motion-reduce:transition-none motion-reduce:transform-none",
   ],
   {
     variants: {
       variant: {
         default: [
           "shadow-elevation-1",
-          "hover:shadow-elevation-3 hover:-translate-y-1",
+          "hover:shadow-elevation-3 hover:scale-[1.02]",
+          "hover:border-[hsl(38_95%_54%/0.25)] hover:shadow-[0_8px_28px_-4px_rgb(0_0_0/0.65),0_0_0_1px_hsl(38_95%_54%/0.12),inset_0_1px_0_hsl(38_95%_54%/0.10)]",
         ],
         elevated: [
           "shadow-elevation-3",
-          "hover:shadow-elevation-4 hover:-translate-y-1.5",
+          "hover:shadow-elevation-4 hover:scale-[1.02]",
         ],
         flat: [
-          "shadow-none",
-          "hover:bg-muted",
+          "shadow-none bg-transparent border-transparent",
+          "hover:bg-[hsl(240_14%_12%/0.6)] hover:scale-[1.02]",
         ],
         glass: [
-          "glass shadow-elevation-2",
-          "hover:shadow-elevation-3",
+          "glass-strong shadow-elevation-2",
+          "hover:shadow-elevation-3 hover:scale-[1.02]",
         ],
         outlined: [
-          "shadow-none border-2",
-          "hover:border-primary/50 hover:shadow-elevation-1",
+          "shadow-none border-2 bg-transparent",
+          "hover:border-primary/50 hover:shadow-elevation-1 hover:scale-[1.02]",
         ],
       },
       interactive: {

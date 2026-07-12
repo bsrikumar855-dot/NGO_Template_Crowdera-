@@ -22,7 +22,7 @@ interface ThemeProviderProps {
 }
 
 /* ── Helper: convert ThemeConfig to CSS vars ─────────────────── */
-function buildCSSVars(config: ThemeConfig, mode: "light" | "dark"): string {
+function buildCSSVars(config: ThemeConfig, mode: "light" | "dark", selector: string): string {
   const theme = mode === "dark" ? config.dark ?? config.light : config.light;
   if (!theme) return "";
 
@@ -76,7 +76,7 @@ function buildCSSVars(config: ThemeConfig, mode: "light" | "dark"): string {
   }
 
   return lines.length > 0
-    ? `:root {\n${lines.join("\n")}\n}`
+    ? `${selector} {\n${lines.join("\n")}\n}`
     : "";
 }
 
@@ -84,13 +84,16 @@ function buildCSSVars(config: ThemeConfig, mode: "light" | "dark"): string {
 export function ThemeProvider({
   children,
   themeConfig,
-  defaultTheme = "system",
+  defaultTheme = "dark",
 }: ThemeProviderProps) {
-  // Inject org-specific CSS vars as a style tag
-  const lightVars = themeConfig ? buildCSSVars(themeConfig, "light") : null;
-  const darkVars = themeConfig?.dark
-    ? buildCSSVars(themeConfig, "dark")
-    : null;
+  // Lock themeConfig to use dark colors for both :root and .dark selectors
+  const forcedDarkConfig = themeConfig ? {
+    ...themeConfig,
+    light: themeConfig.dark ?? themeConfig.light
+  } : null;
+
+  const lightVars = forcedDarkConfig ? buildCSSVars(forcedDarkConfig, "light", ":root") : null;
+  const darkVars = forcedDarkConfig ? buildCSSVars(forcedDarkConfig, "dark", ".dark") : null;
 
   return (
     <>
@@ -99,20 +102,15 @@ export function ThemeProvider({
         <style
           id="org-theme-vars"
           dangerouslySetInnerHTML={{
-            __html: [
-              lightVars,
-              darkVars ? `.dark {\n${darkVars}\n}` : "",
-            ]
-              .filter(Boolean)
-              .join("\n\n"),
+            __html: [lightVars, darkVars].filter(Boolean).join("\n\n"),
           }}
         />
       )}
 
       <NextThemesProvider
         attribute="class"
-        defaultTheme={defaultTheme}
-        enableSystem
+        defaultTheme="dark"
+        forcedTheme="dark"
         disableTransitionOnChange={false}
       >
         {children}

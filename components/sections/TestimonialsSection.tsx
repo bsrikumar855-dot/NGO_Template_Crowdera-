@@ -49,14 +49,14 @@ function TestimonialSlide({
       aria-label={`Testimonial from ${item.authorName}`}
       className={cn(
         "flex flex-col gap-6 p-8 md:p-10 rounded-2xl",
-        "bg-surface border border-border shadow-elevation-2",
+        "glass-card",
         "transition-all duration-500",
         isActive ? "opacity-100 scale-100" : "opacity-0 scale-[0.98] pointer-events-none"
       )}
     >
       {/* Quote icon + rating */}
       <div className="flex items-start justify-between gap-4">
-        <Quote className="h-10 w-10 text-primary/30 flex-shrink-0 -scale-x-100" aria-hidden="true" />
+        <Quote className="h-10 w-10 text-primary/50 flex-shrink-0 -scale-x-100" aria-hidden="true" />
         {item.rating && <StarRating rating={item.rating} />}
       </div>
 
@@ -121,14 +121,14 @@ function TestimonialCardItem({
     <div
       className={cn(
         "flex flex-col gap-6 p-6 md:p-8 rounded-2xl",
-        "bg-surface border border-border shadow-elevation-2",
+        "glass-card",
         "h-full",
         className
       )}
     >
       {/* Quote icon + rating */}
       <div className="flex items-start justify-between gap-4">
-        <Quote className="h-8 w-8 text-primary/30 flex-shrink-0 -scale-x-100" aria-hidden="true" />
+        <Quote className="h-8 w-8 text-primary/50 flex-shrink-0 -scale-x-100" aria-hidden="true" />
         {item.rating && <StarRating rating={item.rating} />}
       </div>
 

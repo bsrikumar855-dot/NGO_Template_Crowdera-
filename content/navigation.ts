@@ -11,7 +11,7 @@ export const navigation: NavigationConfig = {
     {
       id: "nav-about",
       label: "About Us",
-      href: "/about",
+      href: "/#about",
     },
     {
       id: "nav-programs",
@@ -26,17 +26,17 @@ export const navigation: NavigationConfig = {
     {
       id: "nav-gallery",
       label: "Gallery",
-      href: "/gallery",
+      href: "/#gallery",
     },
     {
       id: "nav-news",
       label: "News",
-      href: "/news",
+      href: "/#news",
     },
     {
       id: "nav-contact",
       label: "Contact",
-      href: "/contact",
+      href: "/#footer",
     },
   ],
   cta: {
@@ -44,5 +44,5 @@ export const navigation: NavigationConfig = {
     href: "/donate",
     variant: "donate",
   },
-  showThemeToggle: true,
+  showThemeToggle: false,
 };

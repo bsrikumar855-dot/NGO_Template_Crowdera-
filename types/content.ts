@@ -302,6 +302,19 @@ export interface FooterConfig {
   };
 }
 
+/* ── Impact Story (Scrollytelling narrative) ────────────────── */
+export interface ImpactStoryPanel {
+  id: string;
+  image: ImageAsset;
+  eyebrow?: string;
+  headline: string;
+  body: string;
+}
+
+export interface ImpactStoryConfig {
+  panels: ImpactStoryPanel[];
+}
+
 /* ── Homepage Assembly ─────────────────────────────────────── */
 export interface HomepageConfig {
   seo: {
@@ -311,6 +324,7 @@ export interface HomepageConfig {
     keywords?: string[];
   };
   hero: HeroConfig;
+  impactStory: ImpactStoryConfig;
   about: AboutConfig;
   stats: StatsConfig;
   programs: ProgramsConfig;

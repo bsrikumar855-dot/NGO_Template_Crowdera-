@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 import { Section } from "@/components/core/Section";
 import { Container } from "@/components/core/Container";
 import { Button } from "@/components/core/Button";
-import { Badge } from "@/components/core/Badge";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { SectionHeader } from "./SectionHeader";
 import type { GalleryConfig, GalleryItem, ImageAsset, VideoAsset } from "@/types";
@@ -31,7 +30,7 @@ function GalleryThumbnail({
 }: {
   item: GalleryItem;
   index: number;
-  onClick: (index: number) => void;
+  onClick: (_index: number) => void;
 }) {
   const media = item.media;
   const isImg = isImageAsset(media);
@@ -249,7 +248,7 @@ function GalleryCarousel({
   onItemClick,
 }: {
   items: GalleryItem[];
-  onItemClick: (index: number) => void;
+  onItemClick: (_index: number) => void;
 }) {
   const [index, setIndex] = React.useState(0);
   const visibleCount = 3;

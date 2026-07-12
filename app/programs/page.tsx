@@ -18,7 +18,6 @@ import { Heading } from "@/components/core/Heading";
 import { Text } from "@/components/core/Text";
 import { Badge } from "@/components/core/Badge";
 import { Button } from "@/components/core/Button";
-import { Input } from "@/components/core/Input";
 import { Card, CardImage, CardBody, CardTitle, CardDescription, CardFooter } from "@/components/core/Card";
 import { CardSkeleton } from "@/components/core/Skeleton";
 import { Breadcrumb } from "@/components/core/Breadcrumb";

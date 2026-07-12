@@ -4,7 +4,8 @@
  * Detailed content configurations for individual programs.
  * Drives both the /programs grid and /programs/[slug] dynamic detail pages.
  */
-import type { ProgramItem } from "@/types";
+
+import type { TestimonialCard } from "@/types";
 
 export interface ProgramDetailConfig {
   id: string;
@@ -49,20 +50,7 @@ export interface ProgramDetailConfig {
     }>;
   };
   testimonials: {
-    items: Array<{
-      id: string;
-      quote: string;
-      authorName: string;
-      authorRole: string;
-      authorOrg: string;
-      authorImage?: {
-        src: string;
-        alt: string;
-        width: number;
-        height: number;
-      };
-      rating?: number;
-    }>;
+    items: TestimonialCard[];
   };
   cta: {
     theme: "primary" | "secondary" | "dark" | "image";
@@ -85,8 +73,8 @@ export const programsList: ProgramDetailConfig[] = [
     subtitle: "Opening doors to higher education for bright minds from underserved backgrounds.",
     category: "Education",
     image: {
-      src: "/images/programs/scholarships.jpg",
-      alt: "Students studying in a classroom",
+      src: "/images/generated/program-scholarships.png",
+      alt: "Indian students studying in a scholarship-funded classroom",
       width: 800,
       height: 500,
     },
@@ -127,14 +115,14 @@ export const programsList: ProgramDetailConfig[] = [
         {
           id: "psg-1",
           type: "image",
-          media: { src: "/images/gallery/classroom-1.jpg", alt: "Classroom Study", width: 800, height: 600 },
+          media: { src: "/images/generated/program-scholarships.png", alt: "Classroom Study", width: 800, height: 600 },
           caption: "Students studying together in our central learning center.",
           category: "Classroom"
         },
         {
           id: "psg-2",
           type: "image",
-          media: { src: "/images/gallery/children-1.jpg", alt: "Happy Graduates", width: 800, height: 600 },
+          media: { src: "/images/generated/gallery-ceremony.png", alt: "Happy Graduates", width: 800, height: 600 },
           caption: "Scholarship graduates at their graduation ceremony.",
           category: "Graduation"
         }
@@ -144,11 +132,10 @@ export const programsList: ProgramDetailConfig[] = [
       items: [
         {
           id: "pst-1",
-          quote: "Vidyalaya gave me not just a scholarship, but a belief that my dreams are valid and achievable.",
+          quote: "Crowdera gave me not just a scholarship, but a belief that my dreams are valid and achievable.",
           authorName: "Priya Sharma",
           authorRole: "Scholarship Recipient",
           authorOrg: "Now studying Computer Science at IIT Bombay",
-          authorImage: { src: "/images/testimonials/priya.jpg", alt: "Priya Sharma", width: 80, height: 80 },
           rating: 5
         }
       ]
@@ -172,8 +159,8 @@ export const programsList: ProgramDetailConfig[] = [
     subtitle: "Bridging the digital divide by building high-tech, solar-powered learning centers in rural schools.",
     category: "Technology",
     image: {
-      src: "/images/programs/digital-classrooms.jpg",
-      alt: "Students using tablets in a classroom",
+      src: "/images/generated/program-digital.png",
+      alt: "Indian students using tablets in a solar-powered digital classroom",
       width: 800,
       height: 500,
     },
@@ -213,7 +200,7 @@ export const programsList: ProgramDetailConfig[] = [
         {
           id: "pdg-1",
           type: "image",
-          media: { src: "/images/gallery/classroom-2.jpg", alt: "Tablet Use", width: 800, height: 600 },
+          media: { src: "/images/generated/gallery-tablet.png", alt: "Tablet Use", width: 800, height: 600 },
           caption: "Students exploring science concepts on interactive learning tablets.",
           category: "Technology"
         }
@@ -250,8 +237,8 @@ export const programsList: ProgramDetailConfig[] = [
     subtitle: "Guiding high schoolers to professional careers through weekly mentorship with industry experts.",
     category: "Mentorship",
     image: {
-      src: "/images/programs/mentorship.jpg",
-      alt: "A mentor advising a student",
+      src: "/images/generated/program-mentorship.png",
+      alt: "An Indian mentor advising a student on career choices",
       width: 800,
       height: 500,
     },
@@ -292,7 +279,7 @@ export const programsList: ProgramDetailConfig[] = [
         {
           id: "pmg-1",
           type: "image",
-          media: { src: "/images/gallery/volunteers-1.jpg", alt: "Mentor Session", width: 800, height: 600 },
+          media: { src: "/images/generated/program-mentorship.png", alt: "Mentor Session", width: 800, height: 600 },
           caption: "Weekend mentorship roundtable discussion.",
           category: "Sessions"
         }
@@ -306,7 +293,6 @@ export const programsList: ProgramDetailConfig[] = [
           authorName: "Rajan Mehta",
           authorRole: "Corporate Mentor",
           authorOrg: "Senior Staff Engineer, Tech Services",
-          authorImage: { src: "/images/testimonials/rajan.jpg", alt: "Rajan Mehta", width: 80, height: 80 },
           rating: 5
         }
       ]
@@ -330,8 +316,8 @@ export const programsList: ProgramDetailConfig[] = [
     subtitle: "Vocational training courses to secure immediate, high-growth employment for dropouts.",
     category: "Vocational",
     image: {
-      src: "/images/programs/skills.jpg",
-      alt: "Youth studying in a vocational lab",
+      src: "/images/generated/program-vocational.png",
+      alt: "Indian youth learning vocational skills in a workshop",
       width: 800,
       height: 500,
     },
@@ -339,7 +325,7 @@ export const programsList: ProgramDetailConfig[] = [
     featured: false,
     overview: [
       "For school dropouts and youth unable to proceed to university, acquiring vocational skills is the fastest path to financial independence and lifting their families out of poverty.",
-      "Vidyalaya operates skill labs specializing in entry-level coding, digital design, tailoring, hardware repair, and hospitality basics. All labs are aligned with national industry certifications."
+      "Crowdera operates skill labs specializing in entry-level coding, digital design, tailoring, hardware repair, and hospitality basics. All labs are aligned with national industry certifications."
     ],
     objectives: [
       "Provide 6-month vocational certificates to regional youth.",
@@ -372,7 +358,7 @@ export const programsList: ProgramDetailConfig[] = [
         {
           id: "pslg-1",
           type: "image",
-          media: { src: "/images/gallery/event-2.jpg", alt: "Skill Lab graduation", width: 800, height: 600 },
+          media: { src: "/images/generated/gallery-walkathon.png", alt: "Skill Lab graduation", width: 800, height: 600 },
           caption: "Youth receiving certificate at vocational graduation.",
           category: "Graduation"
         }

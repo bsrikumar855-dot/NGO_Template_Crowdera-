@@ -10,8 +10,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ChevronRight, CheckCircle2 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { CheckCircle2 } from "lucide-react";
 import { Container } from "@/components/core/Container";
 import { Section } from "@/components/core/Section";
 import { Heading } from "@/components/core/Heading";
@@ -48,7 +47,7 @@ export async function generateMetadata({ params }: ProgramPageProps): Promise<Me
   if (!program) return {};
 
   return {
-    title: `${program.title} — Vidyalaya Foundation`,
+    title: `${program.title} — Crowdera`,
     description: program.subtitle,
   };
 }

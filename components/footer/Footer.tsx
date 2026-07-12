@@ -21,7 +21,6 @@ import {
   Twitter,
   Linkedin,
   Youtube,
-  Heart,
   ArrowRight,
   Mail,
   Phone,
@@ -120,10 +119,12 @@ export function Footer({ footer, org, className }: FooterProps) {
 
   return (
     <footer
+      id="footer"
       role="contentinfo"
       className={cn(
-        "bg-neutral-950 text-neutral-200",
-        "border-t border-neutral-800",
+        "relative bg-[hsl(240_20%_4%/0.95)] backdrop-blur-xl",
+        "border-t border-[hsl(38_95%_54%/0.15)]",
+        "shadow-[0_-4px_32px_-4px_rgb(0_0_0/0.7)]",
         className
       )}
     >
@@ -138,15 +139,9 @@ export function Footer({ footer, org, className }: FooterProps) {
               <Link
                 href="/"
                 aria-label={`${org.name} — Home`}
-                className="inline-flex items-center gap-2.5 mb-5 group"
+                className="inline-flex items-center gap-2 mb-5 group"
               >
-                <span
-                  className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center flex-shrink-0 group-hover:brightness-110 transition-all"
-                  aria-hidden="true"
-                >
-                  <Heart className="h-4.5 w-4.5 text-primary-foreground fill-current" />
-                </span>
-                <span className="font-display font-bold text-white text-lg leading-none">
+                <span className="font-display font-bold text-white text-xl tracking-tight leading-none group-hover:text-primary transition-colors">
                   {org.name}
                 </span>
               </Link>

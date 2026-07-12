@@ -14,7 +14,7 @@ export const faqItems: FaqItem[] = [
   {
     id: "faq-80g",
     question: "Is my donation tax-exempt?",
-    answer: "Yes, all donations made to Vidyalaya Foundation are eligible for a 50% tax exemption under Section 80G of the Indian Income Tax Act. A tax receipt will be emailed to you immediately after payment is confirmed.",
+    answer: "Yes, all donations made to Crowdera are eligible for a 50% tax exemption under Section 80G of the Indian Income Tax Act. A tax receipt will be emailed to you immediately after payment is confirmed.",
   },
   {
     id: "faq-international",

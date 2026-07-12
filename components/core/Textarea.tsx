@@ -39,10 +39,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref
   ) => {
+    const uniqueId = React.useId();
     const [charCount, setCharCount] = React.useState(
       String(value ?? defaultValue ?? "").length
     );
-    const textareaId = id ?? `textarea-${React.useId()}`;
+    const textareaId = id ?? `textarea-${uniqueId}`;
     const errorId = `${textareaId}-error`;
     const hintId = `${textareaId}-hint`;
 

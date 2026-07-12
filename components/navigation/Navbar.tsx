@@ -18,7 +18,6 @@ import { usePathname } from "next/navigation";
 import {
   Menu,
   X,
-  Heart,
   Sun,
   Moon,
   Monitor,
@@ -171,8 +170,8 @@ export function Navbar({ nav, org, className }: NavbarProps) {
         "fixed top-0 left-0 right-0 z-50",
         "transition-all duration-base ease-smooth",
         scrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-elevation-1"
-          : "bg-transparent",
+          ? "glass-strong border-b border-[hsl(38_95%_54%/0.12)] shadow-elevation-3"
+          : "bg-gradient-to-b from-black/40 to-transparent",
         className
       )}
     >
@@ -187,20 +186,14 @@ export function Navbar({ nav, org, className }: NavbarProps) {
             href="/"
             aria-label={`${org.name} — Go to homepage`}
             className={cn(
-              "flex items-center gap-2.5",
-              "font-display font-bold text-lg leading-none",
+              "flex items-center gap-2",
+              "font-display font-bold text-xl tracking-tight leading-none",
               "transition-colors duration-fast",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-md",
               isOnHero ? "text-white" : "text-foreground hover:text-primary"
             )}
           >
-            <span
-              className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0"
-              aria-hidden="true"
-            >
-              <Heart className="h-4 w-4 text-primary-foreground" />
-            </span>
-            <span className="hidden sm:block">{org.name}</span>
+            <span className="block">{org.name}</span>
           </Link>
 
           {/* ── Desktop nav items ── */}

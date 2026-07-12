@@ -514,19 +514,44 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
             id: "slide-edu-1",
             headline: "Knowledge is Freedom & Opportunity",
             subheadline: "Directly funding K-12 education, scholarships, and resources for rural schools.",
-            media: { src: "/images/hero/hero-1.jpg", alt: "Classroom", width: 1200, height: 600 },
+            media: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop", alt: "Classroom", width: 1200, height: 600 },
             overlayOpacity: 0.45,
             primaryCta: { label: "Sponsor A Child", href: "/donate" },
             secondaryCta: { label: "Learn More", href: "/#about" },
           },
         ],
       },
+      impactStory: {
+        panels: [
+          {
+            id: "panel-problem",
+            image: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop", alt: "Children studying in tough conditions" },
+            eyebrow: "The Problem",
+            headline: "Educational Inequality in Rural Villages",
+            body: "Millions of children in rural areas lack access to basic classrooms, textbooks, and qualified teachers."
+          },
+          {
+            id: "panel-response",
+            image: { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop", alt: "Vidyalaya digital classroom setup" },
+            eyebrow: "Our Response",
+            headline: "Delivering Infrastructure and Scholarships",
+            body: "We set up solar-powered classrooms, distribute learning tablets, and sponsor full academic scholarships."
+          },
+          {
+            id: "panel-outcome",
+            image: { src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=1200&auto=format&fit=crop", alt: "Happy child holding tablet in class" },
+            eyebrow: "The Outcome",
+            headline: "First-Generation Scholars Succeeding",
+            body: "Our graduates are breaking barriers — entering top universities, securing coding jobs, and uplifting their communities."
+          }
+        ]
+      },
       about: {
         variant: "text-image",
         badge: "Who We Are",
         headline: "Breaking the Cycle of Poverty Through Classrooms",
         body: ["Over 12,000 students enrolled across our active regional learning hubs."],
-        media: { src: "/images/about/team-working.jpg", alt: "Students", width: 600, height: 450 },
+        media: { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop", alt: "Students", width: 600, height: 450 },
         cta: { label: "Our Mission", href: "/#about" },
       },
       stats: {
@@ -541,8 +566,8 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Our Focus",
         headline: "Educational Programs",
         items: [
-          { id: "p1", badge: "K-12", title: "Rural Scholarships", description: "Support for rural kids.", cta: { label: "View Details", href: "/programs" }, tags: ["Rural", "Scholarships"] },
-          { id: "p2", badge: "Technology", title: "Digital Labs", description: "Laptops and tools.", cta: { label: "View Details", href: "/programs" }, tags: ["Tech", "Solar"] },
+          { id: "p1", image: { src: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=600&auto=format&fit=crop", alt: "Rural Scholarships" }, badge: "K-12", title: "Rural Scholarships", description: "Support for rural kids.", cta: { label: "View Details", href: "/programs" }, tags: ["Rural", "Scholarships"] },
+          { id: "p2", image: { src: "https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=600&auto=format&fit=crop", alt: "Digital Labs" }, badge: "Technology", title: "Digital Labs", description: "Laptops and tools.", cta: { label: "View Details", href: "/programs" }, tags: ["Tech", "Solar"] },
         ],
       },
       testimonials: {
@@ -558,8 +583,8 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Field Gallery",
         headline: "Work in Action",
         items: [
-          { id: "g1", type: "image", media: { src: "/images/gallery/classroom-1.jpg", alt: "Classroom" }, category: "Classroom" },
-          { id: "g2", type: "image", media: { src: "/images/gallery/children-1.jpg", alt: "Children" }, category: "Children" },
+          { id: "g1", type: "image", media: { src: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop", alt: "Classroom" }, category: "Classroom" },
+          { id: "g2", type: "image", media: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop", alt: "Children" }, category: "Children" },
         ],
       },
       news: {
@@ -567,7 +592,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Updates",
         headline: "Latest Headlines",
         items: [
-          { id: "n1", title: "IIT Admissions Surge", summary: "Students score high ranks.", date: "2024-07-20", href: "#", image: { src: "/images/news/news-1.jpg", alt: "IIT" } },
+          { id: "n1", slug: "iit-admissions-surge", title: "IIT Admissions Surge", summary: "Students score high ranks.", date: "2024-07-20", href: "#", image: { src: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop", alt: "IIT" } },
         ],
       },
       ctaBand: {
@@ -608,19 +633,44 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
             id: "slide-health-1",
             headline: "Healing Lives, One Village at a Time",
             subheadline: "Providing healthcare camps, essential medicines, and maternal care support.",
-            media: { src: "/images/hero/hero-2.jpg", alt: "Doctor with child", width: 1200, height: 600 },
+            media: { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop", alt: "Doctor with child", width: 1200, height: 600 },
             overlayOpacity: 0.5,
             primaryCta: { label: "Fund Clinic", href: "/donate" },
             secondaryCta: { label: "Watch Video", href: "#" },
           },
         ],
       },
+      impactStory: {
+        panels: [
+          {
+            id: "panel-problem",
+            image: { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop", alt: "Patients waiting outside rural clinic" },
+            eyebrow: "The Problem",
+            headline: "Zero Access to Critical Medical Diagnostics",
+            body: "Rural villages often lie hours away from the nearest clinical hospital, leaving critical conditions untreated."
+          },
+          {
+            id: "panel-response",
+            image: { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop", alt: "Mobile clinic deployment" },
+            eyebrow: "Our Response",
+            headline: "Mobilizing Doctors and Medical Supplies",
+            body: "We deploy mobile diagnostic vans and establish weekend primary wellness clinics directly in remote spots."
+          },
+          {
+            id: "panel-outcome",
+            image: { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop", alt: "Healthy children playing" },
+            eyebrow: "The Outcome",
+            headline: "Healthy, Resilient Communities",
+            body: "Over 45,000 patients have received primary checkups, preventive medicine, and life-saving pre-natal diagnostics."
+          }
+        ]
+      },
       about: {
         variant: "icon-grid",
         badge: "Our Purpose",
         headline: "Radical Healthcare Outreach",
         body: ["We establish temporary diagnostic and relief centers directly inside remote pockets."],
-        media: { src: "/images/about/team-working.jpg", alt: "Outreach Team", width: 600, height: 450 },
+        media: { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop", alt: "Outreach Team", width: 600, height: 450 },
         cta: { label: "Read Outreach Model", href: "/#about" },
         stats: [
           { value: "45K+", label: "Patients Treated" },
@@ -639,8 +689,8 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Services",
         headline: "Medical Interventions",
         items: [
-          { id: "p1", badge: "Clinic", title: "Mobile Wellness Clinics", description: "Outpatient clinical services.", cta: { label: "View Program", href: "/programs" }, tags: ["Mobile", "Primary Care"] },
-          { id: "p2", badge: "Maternal", title: "Safe Motherhood Camps", description: "Pre-natal and post-natal care.", cta: { label: "View Program", href: "/programs" }, tags: ["Women", "Health"] },
+          { id: "p1", image: { src: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=600&auto=format&fit=crop", alt: "Mobile Wellness Clinics" }, badge: "Clinic", title: "Mobile Wellness Clinics", description: "Outpatient clinical services.", cta: { label: "View Program", href: "/programs" }, tags: ["Mobile", "Primary Care"] },
+          { id: "p2", image: { src: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?q=80&w=600&auto=format&fit=crop", alt: "Safe Motherhood Camps" }, badge: "Maternal", title: "Safe Motherhood Camps", description: "Pre-natal and post-natal care.", cta: { label: "View Program", href: "/programs" }, tags: ["Women", "Health"] },
         ],
       },
       testimonials: {
@@ -656,7 +706,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Moments",
         headline: "On-Ground Diagnostics",
         items: [
-          { id: "g1", type: "image", media: { src: "/images/gallery/classroom-2.jpg", alt: "Doctor" }, category: "Diagnostics" },
+          { id: "g1", type: "image", media: { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop", alt: "Doctor" }, category: "Diagnostics" },
         ],
       },
       news: {
@@ -664,7 +714,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Stories",
         headline: "Health Updates",
         items: [
-          { id: "n1", title: "Combating Malnutrition in Tribal Districts", summary: "Providing food supplements.", date: "2024-10-01", href: "#", image: { src: "/images/news/news-2.jpg", alt: "Supplements" } },
+          { id: "n1", slug: "combating-malnutrition", title: "Combating Malnutrition in Tribal Districts", summary: "Providing food supplements.", date: "2024-10-01", href: "#", image: { src: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=800&auto=format&fit=crop", alt: "Supplements" } },
         ],
       },
       ctaBand: {
@@ -705,19 +755,44 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
             id: "slide-animal-1",
             headline: "Provide Shelters & Healing for Abandoned Paws",
             subheadline: "Rescuing injured strays, managing foster networks, and funding vaccinations.",
-            media: { src: "/images/hero/hero-3.jpg", alt: "Happy rescued dog", width: 1200, height: 600 },
+            media: { src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=1200&auto=format&fit=crop", alt: "Happy rescued dog", width: 1200, height: 600 },
             overlayOpacity: 0.4,
             primaryCta: { label: "Sponsor A Pet", href: "/donate" },
             secondaryCta: { label: "Volunteer At Shelter", href: "#" },
           },
         ],
       },
+      impactStory: {
+        panels: [
+          {
+            id: "panel-problem",
+            image: { src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=1200&auto=format&fit=crop", alt: "Stray dog on the road" },
+            eyebrow: "The Problem",
+            headline: "Neglected Stray Animal Crisis",
+            body: "Thousands of stray dogs and cats face hunger, abuse, and untreated severe injuries on city streets daily."
+          },
+          {
+            id: "panel-response",
+            image: { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop", alt: "Shelter ambulance vehicle" },
+            eyebrow: "Our Response",
+            headline: "24/7 Rescue and Medical Care",
+            body: "We operate trauma ambulances, provide professional veterinary surgeries, and manage foster adoption networks."
+          },
+          {
+            id: "panel-outcome",
+            image: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop", alt: "Rescued dog with family" },
+            eyebrow: "The Outcome",
+            headline: "Thousands of Happy Adoptions",
+            body: "We have rescued 3,400+ animals and run population control campaigns, creating safer city streets for all."
+          }
+        ]
+      },
       about: {
         variant: "image-text",
         badge: "Who We Are",
         headline: "Every Dog & Cat Deserves Safety",
         body: ["We work 24/7 to respond to medical emergency calls for strays across the city."],
-        media: { src: "/images/about/team-working.jpg", alt: "Shelter life", width: 600, height: 450 },
+        media: { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop", alt: "Shelter life", width: 600, height: 450 },
         cta: { label: "Shelter Tour", href: "/#about" },
       },
       stats: {
@@ -732,8 +807,8 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Rescue Actions",
         headline: "What We Run",
         items: [
-          { id: "p1", badge: "Emergency", title: "Ambulance & Trauma Care", description: "Emergency pickup for wounded strays.", cta: { label: "Details", href: "/programs" }, tags: ["Trauma", "24/7"] },
-          { id: "p2", badge: "Spay/Neuter", title: "ABC (Animal Birth Control)", description: "Humane population control.", cta: { label: "Details", href: "/programs" }, tags: ["ABC", "Vaccination"] },
+          { id: "p1", image: { src: "https://images.unsplash.com/photo-1516550893923-42d28e5677af?q=80&w=600&auto=format&fit=crop", alt: "Ambulance & Trauma Care" }, badge: "Emergency", title: "Ambulance & Trauma Care", description: "Emergency pickup for wounded strays.", cta: { label: "Details", href: "/programs" }, tags: ["Trauma", "24/7"] },
+          { id: "p2", image: { src: "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=600&auto=format&fit=crop", alt: "ABC (Animal Birth Control)" }, badge: "Spay/Neuter", title: "ABC (Animal Birth Control)", description: "Humane population control.", cta: { label: "Details", href: "/programs" }, tags: ["ABC", "Vaccination"] },
         ],
       },
       testimonials: {
@@ -749,7 +824,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Shelter Pups",
         headline: "Adoptable Animals",
         items: [
-          { id: "g1", type: "image", media: { src: "/images/gallery/children-1.jpg", alt: "Puppy" }, category: "Puppies" },
+          { id: "g1", type: "image", media: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop", alt: "Puppy" }, category: "Puppies" },
         ],
       },
       news: {
@@ -757,7 +832,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Journal",
         headline: "Shelter Stories",
         items: [
-          { id: "n1", title: "Rescue of Bruno from an Open Pit", summary: "Saved by our trauma unit.", date: "2024-07-20", href: "#", image: { src: "/images/news/news-3.jpg", alt: "Dog Rescue" } },
+          { id: "n1", slug: "rescue-bruno", title: "Rescue of Bruno from an Open Pit", summary: "Saved by our trauma unit.", date: "2024-07-20", href: "#", image: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop", alt: "Dog Rescue" } },
         ],
       },
       ctaBand: {
@@ -798,19 +873,44 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
             id: "slide-env-1",
             headline: "Let's Plant a Future for Our Planet",
             subheadline: "Help us plant 100,000 native saplings in degraded forest corridors.",
-            media: { src: "/images/hero/hero-1.jpg", alt: "Planting trees", width: 1200, height: 600 },
+            media: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop", alt: "Planting trees", width: 1200, height: 600 },
             overlayOpacity: 0.45,
             primaryCta: { label: "Plant Trees", href: "/donate" },
             secondaryCta: { label: "Volunteer Nearby", href: "#" },
           },
         ],
       },
+      impactStory: {
+        panels: [
+          {
+            id: "panel-problem",
+            image: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop", alt: "Dry deforested land" },
+            eyebrow: "The Problem",
+            headline: "Rapid Habitat Loss and Urban Warming",
+            body: "Degraded forests, polluted city lakes, and rising temperatures threaten regional biodiversity and communities."
+          },
+          {
+            id: "panel-response",
+            image: { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop", alt: "Volunteers planting saplings" },
+            eyebrow: "Our Response",
+            headline: "Mass Reforestation and Watershed Restoration",
+            body: "We build dense Miyawaki urban forests, clean lakes, and engage community volunteers in planting native trees."
+          },
+          {
+            id: "panel-outcome",
+            image: { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop", alt: "Dense green forest canopy" },
+            eyebrow: "The Outcome",
+            headline: "Restored Biodiversity Corridors",
+            body: "Over 85,000 trees planted and 14 lakes recovered, creating active oxygen hubs and stable local ecosystems."
+          }
+        ]
+      },
       about: {
         variant: "text-only",
         badge: "Our Philosophy",
         headline: "Lake Recovery & Re-Wilding",
         body: ["Degraded urban ecosystems can recover rapidly if native flora is re-seeded properly."],
-        media: { src: "/images/about/team-working.jpg", alt: "Lake Cleanup", width: 600, height: 450 },
+        media: { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop", alt: "Lake Cleanup", width: 600, height: 450 },
         cta: { label: "Afforestation Data", href: "/#about" },
       },
       stats: {
@@ -825,8 +925,8 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Direct Action",
         headline: "Our Ecological Campaigns",
         items: [
-          { id: "p1", badge: "Forestry", title: "Miyawaki Urban Forests", description: "Dense green patches.", cta: { label: "Read Project", href: "/programs" }, tags: ["Urban", "Miyawaki"] },
-          { id: "p2", badge: "Watershed", title: "Lake Restoration System", description: "De-silting and clean inlets.", cta: { label: "Read Project", href: "/programs" }, tags: ["Water", "Ecology"] },
+          { id: "p1", image: { src: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600&auto=format&fit=crop", alt: "Miyawaki Urban Forests" }, badge: "Forestry", title: "Miyawaki Urban Forests", description: "Dense green patches.", cta: { label: "Read Project", href: "/programs" }, tags: ["Urban", "Miyawaki"] },
+          { id: "p2", image: { src: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=600&auto=format&fit=crop", alt: "Lake Restoration System" }, badge: "Watershed", title: "Lake Restoration System", description: "De-silting and clean inlets.", cta: { label: "Read Project", href: "/programs" }, tags: ["Water", "Ecology"] },
         ],
       },
       testimonials: {
@@ -842,7 +942,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Saplings",
         headline: "Nursery Work",
         items: [
-          { id: "g1", type: "image", media: { src: "/images/gallery/volunteers-1.jpg", alt: "Nursery" }, category: "Nursery" },
+          { id: "g1", type: "image", media: { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop", alt: "Nursery" }, category: "Nursery" },
         ],
       },
       news: {
@@ -850,13 +950,13 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         badge: "Journal",
         headline: "Green News",
         items: [
-          { id: "n1", title: "Inauguration of the Pallikaranai Marsh Nursery", summary: "10,000 wetland saplings.", date: "2024-07-20", href: "#", image: { src: "/images/news/news-1.jpg", alt: "Nursery" } },
+          { id: "n1", slug: "pallikaranai-marsh-nursery", title: "Inauguration of the Pallikaranai Marsh Nursery", summary: "10,000 wetland saplings.", date: "2024-07-20", href: "#", image: { src: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop", alt: "Nursery" } },
         ],
       },
       ctaBand: {
         variant: "image-background",
         theme: "image",
-        backgroundImage: { src: "/images/hero/hero-1.jpg", alt: "Green canopy" },
+        backgroundImage: { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop", alt: "Green canopy" },
         badge: "Act Now",
         headline: "Combat Global Warming. Support Reforestation.",
         subheadline: "Every ₹100 plants one native tree and maintains it for two years.",

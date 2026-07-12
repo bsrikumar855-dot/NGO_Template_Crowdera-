@@ -8,13 +8,13 @@ import type { FooterConfig } from "@/types";
 export const footer: FooterConfig = {
   logo: {
     src: "/images/logo.svg",
-    alt: "Vidyalaya Foundation",
+    alt: "Crowdera",
     width: 160,
     height: 36,
   },
   logoDark: {
     src: "/images/logo-white.svg",
-    alt: "Vidyalaya Foundation",
+    alt: "Crowdera",
     width: 160,
     height: 36,
   },
@@ -54,11 +54,11 @@ export const footer: FooterConfig = {
     },
   ],
   social: [
-    { platform: "facebook", href: "https://facebook.com/vidyalayafoundation" },
-    { platform: "instagram", href: "https://instagram.com/vidyalaya_org" },
-    { platform: "twitter", href: "https://twitter.com/vidyalaya_org" },
-    { platform: "linkedin", href: "https://linkedin.com/company/vidyalaya-foundation" },
-    { platform: "youtube", href: "https://youtube.com/@vidyalayafoundation" },
+    { platform: "facebook", href: "https://facebook.com/crowdera" },
+    { platform: "instagram", href: "https://instagram.com/crowdera" },
+    { platform: "twitter", href: "https://twitter.com/crowdera" },
+    { platform: "linkedin", href: "https://linkedin.com/company/crowdera" },
+    { platform: "youtube", href: "https://youtube.com/@crowdera" },
   ],
   newsletter: {
     enabled: true,
@@ -67,7 +67,7 @@ export const footer: FooterConfig = {
     buttonLabel: "Subscribe",
   },
   legal: {
-    copyright: "© {year} Vidyalaya Foundation. All rights reserved. Registered NGO: NGO-2014-MH-04521",
+    copyright: "© {year} Crowdera. All rights reserved. Registered NGO: NGO-2014-MH-04521",
     links: [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Use", href: "/terms" },

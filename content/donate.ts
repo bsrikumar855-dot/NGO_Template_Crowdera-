@@ -44,7 +44,7 @@ export interface DonateConfig {
 
 export const donateConfig: DonateConfig = {
   seo: {
-    title: "Support Our Mission — Donate to Vidyalaya Foundation",
+    title: "Support Our Mission — Donate to Crowdera",
     description: "Every contribution directly funds scholarships, books, and digital tools for children from underprivileged households.",
   },
   missionSummary: {

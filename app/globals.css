@@ -1,11 +1,10 @@
 /*
  * ╔══════════════════════════════════════════════════════════════════╗
- * ║         CROWDERA NGO TEMPLATE — GLOBAL DESIGN TOKEN LAYER       ║
+ * ║   CROWDERA NGO TEMPLATE — INDIAN DARK THEME + GLASSMORPHISM    ║
  * ║                                                                  ║
- * ║  This file defines ALL CSS custom properties (design tokens).   ║
- * ║  To re-theme the template for a new organization, override      ║
- * ║  only the tokens in :root (light) and .dark (dark) blocks.      ║
- * ║  Never hardcode values inside components.                        ║
+ * ║  Palette: Deep Indigo night sky + Saffron/Gold accent           ║
+ * ║  Mode: Dark-only (no light mode, no toggle)                     ║
+ * ║  Style: Glassmorphism — frosted-glass cards, blurred navbars   ║
  * ╚══════════════════════════════════════════════════════════════════╝
  */
 
@@ -24,17 +23,17 @@
     --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
     /* ── Modular Type Scale (ratio 1.25) — fluid via clamp() ── */
-    --text-xs:   0.64rem;           /* 10.24px */
-    --text-sm:   0.8rem;            /* 12.8px  */
-    --text-base: 1rem;              /* 16px    */
-    --text-md:   1.25rem;           /* 20px    */
-    --text-lg:   1.563rem;          /* 25px    */
-    --text-xl:   1.953rem;          /* 31.25px */
-    --text-2xl:  2.441rem;          /* 39px    */
-    --text-3xl:  3.052rem;          /* 48.8px  */
-    --text-4xl:  3.815rem;          /* 61px    */
-    --text-5xl:  4.768rem;          /* 76.3px  */
-    --text-hero: clamp(3rem, 8vw + 1rem, 7rem); /* fluid hero */
+    --text-xs:   0.64rem;
+    --text-sm:   0.8rem;
+    --text-base: 1rem;
+    --text-md:   1.25rem;
+    --text-lg:   1.563rem;
+    --text-xl:   1.953rem;
+    --text-2xl:  2.441rem;
+    --text-3xl:  3.052rem;
+    --text-4xl:  3.815rem;
+    --text-5xl:  4.768rem;
+    --text-hero: clamp(3rem, 8vw + 1rem, 7rem);
 
     /* ── Line Heights ── */
     --leading-hero: 1.05;
@@ -81,129 +80,86 @@
     /* ── Animation / Motion ── */
     --duration-instant: 80ms;
     --duration-fast:    150ms;
-    --duration-base:    250ms;
-    --duration-slow:    400ms;
+    --duration-base:    var(--motion-duration-base);
+    --duration-slow:    var(--motion-duration-slow);
     --duration-slower:  700ms;
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-smooth: var(--motion-ease-base);
     --ease-bouncy: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --motion-duration-fast: 150ms;
+    --motion-duration-base: 400ms;
+    --motion-duration-slow: 800ms;
+    --motion-ease-base: cubic-bezier(0.16, 1, 0.3, 1);
 
     /* ── Grid ── */
     --grid-cols-desktop: 12;
     --grid-cols-tablet:   8;
     --grid-cols-mobile:   4;
     --grid-gap: var(--space-6);
-
-    /* ── Elevation / Shadows (light mode) ── */
-    --shadow-elevation-1: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-elevation-2: 0 4px 6px -1px rgb(0 0 0 / 0.07),
-                          0 2px 4px -2px rgb(0 0 0 / 0.05);
-    --shadow-elevation-3: 0 10px 15px -3px rgb(0 0 0 / 0.08),
-                          0 4px 6px -4px rgb(0 0 0 / 0.05);
-    --shadow-elevation-4: 0 20px 25px -5px rgb(0 0 0 / 0.10),
-                          0 8px 10px -6px rgb(0 0 0 / 0.05);
-    --shadow-elevation-5: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-    --shadow-glow: 0 0 20px 5px rgb(255 255 255 / 0.08);
-    --shadow-glow-primary: 0 0 30px 8px hsl(var(--color-primary) / 0.25);
-
-    /* ══════════════════════════════════════════════════
-       LIGHT MODE COLOR TOKENS
-       ══════════════════════════════════════════════════
-       Default palette: Warm Slate + Teal-Green primary
-       Organizations OVERRIDE --color-primary & secondary
-       ══════════════════════════════════════════════════ */
-
-    /* Primary — Crowdera default: deep teal-green */
-    --color-primary: 163 72% 29%;          /* hsl(163, 72%, 29%) */
-    --color-primary-foreground: 0 0% 98%;
-    --color-primary-subtle: 163 72% 95%;
-
-    /* Secondary — warm amber accent */
-    --color-secondary: 38 92% 50%;         /* hsl(38, 92%, 50%) */
-    --color-secondary-foreground: 0 0% 10%;
-
-    /* Neutral scale — warm slate */
-    --color-neutral-50:  220 20% 98%;
-    --color-neutral-100: 220 15% 95%;
-    --color-neutral-200: 220 13% 91%;
-    --color-neutral-300: 220 10% 82%;
-    --color-neutral-400: 220 9%  64%;
-    --color-neutral-500: 220 8%  46%;
-    --color-neutral-600: 220 10% 35%;
-    --color-neutral-700: 220 12% 26%;
-    --color-neutral-800: 220 13% 18%;
-    --color-neutral-900: 220 15% 12%;
-    --color-neutral-950: 220 20% 6%;
-
-    /* Semantic */
-    --color-success: 142 71% 35%;
-    --color-warning: 38 92% 50%;
-    --color-error:   0 84% 52%;
-
-    /* Surfaces */
-    --color-background:      220 20% 98%;
-    --color-foreground:      220 15% 10%;
-    --color-surface:         0 0% 100%;
-    --color-surface-elevated: 0 0% 100%;
-    --color-border:          220 13% 88%;
-    --color-muted:           220 15% 95%;
-    --color-muted-foreground: 220 9% 46%;
-    --color-ring:            163 72% 29%;
   }
 
   /* ════════════════════════════════════════════════════
-     DARK MODE COLOR TOKENS (first-class, not inverted)
+     DARK MODE — Indian Night Sky Theme
+     Primary: Saffron Gold  hsl(38, 95%, 54%)
+     Secondary: Festival Pink / Deep Rose hsl(340, 80%, 60%)
+     Background: Very deep indigo-black hsl(240, 20%, 5%)
      ════════════════════════════════════════════════════ */
+  :root,
   .dark {
-    /* Primary stays vibrant in dark mode */
-    --color-primary: 163 62% 48%;
-    --color-primary-foreground: 0 0% 5%;
-    --color-primary-subtle: 163 72% 12%;
+    /* Primary — Saffron Gold */
+    --color-primary: 38 95% 54%;              /* hsl(38, 95%, 54%) — rich saffron */
+    --color-primary-foreground: 240 20% 5%;   /* near-black on saffron */
+    --color-primary-subtle: 38 80% 12%;       /* deep gold tint bg */
 
-    /* Secondary — slightly muted in dark */
-    --color-secondary: 38 82% 55%;
-    --color-secondary-foreground: 220 20% 6%;
+    /* Secondary — Festival Rose / Bindi Pink */
+    --color-secondary: 340 75% 60%;           /* hsl(340, 75%, 60%) */
+    --color-secondary-foreground: 240 20% 5%;
 
-    /* Neutral scale inverted for dark */
-    --color-neutral-50:  220 15% 6%;
-    --color-neutral-100: 220 13% 9%;
-    --color-neutral-200: 220 12% 13%;
-    --color-neutral-300: 220 10% 20%;
-    --color-neutral-400: 220 9%  35%;
-    --color-neutral-500: 220 8%  52%;
-    --color-neutral-600: 220 9%  65%;
-    --color-neutral-700: 220 10% 75%;
-    --color-neutral-800: 220 12% 84%;
-    --color-neutral-900: 220 13% 92%;
-    --color-neutral-950: 220 15% 97%;
+    /* Neutral scale — 50 is lightest (off-white), 950 is darkest (near-black) */
+    --color-neutral-50:  240 15% 97%;
+    --color-neutral-100: 240 12% 91%;
+    --color-neutral-200: 240 10% 82%;
+    --color-neutral-300: 240 9%  72%;
+    --color-neutral-400: 240 8%  60%;
+    --color-neutral-500: 240 8%  45%;
+    --color-neutral-600: 240 10% 28%;
+    --color-neutral-700: 240 12% 16%;
+    --color-neutral-800: 240 14% 10%;
+    --color-neutral-900: 240 15% 7%;
+    --color-neutral-950: 240 18% 5%;
 
     /* Semantic */
-    --color-success: 142 71% 55%;
-    --color-warning: 38 92% 65%;
-    --color-error:   0 84% 65%;
+    --color-success: 142 60% 50%;
+    --color-warning: 38 95% 54%;
+    --color-error:   0 80% 60%;
 
-    /* Surfaces */
-    --color-background:      220 20% 7%;
-    --color-foreground:      220 15% 94%;
-    --color-surface:         220 15% 10%;
-    --color-surface-elevated: 220 13% 13%;
-    --color-border:          220 12% 18%;
-    --color-muted:           220 13% 13%;
-    --color-muted-foreground: 220 9%  55%;
-    --color-ring:            163 62% 48%;
+    /* Surfaces — deep indigo darkness */
+    --color-background:       240 20% 5%;      /* near-black indigo */
+    --color-foreground:       40 30% 92%;      /* warm off-white */
+    --color-surface:          240 16% 8%;      /* card backgrounds */
+    --color-surface-elevated: 240 14% 11%;     /* elevated card */
+    --color-border:           240 12% 18%;     /* subtle border */
+    --color-muted:            240 14% 10%;     /* muted bg */
+    --color-muted-foreground: 240 8%  55%;     /* muted text */
+    --color-ring:             38 95% 54%;      /* saffron focus ring */
 
-    /* Shadows subtler in dark mode */
-    --shadow-elevation-1: 0 1px 2px 0 rgb(0 0 0 / 0.4);
-    --shadow-elevation-2: 0 4px 6px -1px rgb(0 0 0 / 0.4),
-                          0 2px 4px -2px rgb(0 0 0 / 0.3);
-    --shadow-elevation-3: 0 10px 15px -3px rgb(0 0 0 / 0.5),
-                          0 4px 6px -4px rgb(0 0 0 / 0.3);
-    --shadow-elevation-4: 0 20px 25px -5px rgb(0 0 0 / 0.6),
-                          0 8px 10px -6px rgb(0 0 0 / 0.4);
-    --shadow-elevation-5: 0 25px 50px -12px rgb(0 0 0 / 0.8);
-    --shadow-glow: 0 0 20px 5px rgb(255 255 255 / 0.04);
-    --shadow-glow-primary: 0 0 30px 8px hsl(var(--color-primary) / 0.35);
+    /* ── Glassmorphism shadows in dark mode ── */
+    --shadow-elevation-1: 0 1px 3px 0 rgb(0 0 0 / 0.5),
+                          0 0 0 1px rgb(255 183 0 / 0.04);
+    --shadow-elevation-2: 0 4px 8px -1px rgb(0 0 0 / 0.55),
+                          0 2px 4px -2px rgb(0 0 0 / 0.4),
+                          0 0 0 1px rgb(255 183 0 / 0.06);
+    --shadow-elevation-3: 0 10px 20px -3px rgb(0 0 0 / 0.65),
+                          0 4px 8px -4px rgb(0 0 0 / 0.4),
+                          0 0 0 1px rgb(255 183 0 / 0.08);
+    --shadow-elevation-4: 0 20px 32px -5px rgb(0 0 0 / 0.75),
+                          0 8px 12px -6px rgb(0 0 0 / 0.5),
+                          0 0 0 1px rgb(255 183 0 / 0.10);
+    --shadow-elevation-5: 0 28px 56px -12px rgb(0 0 0 / 0.85);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.4);
+    --shadow-glow: 0 0 24px 6px rgb(255 200 50 / 0.08);
+    --shadow-glow-primary: 0 0 40px 10px hsl(38 95% 54% / 0.20);
   }
 }
 
@@ -229,12 +185,8 @@
 
   /* Respect reduced-motion globally */
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -252,6 +204,10 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     min-height: 100dvh;
+    /* Subtle radial ambient glow — Indian sunrise feel */
+    background-image:
+      radial-gradient(ellipse 80% 40% at 20% -10%, hsl(38 95% 54% / 0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 30% at 80% 110%, hsl(340 75% 60% / 0.05) 0%, transparent 60%);
   }
 
   /* ── Headings ── */
@@ -263,7 +219,7 @@
     color: hsl(var(--color-foreground));
   }
 
-  /* ── Focus States — accessible, brand-colored ── */
+  /* ── Focus States — saffron ring ── */
   :focus-visible {
     outline: 2px solid hsl(var(--color-primary));
     outline-offset: 3px;
@@ -294,33 +250,24 @@
     font-size: inherit;
   }
 
-  /* ── Selection ── */
+  /* ── Selection — saffron highlight ── */
   ::selection {
-    background-color: hsl(var(--color-primary) / 0.2);
+    background-color: hsl(var(--color-primary) / 0.25);
     color: hsl(var(--color-foreground));
   }
 
-  /* ── Scrollbar Styling ── */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: hsl(var(--color-neutral-100));
-  }
+  /* ── Scrollbar — dark indigo themed ── */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: hsl(240 18% 7%); }
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--color-neutral-300));
-    border-radius: var(--radius-full);
+    background: hsl(240 12% 22%);
+    border-radius: 99px;
+    border: 2px solid hsl(240 18% 7%);
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--color-neutral-400));
-  }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(38 95% 54% / 0.5); }
 
   /* ── Horizontal Rule ── */
-  hr {
-    border-color: hsl(var(--color-border));
-    border-top-width: 1px;
-  }
+  hr { border-color: hsl(var(--color-border)); border-top-width: 1px; }
 }
 
 /* ───────────────────────────────────────────────────────────────────
@@ -343,33 +290,67 @@
     padding-bottom: clamp(var(--space-16), 6vw, var(--space-24));
   }
 
-  /* ── Gradient Text ── */
+  /* ── Gradient Text — saffron to rose ── */
   .text-gradient-primary {
     background: linear-gradient(
       135deg,
-      hsl(var(--color-primary)) 0%,
-      hsl(var(--color-secondary)) 100%
+      hsl(38 95% 64%) 0%,
+      hsl(340 75% 65%) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  /* ── Glass Card ── */
+  /* ── Glass Card — rich dark glassmorphism ── */
   .glass {
-    background: hsl(var(--color-surface) / 0.7);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid hsl(var(--color-border) / 0.6);
+    background: hsl(240 16% 10% / 0.65);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid hsl(38 95% 54% / 0.10);
+    box-shadow:
+      0 4px 24px -4px rgb(0 0 0 / 0.6),
+      inset 0 1px 0 hsl(38 95% 54% / 0.08);
+  }
+
+  /* ── Glass Strong — for navbar & prominent panels ── */
+  .glass-strong {
+    background: hsl(240 18% 7% / 0.75);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid hsl(38 95% 54% / 0.14);
+    box-shadow:
+      0 8px 32px -4px rgb(0 0 0 / 0.7),
+      inset 0 1px 0 hsl(38 95% 54% / 0.10),
+      0 0 0 1px hsl(240 12% 20% / 0.3);
+  }
+
+  /* ── Glass Card elevated ── */
+  .glass-card {
+    background: hsl(240 14% 9% / 0.80);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid hsl(240 12% 22% / 0.6);
+    box-shadow:
+      0 2px 12px -2px rgb(0 0 0 / 0.5),
+      inset 0 1px 0 hsl(38 95% 54% / 0.06);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .glass-card:hover {
+    border-color: hsl(38 95% 54% / 0.25);
+    box-shadow:
+      0 8px 28px -4px rgb(0 0 0 / 0.65),
+      0 0 0 1px hsl(38 95% 54% / 0.12),
+      inset 0 1px 0 hsl(38 95% 54% / 0.10);
   }
 
   /* ── Shimmer skeleton ── */
   .skeleton {
     background: linear-gradient(
       90deg,
-      hsl(var(--color-neutral-200)) 25%,
-      hsl(var(--color-neutral-100)) 50%,
-      hsl(var(--color-neutral-200)) 75%
+      hsl(240 14% 12%) 25%,
+      hsl(240 14% 16%) 50%,
+      hsl(240 14% 12%) 75%
     );
     background-size: 200% 100%;
     animation: shimmer 2s linear infinite;
@@ -393,15 +374,41 @@
     border-width: 0;
   }
 
-  /* ── Overlay ── */
+  /* ── Overlay — warm dusk gradient ── */
   .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
       to bottom,
-      hsl(var(--color-neutral-950) / 0.2) 0%,
-      hsl(var(--color-neutral-950) / 0.6) 100%
+      hsl(240 20% 5% / 0.25) 0%,
+      hsl(240 20% 5% / 0.70) 100%
     );
+  }
+
+  /* ── Saffron ambient glow blob ── */
+  .glow-saffron {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    background: radial-gradient(circle, hsl(38 95% 54% / 0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── Divider with saffron fade ── */
+  .divider-glow {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(38 95% 54% / 0.30) 40%,
+      hsl(340 75% 60% / 0.20) 60%,
+      transparent 100%
+    );
+  }
+
+  /* ── Saffron badge glow ── */
+  .badge-glow {
+    box-shadow: 0 0 12px 2px hsl(38 95% 54% / 0.25);
   }
 }
 
@@ -409,29 +416,56 @@
    4. UTILITY LAYER — Helpers
    ─────────────────────────────────────────────────────────────────── */
 @layer utilities {
-  /* ── Text Balance ── */
-  .text-balance {
-    text-wrap: balance;
-  }
-  .text-pretty {
-    text-wrap: pretty;
-  }
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
 
-  /* ── Animate on reduced motion ── */
   .motion-safe\:animate-fade-in {
     @media (prefers-reduced-motion: no-preference) {
       animation: fade-in var(--duration-base) var(--ease-smooth) forwards;
     }
   }
 
-  /* ── Numeric tabular ── */
-  .tabular-nums {
-    font-variant-numeric: tabular-nums;
-  }
+  .tabular-nums { font-variant-numeric: tabular-nums; }
 
-  /* ── Truncation ── */
   .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
   .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
   .line-clamp-4 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+
+  /* ── Marquee Animation Utilities ── */
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee-slow {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 45s linear infinite;
+  }
+
+  .animate-marquee-medium {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 30s linear infinite;
+  }
+
+  .animate-marquee-fast {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 15s linear infinite;
+  }
+
+  .direction-reverse {
+    animation-direction: reverse;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
