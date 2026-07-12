@@ -27,6 +27,7 @@ export interface CallToActionSectionProps {
 
 export function CallToActionSection({ config }: CallToActionSectionProps) {
   const {
+    variant = "centered",
     theme,
     badge,
     headline,
@@ -39,6 +40,10 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
 
   const [sectionRef, isVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.1 });
 
+  // Map variant to theme if image-background is specified
+  const effectiveTheme = variant === "image-background" ? "image" : theme;
+  const effectivePadding = variant === "minimal" ? "md" : "xl";
+
   // Surface mapping
   const surfaceMap = {
     primary: "primary",
@@ -47,17 +52,60 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
     image: "image",
   } as const;
 
-  const isDark = theme === "dark" || theme === "primary" || theme === "image";
+  const isDark = effectiveTheme === "dark" || effectiveTheme === "primary" || effectiveTheme === "image";
+
+  // Shared buttons component to avoid code duplication
+  const renderButtons = (size: "lg" | "xl" = "xl") => (
+    <div className="flex flex-col sm:flex-row items-center gap-4">
+      <Link
+        href={primaryCta.href}
+        target={primaryCta.external ? "_blank" : undefined}
+        rel={primaryCta.external ? "noopener noreferrer" : undefined}
+      >
+        <Button
+          variant={primaryCta.variant ?? "donate"}
+          size={size}
+          rounded
+          trailingIcon={<ArrowRight className="h-5 w-5" />}
+          className={cn(
+            effectiveTheme === "primary" && "bg-white text-primary hover:bg-white/90 border-transparent",
+            effectiveTheme === "dark" && "bg-white text-neutral-900 hover:bg-white/90 border-transparent"
+          )}
+        >
+          {primaryCta.label}
+        </Button>
+      </Link>
+
+      {secondaryCta && (
+        <Link
+          href={secondaryCta.href}
+          target={secondaryCta.external ? "_blank" : undefined}
+          rel={secondaryCta.external ? "noopener noreferrer" : undefined}
+        >
+          <Button
+            variant="ghost"
+            size={size}
+            rounded
+            className={cn(
+              isDark && "text-white border border-white/40 hover:bg-white/15 hover:border-white"
+            )}
+          >
+            {secondaryCta.label}
+          </Button>
+        </Link>
+      )}
+    </div>
+  );
 
   return (
     <Section
-      surface={surfaceMap[theme]}
-      padding="xl"
+      surface={surfaceMap[effectiveTheme]}
+      padding={effectivePadding}
       ariaLabel="Call to action"
       className="relative overflow-hidden"
     >
-      {/* Background image (image theme) */}
-      {theme === "image" && backgroundImage && (
+      {/* Background image (image variant or theme) */}
+      {effectiveTheme === "image" && backgroundImage && (
         <>
           <Image
             src={backgroundImage.src}
@@ -75,7 +123,7 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
       )}
 
       {/* Decorative background blobs for primary theme */}
-      {theme === "primary" && (
+      {effectiveTheme === "primary" && (
         <>
           <div
             className="absolute -top-20 -right-20 h-80 w-80 rounded-full bg-white/5 blur-3xl -z-[1]"
@@ -89,89 +137,132 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
       )}
 
       <Container size="lg">
-        <div
-          ref={sectionRef}
-          className={cn(
-            "flex flex-col items-center text-center gap-8 transition-all duration-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
-          {badge && (
-            <Badge
-              variant="outline"
-              size="md"
-              className={isDark ? "border-white/30 text-white bg-white/10" : ""}
-            >
-              {badge}
-            </Badge>
-          )}
-
-          <Heading
-            as="h2"
-            size="3xl"
-            align="center"
-            color={isDark ? "white" : "default"}
-            className="max-w-3xl"
+        {variant === "split" ? (
+          <div
+            ref={sectionRef}
+            className={cn(
+              "grid grid-cols-1 lg:grid-cols-3 gap-8 items-center text-left transition-all duration-700",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            )}
           >
-            {headline}
-          </Heading>
-
-          {subheadline && (
-            <Text
-              as="p"
-              size="md"
-              align="center"
-              balance
-              className={cn(
-                "max-w-2xl leading-relaxed",
-                isDark ? "text-white/80" : "text-muted-foreground"
+            <div className="lg:col-span-2 flex flex-col items-start gap-4">
+              {badge && (
+                <Badge
+                  variant="outline"
+                  size="md"
+                  className={isDark ? "border-white/30 text-white bg-white/10" : ""}
+                >
+                  {badge}
+                </Badge>
               )}
-            >
-              {subheadline}
-            </Text>
-          )}
-
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
-            <Link
-              href={primaryCta.href}
-              target={primaryCta.external ? "_blank" : undefined}
-              rel={primaryCta.external ? "noopener noreferrer" : undefined}
-            >
-              <Button
-                variant={primaryCta.variant ?? "donate"}
-                size="xl"
-                rounded
-                trailingIcon={<ArrowRight className="h-5 w-5" />}
-                className={cn(
-                  theme === "primary" && "bg-white text-primary hover:bg-white/90 border-transparent",
-                  theme === "dark" && "bg-white text-neutral-900 hover:bg-white/90 border-transparent"
-                )}
+              <Heading
+                as="h2"
+                size="2xl"
+                align="left"
+                color={isDark ? "white" : "default"}
+                className="max-w-2xl"
               >
-                {primaryCta.label}
-              </Button>
-            </Link>
-
-            {secondaryCta && (
-              <Link
-                href={secondaryCta.href}
-                target={secondaryCta.external ? "_blank" : undefined}
-                rel={secondaryCta.external ? "noopener noreferrer" : undefined}
-              >
-                <Button
-                  variant="ghost"
-                  size="xl"
-                  rounded
+                {headline}
+              </Heading>
+              {subheadline && (
+                <Text
+                  as="p"
+                  size="base"
+                  align="left"
                   className={cn(
-                    isDark && "text-white border border-white/40 hover:bg-white/15 hover:border-white"
+                    "max-w-xl leading-relaxed",
+                    isDark ? "text-white/80" : "text-muted-foreground"
                   )}
                 >
-                  {secondaryCta.label}
-                </Button>
-              </Link>
-            )}
+                  {subheadline}
+                </Text>
+              )}
+            </div>
+            <div className="lg:col-span-1 flex justify-start lg:justify-end">
+              {renderButtons("xl")}
+            </div>
           </div>
-        </div>
+        ) : variant === "minimal" ? (
+          <div
+            ref={sectionRef}
+            className={cn(
+              "flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left transition-all duration-700",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            )}
+          >
+            <div className="flex flex-col items-center md:items-start gap-2">
+              <Heading
+                as="h2"
+                size="xl"
+                align="left"
+                color={isDark ? "white" : "default"}
+              >
+                {headline}
+              </Heading>
+              {subheadline && (
+                <Text
+                  as="p"
+                  size="sm"
+                  align="left"
+                  className={isDark ? "text-white/80" : "text-muted-foreground"}
+                >
+                  {subheadline}
+                </Text>
+              )}
+            </div>
+            <div>
+              {renderButtons("lg")}
+            </div>
+          </div>
+        ) : (
+          /* Default: Centered / Image-background */
+          <div
+            ref={sectionRef}
+            className={cn(
+              "flex flex-col items-center text-center gap-8 transition-all duration-700",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            )}
+          >
+            {badge && (
+              <Badge
+                variant="outline"
+                size="md"
+                className={isDark ? "border-white/30 text-white bg-white/10" : ""}
+              >
+                {badge}
+              </Badge>
+            )}
+
+            <Heading
+              as="h2"
+              size="3xl"
+              align="center"
+              color={isDark ? "white" : "default"}
+              className="max-w-3xl"
+            >
+              {headline}
+            </Heading>
+
+            {subheadline && (
+              <Text
+                as="p"
+                size="md"
+                align="center"
+                balance
+                className={cn(
+                  "max-w-2xl leading-relaxed",
+                  isDark ? "text-white/80" : "text-muted-foreground"
+                )}
+              >
+                {subheadline}
+              </Text>
+            )}
+
+            <div className="pt-2">
+              {renderButtons("xl")}
+            </div>
+          </div>
+        )}
       </Container>
     </Section>
   );

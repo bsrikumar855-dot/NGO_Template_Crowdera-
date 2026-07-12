@@ -243,8 +243,127 @@ export interface GallerySectionProps {
   config: GalleryConfig;
 }
 
+/* ── Gallery Carousel layout variant ─────────────────────────── */
+function GalleryCarousel({
+  items,
+  onItemClick,
+}: {
+  items: GalleryItem[];
+  onItemClick: (index: number) => void;
+}) {
+  const [index, setIndex] = React.useState(0);
+  const visibleCount = 3;
+  const maxIndex = Math.max(0, items.length - visibleCount);
+
+  const prev = () => setIndex((i) => Math.max(0, i - 1));
+  const next = () => setIndex((i) => Math.min(maxIndex, i + 1));
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden">
+        <div
+          className="flex gap-4 transition-transform duration-base ease-smooth animate-fade-in"
+          style={{
+            transform: `translateX(calc(-${index} * (100% / ${visibleCount}) - ${index} * 16px / ${visibleCount}))`,
+          }}
+        >
+          {items.map((item, i) => {
+            const media = item.media;
+            const isImg = isImageAsset(media);
+            return (
+              <div
+                key={item.id}
+                className="flex-shrink-0"
+                style={{ width: `calc((100% - ${(visibleCount - 1) * 16}px) / ${visibleCount})` }}
+              >
+                <button
+                  onClick={() => onItemClick(i)}
+                  aria-label={item.caption ?? `View ${item.type} ${i + 1}`}
+                  className={cn(
+                    "group relative w-full overflow-hidden rounded-xl",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                    "cursor-zoom-in aspect-video block"
+                  )}
+                >
+                  {isImg ? (
+                    <Image
+                      src={(media as ImageAsset).src}
+                      alt={(media as ImageAsset).alt}
+                      fill
+                      className="object-cover transition-transform duration-slow group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-neutral-800">
+                      {(media as VideoAsset).poster ? (
+                        <Image
+                          src={(media as VideoAsset).poster!}
+                          alt={item.caption ?? "Video thumbnail"}
+                          fill
+                          className="object-cover transition-transform duration-slow group-hover:scale-105"
+                          sizes="33vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-neutral-800" />
+                      )}
+                    </div>
+                  )}
+
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-neutral-950/0 group-hover:bg-neutral-950/40 flex items-center justify-center transition-all duration-base">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-base">
+                      {item.type === "video" ? (
+                        <Play className="h-10 w-10 text-white drop-shadow-lg fill-white" />
+                      ) : (
+                        <ZoomIn className="h-8 w-8 text-white drop-shadow-lg" />
+                      )}
+                    </div>
+                  </div>
+
+                  {item.caption && (
+                    <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-base">
+                      <p className="text-white text-xs line-clamp-1">{item.caption}</p>
+                    </div>
+                  )}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {items.length > visibleCount && (
+        <div className="flex items-center justify-center gap-3 mt-6">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={prev}
+            disabled={index === 0}
+            aria-label="Previous gallery items"
+            leadingIcon={<ChevronLeft className="h-4 w-4" />}
+          />
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={next}
+            disabled={index === maxIndex}
+            aria-label="Next gallery items"
+            leadingIcon={<ChevronRight className="h-4 w-4" />}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Main GallerySection ─────────────────────────────────────── */
+export interface GallerySectionProps {
+  config: GalleryConfig;
+}
+
 export function GallerySection({ config }: GallerySectionProps) {
   const {
+    variant,
     badge,
     headline,
     subheadline,
@@ -254,7 +373,12 @@ export function GallerySection({ config }: GallerySectionProps) {
     categories = [],
   } = config;
 
-  const [view, setView] = React.useState<"grid" | "masonry">(defaultView);
+  // If variant is set, use it. Otherwise, use view state toggled by user.
+  const isCarousel = variant === "carousel";
+  const [view, setView] = React.useState<"grid" | "masonry">(
+    (variant === "grid" || variant === "masonry") ? variant : defaultView
+  );
+
   const [activeCategory, setActiveCategory] = React.useState("All");
   const [lightboxIndex, setLightboxIndex] = React.useState<number | null>(null);
   const [sectionRef, isVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.05 });
@@ -307,57 +431,63 @@ export function GallerySection({ config }: GallerySectionProps) {
                 </div>
               )}
 
-              {/* View toggle */}
-              <div className="flex items-center gap-1 bg-muted rounded-lg p-1 ml-auto">
-                {(["grid", "masonry"] as const).map((v) => (
-                  <button
-                    key={v}
-                    onClick={() => setView(v)}
-                    aria-pressed={view === v}
-                    aria-label={`${v} view`}
-                    className={cn(
-                      "px-3 py-1.5 rounded-md text-sm font-medium capitalize",
-                      "transition-all duration-fast",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-                      view === v
-                        ? "bg-surface shadow-elevation-1 text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    {v}
-                  </button>
-                ))}
-              </div>
+              {/* View toggle (hidden if carousel variant is forced) */}
+              {!isCarousel && (
+                <div className="flex items-center gap-1 bg-muted rounded-lg p-1 ml-auto">
+                  {(["grid", "masonry"] as const).map((v) => (
+                    <button
+                      key={v}
+                      onClick={() => setView(v)}
+                      aria-pressed={view === v}
+                      aria-label={`${v} view`}
+                      className={cn(
+                        "px-3 py-1.5 rounded-md text-sm font-medium capitalize",
+                        "transition-all duration-fast",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                        view === v
+                          ? "bg-surface shadow-elevation-1 text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      {v}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Gallery grid */}
-            <div
-              className={cn(
-                view === "grid"
-                  ? "grid grid-cols-2 md:grid-cols-3 gap-4"
-                  : "columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4"
-              )}
-            >
-              {filteredItems.map((item, i) => (
-                <div
-                  key={item.id}
-                  className={cn(
-                    "transition-all duration-700",
-                    isVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-6",
-                    view === "masonry" ? "break-inside-avoid" : ""
-                  )}
-                  style={{ transitionDelay: `${i * 60}ms` }}
-                >
-                  <GalleryThumbnail
-                    item={item}
-                    index={i}
-                    onClick={openLightbox}
-                  />
-                </div>
-              ))}
-            </div>
+            {/* Gallery Content */}
+            {isCarousel ? (
+              <GalleryCarousel items={filteredItems} onItemClick={openLightbox} />
+            ) : (
+              <div
+                className={cn(
+                  view === "grid"
+                    ? "grid grid-cols-2 md:grid-cols-3 gap-4"
+                    : "columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4"
+                )}
+              >
+                {filteredItems.map((item, i) => (
+                  <div
+                    key={item.id}
+                    className={cn(
+                      "transition-all duration-700",
+                      isVisible
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-6",
+                      view === "masonry" ? "break-inside-avoid" : ""
+                    )}
+                    style={{ transitionDelay: `${i * 60}ms` }}
+                  >
+                    <GalleryThumbnail
+                      item={item}
+                      index={i}
+                      onClick={openLightbox}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
 
             {filteredItems.length === 0 && (
               <p className="text-center text-muted-foreground py-12">

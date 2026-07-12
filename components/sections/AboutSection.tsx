@@ -163,7 +163,7 @@ export interface AboutSectionProps {
 }
 
 export function AboutSection({ config }: AboutSectionProps) {
-  const { layout } = config;
+  const layout = config.variant ?? config.layout ?? "text-image";
   const [sectionRef, isVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.1 });
 
   // text-only / icon-grid — single column centered

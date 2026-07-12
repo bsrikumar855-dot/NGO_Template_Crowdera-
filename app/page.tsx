@@ -26,6 +26,7 @@ import {
   NewsSection,
   CallToActionSection,
 } from "@/components/sections";
+import { TemplateMetadataBadge } from "@/components/core/TemplateMetadataBadge";
 
 /* ── Page-level SEO ─────────────────────────────────────────── */
 export const metadata: Metadata = {
@@ -117,6 +118,9 @@ export default function HomePage() {
       <div id="cta">
         <CallToActionSection config={homepage.ctaBand} />
       </div>
+
+      {/* Template Metadata Widget */}
+      <TemplateMetadataBadge />
     </>
   );
 }

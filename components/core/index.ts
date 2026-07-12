@@ -60,3 +60,5 @@ export { Spinner, PageSpinner } from "./Spinner";
 export type { SpinnerProps } from "./Spinner";
 
 export { ThemeProvider } from "./ThemeProvider";
+export { Breadcrumb } from "./Breadcrumb";
+export type { BreadcrumbProps, BreadcrumbItem } from "./Breadcrumb";

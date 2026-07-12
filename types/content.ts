@@ -138,7 +138,8 @@ export interface AboutIconItem {
 }
 
 export interface AboutConfig {
-  layout: AboutLayout;
+  variant?: AboutLayout;
+  layout?: AboutLayout;
   badge?: string;
   headline: string;
   body: string[];           /* paragraphs */
@@ -185,6 +186,7 @@ export interface ProgramCard {
 }
 
 export interface ProgramsConfig {
+  variant?: "grid" | "carousel";
   badge?: string;
   headline: string;
   subheadline?: string;
@@ -207,6 +209,7 @@ export interface TestimonialCard {
 }
 
 export interface TestimonialsConfig {
+  variant?: "carousel" | "masonry" | "featured";
   badge?: string;
   headline: string;
   subheadline?: string;
@@ -225,6 +228,7 @@ export interface GalleryItem {
 }
 
 export interface GalleryConfig {
+  variant?: "grid" | "masonry" | "carousel";
   badge?: string;
   headline: string;
   subheadline?: string;
@@ -249,6 +253,7 @@ export interface NewsCard {
 }
 
 export interface NewsConfig {
+  variant?: "cards" | "magazine" | "timeline";
   badge?: string;
   headline: string;
   subheadline?: string;
@@ -261,6 +266,7 @@ export interface NewsConfig {
 export type CtaBandTheme = "primary" | "secondary" | "dark" | "image";
 
 export interface CtaBandConfig {
+  variant?: "centered" | "split" | "image-background" | "minimal";
   theme: CtaBandTheme;
   badge?: string;
   headline: string;

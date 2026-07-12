@@ -209,12 +209,24 @@ export interface HeroSectionProps {
 }
 
 export function HeroSection({ config }: HeroSectionProps) {
-  const { slides, autoplay = true, autoplayInterval = 6000, showScrollIndicator = true } = config;
+  const {
+    variant = "carousel",
+    slides,
+    autoplay = true,
+    autoplayInterval = 6000,
+    showScrollIndicator = true,
+  } = config;
 
   const [current, setCurrent] = React.useState(0);
   const [isMobile, setIsMobile] = React.useState(false);
   const intervalRef = React.useRef<ReturnType<typeof setInterval> | null>(null);
-  const isMultiple = slides.length > 1;
+  
+  // Carousel is only active if variant is "carousel" and we have multiple slides
+  const isMultiple = variant === "carousel" && slides.length > 1;
+
+  // Filter slides or enforce media based on variant if needed
+  // (In practice, config should align, but we fallback gracefully to slides[0] for single image/video)
+  const renderedSlides = variant === "carousel" ? slides : [slides[0]];
 
   // Detect mobile
   React.useEffect(() => {
@@ -229,19 +241,19 @@ export function HeroSection({ config }: HeroSectionProps) {
   React.useEffect(() => {
     if (!autoplay || !isMultiple) return;
     intervalRef.current = setInterval(() => {
-      setCurrent((c) => (c + 1) % slides.length);
+      setCurrent((c) => (c + 1) % renderedSlides.length);
     }, autoplayInterval);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [autoplay, autoplayInterval, slides.length, isMultiple]);
+  }, [autoplay, autoplayInterval, renderedSlides.length, isMultiple]);
 
   const go = React.useCallback(
     (index: number) => {
       if (intervalRef.current) clearInterval(intervalRef.current);
-      setCurrent((index + slides.length) % slides.length);
+      setCurrent((index + renderedSlides.length) % renderedSlides.length);
     },
-    [slides.length]
+    [renderedSlides.length]
   );
 
   const prev = () => go(current - 1);
@@ -261,7 +273,7 @@ export function HeroSection({ config }: HeroSectionProps) {
       onKeyDown={isMultiple ? handleKeyDown : undefined}
     >
       {/* Slides */}
-      {slides.map((slide, i) => (
+      {renderedSlides.map((slide, i) => (
         <HeroSlideContent
           key={slide.id}
           slide={slide}
@@ -309,7 +321,7 @@ export function HeroSection({ config }: HeroSectionProps) {
             aria-label="Slide navigation"
             className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2"
           >
-            {slides.map((slide, i) => (
+            {renderedSlides.map((slide, i) => (
               <button
                 key={slide.id}
                 role="tab"

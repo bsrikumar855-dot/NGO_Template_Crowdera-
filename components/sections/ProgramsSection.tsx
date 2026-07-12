@@ -168,6 +168,7 @@ export interface ProgramsSectionProps {
 
 export function ProgramsSection({ config }: ProgramsSectionProps) {
   const {
+    variant,
     badge,
     headline,
     subheadline,
@@ -177,7 +178,7 @@ export function ProgramsSection({ config }: ProgramsSectionProps) {
   } = config;
 
   const [sectionRef, isVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.05 });
-  const useCarousel = items.length > carouselThreshold;
+  const useCarousel = variant === "carousel" || (variant !== "grid" && items.length > carouselThreshold);
 
   return (
     <Section surface="muted" padding="lg" ariaLabel="Programs">

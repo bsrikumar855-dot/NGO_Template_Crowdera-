@@ -142,7 +142,7 @@ export function Navbar({ nav, org, className }: NavbarProps) {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    if (href.startsWith("/#")) {
+    if (href.startsWith("/#") && pathname === "/") {
       e.preventDefault();
       const id = href.replace("/#", "");
       const el = document.getElementById(id);
