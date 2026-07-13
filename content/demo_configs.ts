@@ -695,7 +695,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         panels: [
           {
             id: "panel-problem",
-            image: { src: "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?q=80&w=1200&auto=format&fit=crop", alt: "Underfunded rural clinic" },
+            image: { src: "/images/orgs/healthcare-impact-1.jpg", alt: "Underfunded rural clinic" },
             eyebrow: "The Problem",
             headline: "Zero Access to Critical Medical Diagnostics",
             body: "Rural villages often lie hours away from the nearest clinical hospital, leaving critical conditions untreated."
@@ -746,9 +746,9 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         headline: "Medical Interventions",
         items: [
           { id: "p1", image: { src: "/images/orgs/stethoscope-and-clinical-care-photo-1505751172876-fa1923c5c528.jpg", alt: "Stethoscope and clinical care" }, badge: "Clinic", title: "Mobile Wellness Clinics", description: "Brings a doctor, blood-pressure monitor, and blood-sugar test to 2,000+ patients who would otherwise travel 50 km to the nearest hospital.", cta: { label: "View Program", href: "/programs" }, tags: ["Mobile", "Primary Care"] },
-          { id: "p2", image: { src: "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600&auto=format&fit=crop", alt: "Maternal and child wellness checkup" }, badge: "Maternal", title: "Safe Motherhood Camps", description: "Provides three prenatal ultrasounds, iron and folate supplements, and a sterile delivery kit to 800 expectant mothers in villages that have no maternity ward.", cta: { label: "View Program", href: "/programs" }, tags: ["Women", "Health"] },
+          { id: "p2", image: { src: "/images/orgs/healthcare-programs-1.jpg", alt: "Maternal and child wellness checkup" }, badge: "Maternal", title: "Safe Motherhood Camps", description: "Provides three prenatal ultrasounds, iron and folate supplements, and a sterile delivery kit to 800 expectant mothers in villages that have no maternity ward.", cta: { label: "View Program", href: "/programs" }, tags: ["Women", "Health"] },
           { id: "p3", image: { src: "/images/orgs/nutrition-screening-photo-1584515979956-d9f6e5d09982.jpg", alt: "Nutrition screening" }, badge: "Childcare", title: "Nutritional Support", description: "Screens children under five for stunting and anemia, then delivers a 90-day therapeutic nutrition course to reverse deficiencies before they become permanent.", cta: { label: "View Program", href: "/programs" }, tags: ["Nutrition", "Children"] },
-          { id: "p4", image: { src: "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?q=80&w=600&auto=format&fit=crop", alt: "Prescription drugs distribution" }, badge: "Pharmacy", title: "Essential Medicines Fund", description: "Procures and distributes free insulin, blood-pressure tablets, and TB medications to 1,200 chronic patients who cannot afford pharmacy prices.", cta: { label: "View Program", href: "/programs" }, tags: ["Medicines", "Equity"] },
+          { id: "p4", image: { src: "/images/orgs/healthcare-programs-2.jpg", alt: "Prescription drugs distribution" }, badge: "Pharmacy", title: "Essential Medicines Fund", description: "Procures and distributes free insulin, blood-pressure tablets, and TB medications to 1,200 chronic patients who cannot afford pharmacy prices.", cta: { label: "View Program", href: "/programs" }, tags: ["Medicines", "Equity"] },
         ],
       },
       testimonials: {
@@ -769,7 +769,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
           { id: "g1", type: "image", media: { src: "/images/orgs/doctors-smiling-with-healthy-patients-photo-1576091160550-2173dba999ef.jpg", alt: "Diagnostics checkup camp" }, category: "Diagnostics" },
           { id: "g2", type: "image", media: { src: "/images/orgs/nutritional-supplement-distribution-photo-1584515979956-d9f6e5d09982.jpg", alt: "Nutritional supplement distribution" }, category: "Nutrition" },
           { id: "g3", type: "image", media: { src: "/images/orgs/outreach-health-diagnostics-camp-photo-1516574187841-cb9cc2ca948b.jpg", alt: "Doctors diagnosing patient in mobile van" }, category: "Mobile Clinic" },
-          { id: "g4", type: "image", media: { src: "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?q=80&w=800&auto=format&fit=crop", alt: "Underprivileged patients queueing" }, category: "Camp Outreach" },
+          { id: "g4", type: "image", media: { src: "/images/orgs/healthcare-gallery-1.jpg", alt: "Underprivileged patients queueing" }, category: "Camp Outreach" },
           { id: "g5", type: "image", media: { src: "/images/orgs/clinical-checkup-equipment-photo-1505751172876-fa1923c5c528.jpg", alt: "Clinical checkup equipment" }, category: "Equipment" },
           { id: "g6", type: "video", caption: "Mobile clinic delivering health checkups in rural Rajasthan", media: { src: "https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4", poster: "/images/orgs/outreach-health-diagnostics-camp-photo-1516574187841-cb9cc2ca948b.jpg" }, category: "Mobile Clinic" },
         ],
@@ -851,7 +851,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         panels: [
           {
             id: "panel-problem",
-            image: { src: "https://images.unsplash.com/photo-1537151608828-ea2b117b6205?q=80&w=1200&auto=format&fit=crop", alt: "Stray dog on the road needing rescue" },
+            image: { src: "/images/orgs/animal-impact-1.jpg", alt: "Stray dog on the road needing rescue" },
             eyebrow: "The Problem",
             headline: "Neglected Stray Animal Crisis",
             body: "Thousands of stray dogs and cats face hunger, abuse, and untreated severe injuries on city streets daily."
@@ -900,7 +900,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
           { id: "p1", image: { src: "/images/orgs/cute-rescued-shelter-cat-photo-1514888286974-6c03e2ca1dba.jpg", alt: "Cute rescued shelter cat" }, badge: "Emergency", title: "Ambulance & Trauma Care", description: "Responds to injured street animals within the hour, performs emergency surgery on-site, and returns them healthy — at zero cost to the community that called.", cta: { label: "Details", href: "/programs" }, tags: ["Trauma", "24/7"] },
           { id: "p2", image: { src: "/images/orgs/puppy-getting-vaccine-checkup-photo-1628009368231-7bb7cfcb0def.jpg", alt: "Puppy getting vaccine checkup" }, badge: "Spay/Neuter", title: "ABC (Animal Birth Control)", description: "Sterilizes and vaccinates 150 stray dogs per month across three Bangalore zones, directly cutting bite incidents and keeping rabies out of the neighbourhood.", cta: { label: "Details", href: "/programs" }, tags: ["ABC", "Vaccination"] },
           { id: "p3", image: { src: "/images/orgs/happy-rescued-dog-photo-1543466835-00a7907e9de1.jpg", alt: "Happy rescued dog" }, badge: "Adoption", title: "Adopt-a-Stray Fairs", description: "Matches our fully vaccinated, socialized shelter animals with screened families, and follows up with a 30-day support call so every adoption sticks.", cta: { label: "Details", href: "/programs" }, tags: ["Adoption", "Foster"] },
-          { id: "p4", image: { src: "https://images.unsplash.com/photo-1537151608828-ea2b117b6205?q=80&w=600&auto=format&fit=crop", alt: "Rescue worker treating puppy" }, badge: "Education", title: "Humane Education Class", description: "Visits 20 school classrooms a month to teach children how to safely approach, help, and report injured animals — measurably reducing street cruelty reports.", cta: { label: "Details", href: "/programs" }, tags: ["Education", "Youth"] },
+          { id: "p4", image: { src: "/images/orgs/animal-programs-1.jpg", alt: "Rescue worker treating puppy" }, badge: "Education", title: "Humane Education Class", description: "Visits 20 school classrooms a month to teach children how to safely approach, help, and report injured animals — measurably reducing street cruelty reports.", cta: { label: "Details", href: "/programs" }, tags: ["Education", "Youth"] },
         ],
       },
       testimonials: {
@@ -921,7 +921,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
           { id: "ag1", type: "image", media: { src: "/images/orgs/rescued-dog-at-shelter-photo-1543466835-00a7907e9de1.jpg", alt: "Rescued dog at shelter" }, category: "Rescue" },
           { id: "ag2", type: "image", media: { src: "/images/orgs/puppy-vaccination-photo-1628009368231-7bb7cfcb0def.jpg", alt: "Puppy vaccination" }, category: "Clinic" },
           { id: "ag3", type: "image", media: { src: "/images/orgs/cat-at-adoption-fair-photo-1514888286974-6c03e2ca1dba.jpg", alt: "Cat at adoption fair" }, category: "Adoption" },
-          { id: "ag4", type: "image", media: { src: "https://images.unsplash.com/photo-1537151608828-ea2b117b6205?q=80&w=800&auto=format&fit=crop", alt: "Vet treating street dog" }, category: "Medical" },
+          { id: "ag4", type: "image", media: { src: "/images/orgs/animal-gallery-1.jpg", alt: "Vet treating street dog" }, category: "Medical" },
           { id: "ag5", type: "image", media: { src: "/images/orgs/happy-adopted-dog-photo-1587300003388-59208cc962cb.jpg", alt: "Happy adopted dog" }, category: "Happy Tails" },
           { id: "ag6", type: "video", caption: "Bruno's 6-week recovery — from fractured leg to first run in the park", media: { src: "https://videos.pexels.com/video-files/4475523/4475523-uhd_2560_1440_30fps.mp4", poster: "/images/orgs/rescued-dog-at-shelter-photo-1543466835-00a7907e9de1.jpg" }, category: "Recovery" },
         ],
@@ -1135,7 +1135,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
             id: "slide-hum-2",
             headline: "Emergency Clean Drinking Water",
             subheadline: "Deploying rapid filtration systems to flood and disaster zones to prevent disease outbreaks.",
-            media: { src: "https://images.unsplash.com/photo-1541256580214-6f4d5a5e2a5c?q=80&w=1200&auto=format&fit=crop", alt: "Clean water pump filtration project", width: 1200, height: 600 },
+            media: { src: "/images/orgs/humanitarian-hero-1.jpg", alt: "Clean water pump filtration project", width: 1200, height: 600 },
             overlayOpacity: 0.45,
             primaryCta: { label: "Sponsor Water Filters", href: "/donate" },
             secondaryCta: { label: "Active Wells", href: "/#about" },
@@ -1202,7 +1202,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         headline: "Relief Programs",
         items: [
           { id: "hp1", image: { src: "/images/orgs/food-distribution-grain-bag-drive-photo-1541802645635-11f2286a7482.jpg", alt: "Food distribution grain bag drive" }, badge: "Food Security", title: "Emergency Food Kits", description: "Ships 10 kg monthly ration packs — rice, lentils, cooking oil, and iodized salt — to 3,000 displaced households to prevent acute hunger in the first weeks of a crisis.", cta: { label: "View Details", href: "/programs" }, tags: ["Food", "Emergency"] },
-          { id: "hp2", image: { src: "https://images.unsplash.com/photo-1541256580214-6f4d5a5e2a5c?q=80&w=600&auto=format&fit=crop", alt: "Clean water pump filtration project" }, badge: "Water", title: "Clean Water Access", description: "Drills borewells and deploys ceramic filter stations that produce 500 litres of safe drinking water per day for flood-affected communities where tap water is contaminated.", cta: { label: "View Details", href: "/programs" }, tags: ["Water", "Health"] },
+          { id: "hp2", image: { src: "/images/orgs/humanitarian-programs-1.jpg", alt: "Clean water pump filtration project" }, badge: "Water", title: "Clean Water Access", description: "Drills borewells and deploys ceramic filter stations that produce 500 litres of safe drinking water per day for flood-affected communities where tap water is contaminated.", cta: { label: "View Details", href: "/programs" }, tags: ["Water", "Health"] },
           { id: "hp3", image: { src: "/images/orgs/displaced-camp-shelter-setup-photo-1595246140625-573b715d11dc.jpg", alt: "Displaced camp shelter setup" }, badge: "Shelter", title: "Modular Shelters", description: "Distributes insulated modular tents and thermal blankets to families who have lost their homes, keeping them protected through winter nights until permanent housing is ready.", cta: { label: "View Details", href: "/programs" }, tags: ["Shelter", "Disaster"] },
           { id: "hp4", image: { src: "/images/orgs/medical-camp-checkup-photo-1469571486292-0ba58a3f068b.jpg", alt: "Medical camp checkup" }, badge: "Medical Aid", title: "Mobile Trauma Units", description: "Stations nurses and trauma counselors in cut-off villages within 48 hours of a disaster to treat wounds, prevent infection, and support survivors through acute psychological shock.", cta: { label: "View Details", href: "/programs" }, tags: ["First-Aid", "Crisis"] },
         ],
@@ -1224,7 +1224,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         items: [
           { id: "hg1", type: "image", media: { src: "/images/orgs/humanitarian-relief-team-meeting-photo-1469571486292-0ba58a3f068b.jpg", alt: "Aid distribution on ground" }, category: "Distribution" },
           { id: "hg2", type: "image", media: { src: "/images/orgs/refugee-shelter-site-photo-1595246140625-573b715d11dc.jpg", alt: "Refugee shelter site" }, category: "Shelter" },
-          { id: "hg3", type: "image", media: { src: "https://images.unsplash.com/photo-1541256580214-6f4d5a5e2a5c?q=80&w=800&auto=format&fit=crop", alt: "Clean water pump" }, category: "Clean Water" },
+          { id: "hg3", type: "image", media: { src: "/images/orgs/humanitarian-gallery-1.jpg", alt: "Clean water pump" }, category: "Clean Water" },
           { id: "hg4", type: "image", media: { src: "/images/orgs/grains-food-distribution-bags-photo-1541802645635-11f2286a7482.jpg", alt: "Grains food distribution bags" }, category: "Food Kits" },
           { id: "hg5", type: "image", media: { src: "/images/orgs/medical-health-camp-unit-photo-1532629345422-7515f3d16bb6.jpg", alt: "Medical health camp unit" }, category: "Medical Camp" },
         ],
@@ -1235,7 +1235,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         headline: "Latest Headlines",
         items: [
           { id: "hn1", slug: "flood-response-2024", title: "Rapid Response to Regional Flooding", summary: "Mobile units deployed within 48 hours to deliver clean water and rations.", date: "2024-08-12", href: "#", image: { src: "/images/orgs/grains-food-distribution-bags-photo-1541802645635-11f2286a7482.jpg", alt: "Flood food relief response" } },
-          { id: "hn2", slug: "water-crisis-resolved", title: "New Borewells in Dry Zones", summary: "Providing clean drinking water to over 15 village clusters in arid regions.", date: "2024-09-18", href: "#", image: { src: "https://images.unsplash.com/photo-1541256580214-6f4d5a5e2a5c?q=80&w=800&auto=format&fit=crop", alt: "Fresh water borehole well" } },
+          { id: "hn2", slug: "water-crisis-resolved", title: "New Borewells in Dry Zones", summary: "Providing clean drinking water to over 15 village clusters in arid regions.", date: "2024-09-18", href: "#", image: { src: "/images/orgs/humanitarian-gallery-1.jpg", alt: "Fresh water borehole well" } },
           { id: "hn3", slug: "winterization-drive-launched", title: "Winter Relief Kits En Route", summary: "Dispatched 5,000 heavy blankets and thermal clothing packs to high-altitude camps.", date: "2024-11-05", href: "#", image: { src: "/images/orgs/refugee-shelter-site-photo-1595246140625-573b715d11dc.jpg", alt: "Tents under cold weather" } },
         ],
       },
@@ -1306,7 +1306,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         panels: [
           {
             id: "panel-faith-problem",
-            image: { src: "https://images.unsplash.com/photo-1518398046578-8cb5c1fd69d8?q=80&w=1200&auto=format&fit=crop", alt: "Helping hands for homeless and isolated community members" },
+            image: { src: "/images/orgs/faithBased-impact-1.jpg", alt: "Helping hands for homeless and isolated community members" },
             eyebrow: "The Problem",
             headline: "Isolation and Hardship in Our Neighborhoods",
             body: "Many families face hardship without a support network — no one to turn to in difficult seasons of life."
@@ -1376,7 +1376,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
           { id: "fg1", type: "image", media: { src: "/images/orgs/community-meal-photo-1593113646773-028c64a8f1b8.jpg", alt: "Community meal" }, category: "Meals" },
           { id: "fg2", type: "image", media: { src: "/images/orgs/community-fellowship-photo-1438032005730-c779502df39b.jpg", alt: "Fellowship gathering" }, category: "Fellowship" },
           { id: "fg3", type: "image", media: { src: "/images/orgs/counseling-sessions-office-photo-1529156069898-49953e39b3ac.jpg", alt: "Counseling sessions office" }, category: "Counseling" },
-          { id: "fg4", type: "image", media: { src: "https://images.unsplash.com/photo-1518398046578-8cb5c1fd69d8?q=80&w=800&auto=format&fit=crop", alt: "Food distribution preparation" }, category: "Pantry" },
+          { id: "fg4", type: "image", media: { src: "/images/orgs/faithBased-gallery-1.jpg", alt: "Food distribution preparation" }, category: "Pantry" },
           { id: "fg5", type: "image", media: { src: "/images/orgs/volunteer-mentors-team-photo-1544027993-37dbfe43562a.jpg", alt: "Volunteer mentors team" }, category: "Volunteers" },
         ],
       },
@@ -1386,7 +1386,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         headline: "Latest Headlines",
         items: [
           { id: "fn1", slug: "community-kitchen-expansion", title: "Community Kitchen Expands to Second Site", summary: "New location will double weekly meal capacity to serve underserved suburban pockets.", date: "2024-09-02", href: "#", image: { src: "/images/orgs/community-meal-photo-1593113646773-028c64a8f1b8.jpg", alt: "Kitchen expansion" } },
-          { id: "fn2", slug: "youth-winter-drive", title: "Youth Launch Winter Clothing Drive", summary: "Aiming to collect 500 coats and blankets for our homeless neighbors.", date: "2024-10-10", href: "#", image: { src: "https://images.unsplash.com/photo-1518398046578-8cb5c1fd69d8?q=80&w=800&auto=format&fit=crop", alt: "Volunteer sorting coats" } },
+          { id: "fn2", slug: "youth-winter-drive", title: "Youth Launch Winter Clothing Drive", summary: "Aiming to collect 500 coats and blankets for our homeless neighbors.", date: "2024-10-10", href: "#", image: { src: "/images/orgs/faithBased-gallery-1.jpg", alt: "Volunteer sorting coats" } },
           { id: "fn3", slug: "thanksgiving-meals", title: "Thanksgiving Meal Service Complete", summary: "Over 600 warm festive lunches distributed by our volunteer crew.", date: "2024-11-25", href: "#", image: { src: "/images/orgs/community-fellowship-photo-1438032005730-c779502df39b.jpg", alt: "Holiday dining room service" } },
         ],
       },
@@ -1486,7 +1486,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
           "Neighborhood Forward partners directly with residents to design and lead the projects that matter most to them.",
           "Through collaborative planning sessions and community voting, we ensure development is inclusive, democratic, and durable."
         ],
-        media: { src: "https://images.unsplash.com/photo-1521791136368-1a96752d87a3?q=80&w=800&auto=format&fit=crop", alt: "Residents planning in a community workshop", width: 600, height: 450 },
+        media: { src: "/images/orgs/communityDevelopment-about-1.jpg", alt: "Residents planning in a community workshop", width: 600, height: 450 },
         cta: { label: "Our Mission", href: "/#about" },
       },
       stats: {
@@ -1597,7 +1597,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
             id: "slide-arts-3",
             headline: "Public Murals and Streets",
             subheadline: "Transforming gray city walls into vibrant community stories through resident-led street art.",
-            media: { src: "https://images.unsplash.com/photo-1547891654-e66ed7edd96c?q=80&w=1200&auto=format&fit=crop", alt: "Street market mural painting", width: 1200, height: 600 },
+            media: { src: "/images/orgs/artsCulture-hero-1.jpg", alt: "Street market mural painting", width: 1200, height: 600 },
             overlayOpacity: 0.4,
             primaryCta: { label: "Fund a Street Mural", href: "/donate" },
             secondaryCta: { label: "Street Gallery", href: "/#about" },
@@ -1637,7 +1637,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
           "Canvas Collective keeps traditional and contemporary art forms alive by putting them directly in the hands of the next generation.",
           "We offer safe workspaces, material support, and professional marketing mentorship to local artists, sustaining cultural livelihoods."
         ],
-        media: { src: "https://images.unsplash.com/photo-1547891654-e66ed7edd96c?q=80&w=800&auto=format&fit=crop", alt: "Art painting palette studio", width: 600, height: 450 },
+        media: { src: "/images/orgs/artsCulture-about-1.jpg", alt: "Art painting palette studio", width: 600, height: 450 },
         cta: { label: "Our Mission", href: "/#about" },
       },
       stats: {
@@ -1656,7 +1656,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         items: [
           { id: "ap1", image: { src: "/images/orgs/free-after-school-art-studio-painting-class-photo-1513364776144-60967b0f800f.jpg", alt: "Free after-school art studio painting class" }, badge: "Education", title: "Free After-School Art Studio", description: "Gives children aged 8–18 free daily access to paints, clay, and charcoal — taught by practising local artists in a dedicated Jaipur studio, five afternoons a week.", cta: { label: "View Details", href: "/programs" }, tags: ["Art", "Youth"] },
           { id: "ap2", image: { src: "/images/orgs/traditional-classical-dance-class-and-preservation-photo-1508700115892-45ecd05ae2ad.jpg", alt: "Traditional classical dance class and preservation" }, badge: "Heritage", title: "Traditional Dance Preservation", description: "Trains youth in Kathak, Bharatanatyam, and Rajasthani folk music under master artists, preserving three regional forms at genuine risk of dying out within a generation.", cta: { label: "View Details", href: "/programs" }, tags: ["Dance", "Heritage"] },
-          { id: "ap3", image: { src: "https://images.unsplash.com/photo-1547891654-e66ed7edd96c?q=80&w=600&auto=format&fit=crop", alt: "Street market wall painting" }, badge: "Public Art", title: "Community Mural Project", description: "Commissions residents to design and paint neighbourhood-story murals on public walls, turning forgotten grey corners into cultural landmarks that locals are proud to photograph.", cta: { label: "View Details", href: "/programs" }, tags: ["Murals", "Public"] },
+          { id: "ap3", image: { src: "/images/orgs/artsCulture-programs-1.jpg", alt: "Street market wall painting" }, badge: "Public Art", title: "Community Mural Project", description: "Commissions residents to design and paint neighbourhood-story murals on public walls, turning forgotten grey corners into cultural landmarks that locals are proud to photograph.", cta: { label: "View Details", href: "/programs" }, tags: ["Murals", "Public"] },
           { id: "ap4", image: { src: "/images/orgs/paintings-displayed-in-exhibition-photo-1579783902614-a3fb3927b6a5.jpg", alt: "Paintings displayed in exhibition" }, badge: "Exhibition", title: "Annual Youth Art Show", description: "Curates a public exhibition each year where youth artists price, present, and sell their original works — giving many their first-ever income from creative work.", cta: { label: "View Details", href: "/programs" }, tags: ["Exhibition", "Gallery"] },
         ],
       },
@@ -1676,10 +1676,10 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         headline: "Work in Action",
         items: [
           { id: "ag1", type: "image", media: { src: "/images/orgs/creative-art-studio-watercolor-painting-photo-1579783902614-a3fb3927b6a5.jpg", alt: "Creative art studio watercolor painting" }, category: "Studio" },
-          { id: "ag2", type: "image", media: { src: "https://images.unsplash.com/photo-1547891654-e66ed7edd96c?q=80&w=800&auto=format&fit=crop", alt: "Youth art studio exhibition gallery" }, category: "Exhibition" },
+          { id: "ag2", type: "image", media: { src: "/images/orgs/artsCulture-about-1.jpg", alt: "Youth art studio exhibition gallery" }, category: "Exhibition" },
           { id: "ag3", type: "image", media: { src: "/images/orgs/traditional-dance-practice-session-photo-1508700115892-45ecd05ae2ad.jpg", alt: "Traditional dance practice session" }, category: "Dance" },
           { id: "ag4", type: "image", media: { src: "/images/orgs/children-painting-on-canvas-photo-1513364776144-60967b0f800f.jpg", alt: "Children painting on canvas" }, category: "Youth Painting" },
-          { id: "ag5", type: "image", media: { src: "https://images.unsplash.com/photo-1547891654-e66ed7edd96c?q=80&w=800&auto=format&fit=crop", alt: "Completed street mural" }, category: "Murals" },
+          { id: "ag5", type: "image", media: { src: "/images/orgs/artsCulture-about-1.jpg", alt: "Completed street mural" }, category: "Murals" },
         ],
       },
       news: {
@@ -1688,7 +1688,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         headline: "Latest Headlines",
         items: [
           { id: "an1", slug: "youth-exhibition-2024", title: "Youth Artists Debut at City Gallery", summary: "12 students showed original work to the public for the first time.", date: "2024-06-18", href: "#", image: { src: "/images/orgs/creative-art-studio-watercolor-painting-photo-1579783902614-a3fb3927b6a5.jpg", alt: "Youth art exhibition debut gallery opening" } },
-          { id: "an2", slug: "new-studio-jaipur", title: "New Studio Space Opened in Jaipur", summary: "A restored warehouse now serving as a free daily art studio for 100+ children.", date: "2024-07-15", href: "#", image: { src: "https://images.unsplash.com/photo-1547891654-e66ed7edd96c?q=80&w=800&auto=format&fit=crop", alt: "Warehouse art studio space" } },
+          { id: "an2", slug: "new-studio-jaipur", title: "New Studio Space Opened in Jaipur", summary: "A restored warehouse now serving as a free daily art studio for 100+ children.", date: "2024-07-15", href: "#", image: { src: "/images/orgs/artsCulture-about-1.jpg", alt: "Warehouse art studio space" } },
           { id: "an3", slug: "mural-completed", title: "Giant Mural Completed in Jaipur Market", summary: "Collaborative street mural highlighting 100 years of regional handicraft history completed.", date: "2024-09-05", href: "#", image: { src: "/images/orgs/children-painting-on-canvas-photo-1513364776144-60967b0f800f.jpg", alt: "Street market mural painting" } },
         ],
       },
@@ -1748,7 +1748,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
             id: "slide-disaster-3",
             headline: "Power & Communication",
             subheadline: "Deploying solar micro-grids and emergency satellite links to help communities contact loved ones.",
-            media: { src: "https://images.unsplash.com/photo-1469571486040-af6e03462285?q=80&w=1200&auto=format&fit=crop", alt: "Emergency shelter housing", width: 1200, height: 600 },
+            media: { src: "/images/orgs/disasterRelief-hero-1.jpg", alt: "Emergency shelter housing", width: 1200, height: 600 },
             overlayOpacity: 0.5,
             primaryCta: { label: "Provide Power Kits", href: "/donate" },
             secondaryCta: { label: "Our Tech", href: "/#about" },
@@ -1773,7 +1773,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
           },
           {
             id: "panel-disaster-outcome",
-            image: { src: "https://images.unsplash.com/photo-1469571486040-af6e03462285?q=80&w=1200&auto=format&fit=crop", alt: "Community rebuilding and relief goods support" },
+            image: { src: "/images/orgs/disasterRelief-hero-1.jpg", alt: "Community rebuilding and relief goods support" },
             eyebrow: "The Outcome",
             headline: "Lives Saved, Communities Rebuilt",
             body: "Over 15,000 people rescued or treated, with long-term rebuilding support in every region we respond to."
@@ -1806,7 +1806,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         headline: "Response Programs",
         items: [
           { id: "dp1", image: { src: "/images/orgs/flood-search-and-rescue-team-deployment-photo-1508514177221-188b1cf16e9d.jpg", alt: "Flood search and rescue team deployment" }, badge: "Rescue", title: "Search & Rescue Teams", description: "Deploys boat-mounted rescue teams and rope-rescue specialists into flooded zones within 6 hours of an emergency call, reaching families before government units can mobilise.", cta: { label: "View Details", href: "/programs" }, tags: ["Rescue", "Emergency"] },
-          { id: "dp2", image: { src: "https://images.unsplash.com/photo-1469571486040-af6e03462285?q=80&w=600&auto=format&fit=crop", alt: "Community rebuilding and relief project" }, badge: "Recovery", title: "Long-Term Rebuilding", description: "Builds cyclone-resistant homes for families who lost everything, using local contractors and certified materials, with keys handed over within 90 days of a disaster.", cta: { label: "View Details", href: "/programs" }, tags: ["Rebuilding", "Housing"] },
+          { id: "dp2", image: { src: "/images/orgs/disasterRelief-programs-1.jpg", alt: "Community rebuilding and relief project" }, badge: "Recovery", title: "Long-Term Rebuilding", description: "Builds cyclone-resistant homes for families who lost everything, using local contractors and certified materials, with keys handed over within 90 days of a disaster.", cta: { label: "View Details", href: "/programs" }, tags: ["Rebuilding", "Housing"] },
           { id: "dp3", image: { src: "/images/orgs/medical-treatment-tent-clinic-photo-1532960401447-7dd05bef20b0.jpg", alt: "Medical treatment tent clinic" }, badge: "Medical", title: "Mobile Trauma Clinics", description: "Sets up sterile field clinics with surgical kits, wound-care nurses, and on-site trauma counselors to treat injuries and acute stress in communities cut off from hospitals.", cta: { label: "View Details", href: "/programs" }, tags: ["Medical", "Trauma"] },
           { id: "dp4", image: { src: "/images/orgs/flood-search-and-rescue-team-deployment-photo-1508514177221-188b1cf16e9d.jpg", alt: "Satellite terminals setup" }, badge: "Tech Relief", title: "Emergency Power & Comms", description: "Installs solar charging stations and satellite Wi-Fi hotspots in cut-off villages so survivors can charge phones, contact family, and access emergency government services.", cta: { label: "View Details", href: "/programs" }, tags: ["Solar", "Comms"] },
         ],
@@ -1827,10 +1827,10 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         headline: "Work in Action",
         items: [
           { id: "dg1", type: "image", media: { src: "/images/orgs/search-and-rescue-boat-training-photo-1508514177221-188b1cf16e9d.jpg", alt: "Flood rescue boat response deployment" }, category: "Deployment" },
-          { id: "dg2", type: "image", media: { src: "https://images.unsplash.com/photo-1469571486040-af6e03462285?q=80&w=800&auto=format&fit=crop", alt: "Rebuilding community houses" }, category: "Rebuilding" },
+          { id: "dg2", type: "image", media: { src: "/images/orgs/disasterRelief-gallery-1.jpg", alt: "Rebuilding community houses" }, category: "Rebuilding" },
           { id: "dg3", type: "image", media: { src: "/images/orgs/medical-field-checkups-photo-1532960401447-7dd05bef20b0.jpg", alt: "Medical field checkups" }, category: "Medical" },
           { id: "dg4", type: "image", media: { src: "/images/orgs/search-and-rescue-boat-training-photo-1508514177221-188b1cf16e9d.jpg", alt: "Search and rescue team deployment" }, category: "Search & Rescue" },
-          { id: "dg5", type: "image", media: { src: "https://images.unsplash.com/photo-1469571486040-af6e03462285?q=80&w=800&auto=format&fit=crop", alt: "Brick construction housing" }, category: "Rebuilding" },
+          { id: "dg5", type: "image", media: { src: "/images/orgs/disasterRelief-gallery-1.jpg", alt: "Brick construction housing" }, category: "Rebuilding" },
         ],
       },
       news: {
@@ -1840,7 +1840,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
         items: [
           { id: "dn1", slug: "cyclone-response-deployment", title: "Teams Deployed Ahead of Coastal Cyclone", summary: "Pre-positioned units activated 12 hours before landfall.", date: "2024-11-03", href: "#", image: { src: "/images/orgs/search-and-rescue-boat-training-photo-1508514177221-188b1cf16e9d.jpg", alt: "Pre-positioned rescue boat deployment" } },
           { id: "dn2", slug: "monsoon-flood-response", title: "Monsoon Flood Response in East Bengal", summary: "Rescued 340 stranded citizens and set up 4 relief camps serving hot meals.", date: "2024-08-22", href: "#", image: { src: "/images/orgs/search-and-rescue-boat-training-photo-1508514177221-188b1cf16e9d.jpg", alt: "Flood rescue boat in village" } },
-          { id: "dn3", slug: "rebuilding-homes-completed", title: "25 Cyclone-Proof Homes Completed", summary: "Handed over keys to families who lost their homes during last summer's storm.", date: "2024-10-18", href: "#", image: { src: "https://images.unsplash.com/photo-1469571486040-af6e03462285?q=80&w=800&auto=format&fit=crop", alt: "Newly constructed brick house structure" } },
+          { id: "dn3", slug: "rebuilding-homes-completed", title: "25 Cyclone-Proof Homes Completed", summary: "Handed over keys to families who lost their homes during last summer's storm.", date: "2024-10-18", href: "#", image: { src: "/images/orgs/disasterRelief-gallery-1.jpg", alt: "Newly constructed brick house structure" } },
         ],
       },
       ctaBand: {

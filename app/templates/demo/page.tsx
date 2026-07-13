@@ -104,6 +104,8 @@ function TemplateDemoShowcaseContent() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
+
+
   React.useEffect(() => {
     if (isMobile) {
       document.body.classList.toggle("overflow-hidden", isPanelVisible);

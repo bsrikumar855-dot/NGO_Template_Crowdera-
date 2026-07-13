@@ -9,6 +9,8 @@
 * **Template Gallery**: [/templates](https://crowdera-ngo-templates.netlify.app/templates) (Browse all 9 causes and their standalone sites)
 * **Sample Standalone Site**: [/sites/education](https://crowdera-ngo-templates.netlify.app/sites/education) (The clean production Vidyalaya Foundation site)
 * **Live Customizer (No-Code Builder)**: [/templates/demo](https://crowdera-ngo-templates.netlify.app/templates/demo) (Interactive brand & layout personalizer)
+* **Information Architecture**: [INFORMATION_ARCHITECTURE.md](./docs/INFORMATION_ARCHITECTURE.md) (Architecture of layout engine and data models)
+* **Target User Personas**: [USER_PERSONA.md](./docs/USER_PERSONA.md) (Profiles and needs of NGOs, Donors, and Volunteers)
 * **Style Guide**: [/style-guide](https://crowdera-ngo-templates.netlify.app/style-guide) (Inspect the design system and theme tokens)
 * **GitHub Repository**: [https://github.com/bsrikumar855-dot/NGO_Template_Crowdera-](https://github.com/bsrikumar855-dot/NGO_Template_Crowdera-)
 
@@ -32,6 +34,8 @@ Instead of 10 static design mockups, this project delivers a **config-driven tem
 | **Design Rationale** | Full architectural summary, design decisions, folder structure, and accessibility review. | [DESIGN_RATIONALE.md](./docs/DESIGN_RATIONALE.md) |
 | **Accessibility Audit** | Audit checklist covering WCAG 2.1 AA hierarchy, landmarks, ARIA labels, focus states, and tab-trap details. | [A11Y_AUDIT.md](./docs/A11Y_AUDIT.md) |
 | **Dark Mode & Styling** | Active theme variables compile dynamically on `.site-scope` scope, enabling instant dark/light presets and builder personalization. | [THEMING.md](./docs/THEMING.md) |
+| **Information Architecture** | Details project layout engine, config schemas, route structures, and data flows. | [INFORMATION_ARCHITECTURE.md](./docs/INFORMATION_ARCHITECTURE.md) |
+| **User Personas Profiles** | Defines demographics, paint points, and features mappings for NGO Admins, Donors, and Volunteers. | [USER_PERSONA.md](./docs/USER_PERSONA.md) |
 
 ---
 
