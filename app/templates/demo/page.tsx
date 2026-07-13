@@ -110,7 +110,6 @@ function TemplateDemoShowcaseContent() {
       branding: {
         name: activeOrg.name,
         color: activeTheme.id,
-        logo: activeOrg.logo?.src,
       },
       exportedAt: new Date().toISOString(),
       schemaVersion: "1.0",
