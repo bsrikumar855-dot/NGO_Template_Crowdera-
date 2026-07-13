@@ -133,7 +133,9 @@ function buildThemeVars(
     add("--color-background", colors.background);
     add("--color-foreground", colors.foreground);
     add("--color-surface", colors.surface);
+    add("--color-surface-foreground", colors.foreground);
     add("--color-surface-elevated", colors.surfaceElevated);
+    add("--color-surface-elevated-foreground", colors.foreground);
     add("--color-border", colors.border);
     add("--color-muted", colors.muted);
     add("--color-muted-foreground", colors.mutedForeground);

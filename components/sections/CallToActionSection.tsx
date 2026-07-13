@@ -47,12 +47,13 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
   // Surface mapping
   const surfaceMap = {
     primary: "primary",
-    secondary: "default",
+    secondary: "surface",
     dark: "dark",
     image: "image",
   } as const;
 
-  const isDark = effectiveTheme === "dark" || effectiveTheme === "primary" || effectiveTheme === "image";
+  const isPrimary = effectiveTheme === "primary";
+  const isDarkSurface = effectiveTheme === "dark" || effectiveTheme === "image";
 
   // Shared buttons component to avoid code duplication
   const renderButtons = (size: "lg" | "xl" = "xl") => (
@@ -68,7 +69,7 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
           rounded
           trailingIcon={<ArrowRight className="h-5 w-5" />}
           className={cn(
-            effectiveTheme === "primary" && "bg-white text-primary hover:bg-white/90 border-transparent",
+            effectiveTheme === "primary" && "bg-primary-foreground text-primary hover:bg-primary-foreground/90 border-transparent",
             effectiveTheme === "dark" && "bg-white text-neutral-900 hover:bg-white/90 border-transparent"
           )}
         >
@@ -87,7 +88,8 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
             size={size}
             rounded
             className={cn(
-              isDark && "text-white border border-white/40 hover:bg-white/15 hover:border-white"
+              isPrimary && "text-primary-foreground border border-primary-foreground/40 hover:bg-primary-foreground/15 hover:border-primary-foreground",
+              isDarkSurface && "text-white border border-white/40 hover:bg-white/15 hover:border-white"
             )}
           >
             {secondaryCta.label}
@@ -150,7 +152,10 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
                 <Badge
                   variant="outline"
                   size="md"
-                  className={isDark ? "border-white/30 text-white bg-white/10" : ""}
+                  className={cn(
+                    isPrimary && "border-primary-foreground/30 text-primary-foreground bg-primary-foreground/10",
+                    isDarkSurface && "border-white/30 text-white bg-white/10"
+                  )}
                 >
                   {badge}
                 </Badge>
@@ -159,8 +164,8 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
                 as="h2"
                 size="2xl"
                 align="left"
-                color={isDark ? "white" : "default"}
-                className="max-w-2xl"
+                color={isDarkSurface ? "white" : "default"}
+                className={cn("max-w-2xl", isPrimary && "text-primary-foreground")}
               >
                 {headline}
               </Heading>
@@ -171,7 +176,7 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
                   align="left"
                   className={cn(
                     "max-w-xl leading-relaxed",
-                    isDark ? "text-white/80" : "text-muted-foreground"
+                    isPrimary ? "text-primary-foreground/85" : isDarkSurface ? "text-white/80" : "text-muted-foreground"
                   )}
                 >
                   {subheadline}
@@ -195,7 +200,8 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
                 as="h2"
                 size="xl"
                 align="left"
-                color={isDark ? "white" : "default"}
+                color={isDarkSurface ? "white" : "default"}
+                className={cn(isPrimary && "text-primary-foreground")}
               >
                 {headline}
               </Heading>
@@ -204,7 +210,7 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
                   as="p"
                   size="sm"
                   align="left"
-                  className={isDark ? "text-white/80" : "text-muted-foreground"}
+                  className={isPrimary ? "text-primary-foreground/85" : isDarkSurface ? "text-white/80" : "text-muted-foreground"}
                 >
                   {subheadline}
                 </Text>
@@ -227,7 +233,10 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
               <Badge
                 variant="outline"
                 size="md"
-                className={isDark ? "border-white/30 text-white bg-white/10" : ""}
+                className={cn(
+                    isPrimary && "border-primary-foreground/30 text-primary-foreground bg-primary-foreground/10",
+                    isDarkSurface && "border-white/30 text-white bg-white/10"
+                  )}
               >
                 {badge}
               </Badge>
@@ -237,8 +246,8 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
               as="h2"
               size="3xl"
               align="center"
-              color={isDark ? "white" : "default"}
-              className="max-w-3xl"
+              color={isDarkSurface ? "white" : "default"}
+              className={cn("max-w-3xl", isPrimary && "text-primary-foreground")}
             >
               {headline}
             </Heading>
@@ -251,7 +260,7 @@ export function CallToActionSection({ config }: CallToActionSectionProps) {
                 balance
                 className={cn(
                   "max-w-2xl leading-relaxed",
-                  isDark ? "text-white/80" : "text-muted-foreground"
+                  isPrimary ? "text-primary-foreground/85" : isDarkSurface ? "text-white/80" : "text-muted-foreground"
                 )}
               >
                 {subheadline}

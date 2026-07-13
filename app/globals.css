@@ -138,7 +138,9 @@
     --color-background:       240 20% 5%;      /* near-black indigo */
     --color-foreground:       40 30% 92%;      /* warm off-white */
     --color-surface:          240 16% 8%;      /* card backgrounds */
+    --color-surface-foreground: 40 30% 92%;     /* readable text on surface */
     --color-surface-elevated: 240 14% 11%;     /* elevated card */
+    --color-surface-elevated-foreground: 40 30% 92%; /* readable text on elevated surface */
     --color-border:           240 12% 18%;     /* subtle border */
     --color-muted:            240 14% 10%;     /* muted bg */
     --color-muted-foreground: 240 8%  62%;     /* lifted from 55% → ~4.6:1 on dark bg (AA pass) */

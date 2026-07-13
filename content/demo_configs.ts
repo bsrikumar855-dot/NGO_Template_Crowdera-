@@ -162,7 +162,7 @@ export const healthcareCyanTheme: ThemeConfig = {
   description: "Clinical diagnostic cyan with trustworthy indigo secondary",
   light: {
     colors: {
-      primary: "185 85% 30%",
+      primary: "185 85% 29%",
       primaryForeground: "0 0% 98%",
       primarySubtle: "185 85% 95%",
       secondary: "240 60% 50%",
@@ -235,7 +235,7 @@ export const sunriseOrangeTheme: ThemeConfig = {
   light: {
     colors: {
       primary: "24 95% 45%",
-      primaryForeground: "0 0% 98%",
+      primaryForeground: "0 0% 10%",
       primarySubtle: "24 95% 96%",
       secondary: "48 95% 50%",
       secondaryForeground: "0 0% 10%",

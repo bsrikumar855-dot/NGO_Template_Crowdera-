@@ -46,8 +46,14 @@ const config: Config = {
         /* Surfaces */
         background: "hsl(var(--color-background) / <alpha-value>)",
         foreground: "hsl(var(--color-foreground) / <alpha-value>)",
-        surface: "hsl(var(--color-surface) / <alpha-value>)",
-        "surface-elevated": "hsl(var(--color-surface-elevated) / <alpha-value>)",
+        surface: {
+          DEFAULT: "hsl(var(--color-surface) / <alpha-value>)",
+          foreground: "hsl(var(--color-surface-foreground) / <alpha-value>)",
+        },
+        "surface-elevated": {
+          DEFAULT: "hsl(var(--color-surface-elevated) / <alpha-value>)",
+          foreground: "hsl(var(--color-surface-elevated-foreground) / <alpha-value>)",
+        },
         border: "hsl(var(--color-border) / <alpha-value>)",
         muted: "hsl(var(--color-muted) / <alpha-value>)",
         "muted-foreground": "hsl(var(--color-muted-foreground) / <alpha-value>)",

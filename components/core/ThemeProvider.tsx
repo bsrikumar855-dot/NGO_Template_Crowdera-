@@ -41,7 +41,9 @@ function buildCSSVars(config: ThemeConfig, mode: "light" | "dark", selector: str
   set("--color-background", colors.background);
   set("--color-foreground", colors.foreground);
   set("--color-surface", colors.surface);
+  set("--color-surface-foreground", colors.foreground);
   set("--color-surface-elevated", colors.surfaceElevated);
+  set("--color-surface-elevated-foreground", colors.foreground);
   set("--color-border", colors.border);
   set("--color-muted", colors.muted);
   set("--color-muted-foreground", colors.mutedForeground);

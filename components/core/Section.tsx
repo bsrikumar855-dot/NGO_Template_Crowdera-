@@ -16,11 +16,13 @@ const sectionVariants = cva(
       /** Background surface variant */
       surface: {
         default:  "bg-background text-foreground",
-        muted:    "bg-muted text-muted-foreground",
+        surface:  "bg-surface text-surface-foreground",
+        muted:    "bg-muted text-foreground",
         primary:  "bg-primary text-primary-foreground",
+        accent:   "bg-secondary text-secondary-foreground",
         dark:     "bg-neutral-950 text-neutral-50",
         image:    "bg-neutral-950 text-neutral-50",
-        transparent: "bg-transparent",
+        transparent: "bg-transparent text-inherit",
         /** Light / cream — warm off-white for light-first sections */
         light:    "bg-neutral-100 text-neutral-900",
         cream:    "bg-neutral-50 text-neutral-900",
