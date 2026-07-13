@@ -1,14 +1,10 @@
-/**
- * components/sections/SectionHeader.tsx
- *
- * Shared section header pattern used by all sections.
- * Badge + Headline + Subheadline, centered or left-aligned.
- */
+"use client";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/core/Badge";
 import { Heading } from "@/components/core/Heading";
 import { Text } from "@/components/core/Text";
+import { RevealOnScroll } from "@/components/core/RevealOnScroll";
 
 export interface SectionHeaderProps {
   badge?: string;
@@ -31,7 +27,7 @@ export function SectionHeader({
   const isDark = theme === "dark" || theme === "primary";
 
   return (
-    <div className={cn("flex flex-col gap-4", isCenter && "items-center text-center", className)}>
+    <RevealOnScroll className={cn("flex flex-col gap-4", isCenter && "items-center text-center", className)}>
       {badge && (
         <Badge
           variant={isDark ? "outline" : "default"}
@@ -62,6 +58,6 @@ export function SectionHeader({
           {subheadline}
         </Text>
       )}
-    </div>
+    </RevealOnScroll>
   );
 }

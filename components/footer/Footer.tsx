@@ -132,7 +132,7 @@ export function Footer({ footer, org, className }: FooterProps) {
       <Container>
         <div className="py-16 lg:py-20">
           {/* ── Main grid ── */}
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
 
             {/* Brand column */}
             <div>
@@ -216,7 +216,7 @@ export function Footer({ footer, org, className }: FooterProps) {
             </div>
 
             {/* Link groups */}
-            {footer.linkGroups.slice(0, 3).map((group) => (
+            {footer.linkGroups.slice(0, 4).map((group) => (
               <div key={group.id}>
                 <h3 className="text-xs font-semibold text-neutral-300 uppercase tracking-widest mb-5">
                   {group.heading}

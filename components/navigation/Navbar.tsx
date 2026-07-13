@@ -260,6 +260,20 @@ export function Navbar({ nav, org, className }: NavbarProps) {
               </Button>
             </Link>
 
+            {/* Volunteer Button */}
+            <Link href="/volunteer" className="hidden sm:block">
+              <Button
+                variant="outline"
+                size="sm"
+                className={cn(
+                  !scrolled && "shadow-elevation-1",
+                  isOnHero ? "text-white border-white/20 hover:bg-white/10 hover:text-white" : ""
+                )}
+              >
+                Volunteer
+              </Button>
+            </Link>
+
             {/* Donate CTA */}
             <Link href={nav.cta.href} className="hidden sm:block">
               <Button
@@ -345,6 +359,11 @@ export function Navbar({ nav, org, className }: NavbarProps) {
               <Link href="/templates/demo" onClick={() => setIsOpen(false)}>
                 <Button variant="outline" fullWidth size="lg">
                   Customize Live
+                </Button>
+              </Link>
+              <Link href="/volunteer" onClick={() => setIsOpen(false)}>
+                <Button variant="outline" fullWidth size="lg">
+                  Volunteer
                 </Button>
               </Link>
               <Link href={nav.cta.href} onClick={() => setIsOpen(false)}>

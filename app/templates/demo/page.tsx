@@ -26,6 +26,7 @@ import { Heading } from "@/components/core/Heading";
 import { Text } from "@/components/core/Text";
 import { Badge } from "@/components/core/Badge";
 import { Button } from "@/components/core/Button";
+import { useSearchParams } from "next/navigation";
 import {
   demoThemes,
   demoTemplates,
@@ -41,11 +42,34 @@ import {
 } from "@/components/sections";
 import type { HeroConfig, AboutConfig, GalleryConfig, CtaBandConfig, ThemeConfig } from "@/types";
 
-export default function TemplateDemoShowcase() {
+function TemplateDemoShowcaseContent() {
+  const searchParams = useSearchParams();
+  const orgParam = searchParams.get("org");
+  const themeParam = searchParams.get("theme");
+  const templateParam = searchParams.get("template");
+
   // ── 1. Engine Core States ───────────────────────────────────
-  const [selectedOrgKey, setSelectedOrgKey] = React.useState<string>("education");
-  const [selectedThemeKey, setSelectedThemeKey] = React.useState<string>("hope-blue");
-  const [selectedTemplateKey, setSelectedTemplateKey] = React.useState<string>("hope-modern");
+  const [selectedOrgKey, setSelectedOrgKey] = React.useState<string>(
+    orgParam && demoOrganizations[orgParam] ? orgParam : "education"
+  );
+  const [selectedThemeKey, setSelectedThemeKey] = React.useState<string>(
+    themeParam && demoThemes[themeParam] ? themeParam : "hope-blue"
+  );
+  const [selectedTemplateKey, setSelectedTemplateKey] = React.useState<string>(
+    templateParam && demoTemplates[templateParam] ? templateParam : "hope-modern"
+  );
+
+  React.useEffect(() => {
+    if (orgParam && demoOrganizations[orgParam]) {
+      setSelectedOrgKey(orgParam);
+    }
+    if (themeParam && demoThemes[themeParam]) {
+      setSelectedThemeKey(themeParam);
+    }
+    if (templateParam && demoTemplates[templateParam]) {
+      setSelectedTemplateKey(templateParam);
+    }
+  }, [orgParam, themeParam, templateParam]);
 
   // ── 2. Live Layout Overrides ────────────────────────────────
   const [heroVariant, setHeroVariant] = React.useState<"image" | "video" | "carousel" | "default">("default");
@@ -595,5 +619,20 @@ export default function TemplateDemoShowcase() {
         )}
       </main>
     </>
+  );
+}
+
+export default function TemplateDemoShowcase() {
+  return (
+    <React.Suspense fallback={
+      <div className="flex h-screen w-screen items-center justify-center bg-[hsl(240_14%_9%)] text-white">
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <p className="text-sm text-muted-foreground">Loading template engine...</p>
+        </div>
+      </div>
+    }>
+      <TemplateDemoShowcaseContent />
+    </React.Suspense>
   );
 }

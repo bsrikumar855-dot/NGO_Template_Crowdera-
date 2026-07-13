@@ -19,6 +19,11 @@ export const navigation: NavigationConfig = {
       href: "/programs",
     },
     {
+      id: "nav-templates",
+      label: "Templates",
+      href: "/templates",
+    },
+    {
       id: "nav-impact",
       label: "Our Impact",
       href: "/#impact",

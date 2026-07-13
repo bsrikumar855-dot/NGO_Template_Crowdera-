@@ -51,6 +51,13 @@ export const footer: FooterConfig = {
         { label: "Events", href: "/#news" },
       ],
     },
+    {
+      id: "design-system",
+      heading: "Design System",
+      links: [
+        { label: "Style Guide", href: "/style-guide" },
+      ],
+    },
   ],
   social: [
     { platform: "facebook", href: "https://facebook.com/crowdera" },

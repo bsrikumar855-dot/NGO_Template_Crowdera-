@@ -62,3 +62,6 @@ export type { SpinnerProps } from "./Spinner";
 export { ThemeProvider } from "./ThemeProvider";
 export { Breadcrumb } from "./Breadcrumb";
 export type { BreadcrumbProps, BreadcrumbItem } from "./Breadcrumb";
+export { RevealOnScroll } from "./RevealOnScroll";
+export type { RevealOnScrollProps } from "./RevealOnScroll";
+
