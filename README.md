@@ -1,251 +1,310 @@
-# Crowdera NGO Website Template System
+# 🌍 CrowderaNGO — Next Generation Nonprofit Website Templates
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8c8a1492-dce9-40de-a5d6-848e65abde04/deploy-status)](https://crowdera-ngo-templates.netlify.app)
-**Live Demo:** [https://crowdera-ngo-templates.netlify.app](https://crowdera-ngo-templates.netlify.app)
+> **Production-ready, responsive, and reusable website templates for Registered Non-Profit Organizations (RNPOs).**
 
-> A professional, configuration-driven, multi-tenant website template system designed for registered non-profit organizations. Built with Next.js 14 (App Router), TypeScript, and TailwindCSS.
+Built for **Crowdera Hackathon 2026**
 
-### 🚀 Quick Links
-* **Live Deployed Site**: [https://crowdera-ngo-templates.netlify.app](https://crowdera-ngo-templates.netlify.app)
-* **Template Gallery**: [/templates](https://crowdera-ngo-templates.netlify.app/templates) (Browse all 9 causes and their standalone sites)
-* **Sample Standalone Site**: [/sites/education](https://crowdera-ngo-templates.netlify.app/sites/education) (The clean production Vidyalaya Foundation site)
-* **Live Customizer (No-Code Builder)**: [/templates/demo](https://crowdera-ngo-templates.netlify.app/templates/demo) (Interactive brand & layout personalizer)
-* **Style Guide**: [/style-guide](https://crowdera-ngo-templates.netlify.app/style-guide) (Inspect the design system and theme tokens)
-* **GitHub Repository**: [https://github.com/bsrikumar855-dot/NGO_Template_Crowdera-](https://github.com/bsrikumar855-dot/NGO_Template_Crowdera-)
+🔗 **Live Demo:** https://crowderango.netlify.app/
 
 ---
 
-## 📖 Table of Contents
-1. [Project Overview](#project-overview)
-2. [Problem Statement & Solution](#problem-statement--solution)
-3. [Screenshots](#-screenshots)
-4. [Architecture Overview & Design Rationale](#-architecture-overview--design-rationale)
-5. [Design System & Theme Tokens](#design-system--theme-tokens)
-6. [Template Customization Engine](#template-customization-engine)
-7. [Cause Presets & Default Themes](#-cause-presets--default-themes)
-8. [Folder Structure](#folder-structure)
-9. [Technology Stack](#-technology-stack)
-10. [Configuration Guides](#configuration-guides)
-    * [How to Add New Organizations](#how-to-add-new-organizations)
-    * [How to Add New Themes](#how-to-add-new-themes)
-    * [How to Add New Templates](#how-to-add-new-templates)
-11. [Accessibility & Performance Standards](#accessibility--performance-standards)
-12. [Local Development Setup](#-local-development-setup)
-13. [Deployment Guide](#deployment-guide)
-14. [License & Contributors](#license--contributors)
+# 📖 Overview
+
+CrowderaNGO is a modern, component-driven website template system designed for Registered Non-Profit Organizations.
+
+Instead of creating a single NGO website, this project delivers a **reusable template architecture** that enables organizations across multiple sectors to launch professional websites quickly through configurable content, reusable sections, and token-based theming.
+
+The template can be customized for:
+
+- 🌱 Environment
+- 🎓 Education
+- 🏥 Healthcare
+- 🐾 Animal Welfare
+- 🚨 Disaster Relief
+- ❤️ Humanitarian Organizations
+- 🏛 Foundations
+- ⛪ Faith-Based Organizations
+- 🤝 Community Development
+- 🎭 Arts & Culture
+
+without changing the core layout or component structure.
 
 ---
 
-## 🌟 Project Overview
-This project is a high-performance, responsive, and fully customizable website template engine designed to be integrated directly into **Crowdera's Website Builder Platform**. Rather than hardcoding organisation content or styling configurations, the entire user experience is split into three decoupled, interchangeable layers:
+# ✨ Key Features
+
+## 🎨 Modern Template System
+
+- Fully responsive
+- Production-ready architecture
+- Component-based design
+- Modular sections
+- Highly customizable
+
+---
+
+## 🧩 Reusable Sections
+
+- Hero Banner
+- Navigation
+- About Organization
+- Impact Statistics
+- Programs
+- Testimonials
+- Gallery
+- News & Updates
+- Call To Action
+- Footer
+
+Every section is independently reusable.
+
+---
+
+## 🎯 Design System
+
+- Token-based color system
+- Typography system
+- Responsive spacing
+- Consistent grid
+- Reusable UI components
+- Light & Dark mode ready
+
+---
+
+## ⚡ Motion Design
+
+- Smooth section reveals
+- Animated impact counters
+- Interactive buttons
+- Premium hover effects
+- Accessible reduced-motion support
+
+---
+
+## ♿ Accessibility
+
+Built following accessibility-first principles:
+
+- Semantic HTML
+- Keyboard navigation
+- Screen reader support
+- WCAG AA color contrast
+- Visible focus indicators
+- Responsive typography
+
+---
+
+## 📱 Responsive Design
+
+Optimized for
+
+- Mobile
+- Tablet
+- Laptop
+- Desktop
+
+using a mobile-first approach.
+
+---
+
+# 🏗 Architecture
 
 ```
-    [ Template Layout Layer ] ── (Hope Modern, Unity Clean, Impact Bold)
-               ↓
-    [ Branding Theme Layer ]  ── (Hope Blue, Forest Green, Healthcare Cyan, etc.)
-               ↓
-    [ Organization Content ]  ── (Vidyalaya, HealAll, Paws & Claws, EcoShield)
+app/
+│
+├── components/
+│   ├── core/
+│   ├── layout/
+│   ├── sections/
+│   ├── navigation/
+│   ├── forms/
+│   ├── cards/
+│   ├── gallery/
+│   ├── testimonials/
+│   └── footer/
+│
+├── config/
+├── themes/
+├── content/
+├── hooks/
+├── lib/
+├── styles/
+└── public/
 ```
 
-By swapping configurations, any NGO can launch a custom, accessibility-compliant web presence instantly.
+The project is built around reusable components and configurable content instead of hardcoded layouts.
 
 ---
 
-## ⚠️ Problem Statement & Solution
-### The Problem
-Building individual website instances for thousands of distinct NGOs leads to code duplication, design system violations, maintenance bottlenecks, and inconsistent accessibility support.
+# 🎨 Design Philosophy
 
-### The Solution
-A unified core component library that renders layout variations dynamically based solely on a structured configuration API. 
-* **Zero Component Duplication**: Layout forms are parsed dynamically (e.g., Carousel vs. Video Hero, Grid vs. Masonry Gallery).
-* **Instant Brand Re-skinning**: Scoped HSL variable injection maps color palettes instantly.
-* **100% Config-Driven**: All organization titles, campaign tiers, media, and structural variants are loaded from isolated configurations.
+Inspired by leading nonprofit organizations such as:
 
----
+- charity: water
+- WaterAid
+- Obama Foundation
 
-## 📸 Screenshots
+Combined with modern UI/UX trends including:
 
-The template engine is responsive across desktop (1440px), tablet (768px), and mobile (375px) viewports:
+- Emotional storytelling
+- Radical transparency
+- Modular content architecture
+- Accessible design
+- Calm, trust-building interactions
 
-### Homepage Layouts
-* **Desktop (1440px)**
-  ![Homepage Desktop](./docs/screenshots/homepage-desktop.png)
-  *Full-bleed header and hero carousel, side-by-side about elements, and news cards.*
-
-* **Tablet (768px)**
-  ![Homepage Tablet](./docs/screenshots/homepage-tablet.png)
-  *Wrapped column metrics, adjusted spacing grids, and tab navigation layout.*
-
-* **Mobile (375px)**
-  ![Homepage Mobile](./docs/screenshots/homepage-mobile.png)
-  *Single-column visual hierarchy with responsive touch controls.*
-
-### Template Gallery Layouts
-* **Desktop (1440px)**
-  ![Gallery Desktop](./docs/screenshots/gallery-desktop.png)
-  *Grid profile with 3 columns showcasing presets with direct customize action buttons.*
-
-* **Tablet (768px)**
-  ![Gallery Tablet](./docs/screenshots/gallery-tablet.png)
-  *2-column grid wrapping cause badges and Unsplash thumbnails.*
-
-* **Mobile (375px)**
-  ![Gallery Mobile](./docs/screenshots/gallery-mobile.png)
-  *Standardized single column preview card stream.*
-
-> [!NOTE]
-> If these screenshot files are missing in your local directory, run `node copy_screenshots.js` to transfer the captured browser assets to your workspace folder.
+The goal is to help nonprofits communicate their mission while encouraging donor and volunteer engagement.
 
 ---
 
-## 🏛️ Architecture Overview & Design Rationale
-For detailed documentation on the architecture, engineering principles, and core design patterns of this template system, refer to:
-* **[Design Rationale Guide (docs/DESIGN_RATIONALE.md)](./docs/DESIGN_RATIONALE.md)**: Reviews the problem, decoupled architecture details, accessibility compliance, and design decisions.
-* **[Accessibility & Landmark Audit (docs/A11Y_AUDIT.md)](./docs/A11Y_AUDIT.md)**: Detailing headings structure, landmarks, focus outlines, and WCAG AA checklist.
-* **[Architecture Guide (docs/ARCHITECTURE.md)](./docs/ARCHITECTURE.md)**: Details the design patterns, page wrapper context, and layout lifecycle.
-* **[Template Engine (docs/TEMPLATE_ENGINE.md)](./docs/TEMPLATE_ENGINE.md)**: Reviews polymorphic rendering mechanics, layout rules, and selector states.
-* **[Theming Guide (docs/THEMING.md)](./docs/THEMING.md)**: Explains HSL variables mapping, dark mode setup, and browser runtime variables.
-* **[Design System Guide (docs/DESIGN_SYSTEM.md)](./docs/DESIGN_SYSTEM.md)**: Explores spacing, typography, scale rules, and component tokens.
+# 🚀 Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lucide Icons
+- Netlify
 
 ---
 
-## 📋 Cause Presets & Default Themes
+# 📦 Reusable Components
 
-The template system bundles 9 production-ready cause presets, configured with cause-appropriate copy, statistics, media, and default themes:
+Core Components
 
-| Preset ID | Cause Name | Primary Organization | Default Theme | Font Preset |
-| :--- | :--- | :--- | :--- | :--- |
-| `education` | Education | Vidyalaya Foundation | Hope Blue (`hope-blue`) | Plus Jakarta Sans / Inter |
-| `healthcare` | Healthcare | HealAll Foundation | Healthcare Cyan (`healthcare-cyan`) | Plus Jakarta Sans / Inter |
-| `animal` | Animal Welfare | Paws & Claws | Sunrise Orange (`sunrise-orange`) | Plus Jakarta Sans / Inter |
-| `environment` | Environment | EcoShield | Forest Green (`forest-green`) | Plus Jakarta Sans / Inter |
-| `humanitarian` | Humanitarian | Bridgeway Relief | Hope Blue (`hope-blue`) | Plus Jakarta Sans / Inter |
-| `faithBased` | Faith-Based | Grace & Light | Hope Blue (`hope-blue`) | Plus Jakarta Sans / Inter |
-| `communityDevelopment` | Community | Forward Community | Forest Green (`forest-green`) | Plus Jakarta Sans / Inter |
-| `artsCulture` | Arts & Culture | Canvas Collective | Sunrise Orange (`sunrise-orange`) | Plus Jakarta Sans / Inter |
-| `disasterRelief` | Disaster Relief | Rapid Response Corps | Dark Neutral (`dark-neutral`) | Plus Jakarta Sans / Inter |
+- Button
+- Card
+- Badge
+- Input
+- Textarea
+- Select
+- Modal
+- Carousel
+- Animated Counter
+- Navigation
+- Footer
+
+Sections
+
+- Hero
+- About
+- Programs
+- Statistics
+- Gallery
+- Testimonials
+- News
+- CTA
+- Footer
 
 ---
 
-## 🗄️ Folder Structure
+# 🎯 Template Goals
+
+The template is designed to be
+
+- Production Ready
+- Scalable
+- Accessible
+- Reusable
+- Themeable
+- Easy to Customize
+
+Any organization can replace:
+
+- Logo
+- Colors
+- Images
+- Content
+- Programs
+- Testimonials
+
+without changing the underlying codebase.
+
+---
+
+# 📊 Alignment with Judging Criteria
+
+| Criteria | Implementation |
+|-----------|----------------|
+| Visual Appeal | Modern UI, premium typography, storytelling layouts |
+| User Experience | Clear navigation, intuitive information hierarchy |
+| Responsiveness | Mobile-first responsive design |
+| Creativity | Modular template architecture with configurable sections |
+| Accessibility | WCAG-inspired accessibility practices |
+| Reusability | Component-driven section system |
+| Production Readiness | Next.js + Tailwind + scalable architecture |
+
+---
+
+# 🌟 Bonus Features
+
+- Dark mode ready
+- Motion design
+- Animated statistics
+- AI-ready content architecture
+- Theme customization
+- Reusable design tokens
+- Component-based architecture
+
+---
+
+# 🔮 Future Enhancements
+
+- AI-generated content placeholders
+- Drag-and-drop section editor
+- Multiple template variants
+- CMS integration
+- Multi-language support
+- Donation platform integration
+- Analytics dashboard
+- Theme marketplace
+
+---
+
+# 💻 Local Development
+
+Clone the repository
+
+```bash
+git clone <repository-url>
 ```
-├── app/                      # Next.js App Router Pages
-│   ├── donate/               # Checkout / Payment Simulator Flow
-│   ├── programs/             # Program Search, Filters & Slugs Page
-│   ├── templates/demo/       # Live Personalization Sandbox / Customizer Panel
-│   ├── legal/[slug]/         # Reusable Legal Prose Template
-│   ├── style-guide/          # Interactive Design System Token Inspector
-│   ├── globals.css           # Global Style Declarations & Base Utility Classes
-│   ├── layout.tsx            # Global Shell (Navbar, Footer, Providers)
-│   └── page.tsx              # Dynamic Homepage Assembly
-├── components/               # Core Component Library
-│   ├── core/                 # Design System Primitives (Heading, Section, Breadcrumb, etc.)
-│   ├── sections/             # Polymorphic Sections (Hero, About, Gallery, CTA, etc.)
-│   ├── navigation/           # Accessible Navbar & Hamburger Drawer
-│   └── footer/               # Standardized Multi-Column Footer
-├── config/                   # Template Metadata and Registration Configuration
-├── content/                  # Organization Content and Presets Configurations
-├── types/                    # TypeScript Type Definitions & API Schemas
-└── docs/                     # Detailed Engineering Architecture Guides
+
+Install dependencies
+
+```bash
+npm install
 ```
 
----
+Run development server
 
-## 🛠️ Technology Stack
-* **Framework**: Next.js 14 (App Router)
-* **Language**: TypeScript (Strict Typings)
-* **Styling**: TailwindCSS & CSS Variables (HSL)
-* **Animations**: Framer Motion (Scroll reveal and hover scaling)
-* **Icons**: Lucide React
-* **Components**: Radix UI primitives / CVA (Class Variance Authority)
-
----
-
-## ⚙️ Configuration Guides
-
-### How to Add New Organizations
-1. Open `content/demo_configs.ts`.
-2. Add a new configuration preset matching the `OrgDemoPreset` schema:
-```typescript
-export const myNewOrg: OrgDemoPreset = {
-  id: "org-new",
-  name: "My NGO Foundation",
-  tagline: "Making a difference",
-  causeType: "Community",
-  org: { ... },
-  homepage: { ... }
-};
+```bash
+npm run dev
 ```
-3. Export the organization inside the `demoOrganizations` record map.
 
-### How to Add New Themes
-1. Open `content/demo_configs.ts`.
-2. Create a new `ThemeConfig` entry defining HSL values for both light and dark modes:
-```typescript
-export const forestGreenTheme: ThemeConfig = {
-  id: "theme-forest",
-  name: "Forest Green",
-  light: {
-    colors: {
-      primary: "140 70% 25%",
-      primaryForeground: "0 0% 98%",
-      // ... rest of tokens ...
-    }
-  },
-  dark: { ... }
-};
-```
-3. Add the theme to the `demoThemes` export list.
+Production build
 
-### How to Add New Templates
-1. Open `content/demo_configs.ts`.
-2. Insert a new configuration into `demoTemplates` matching the `TemplatePreset` interface:
-```typescript
-export const cleanMinimal: TemplatePreset = {
-  id: "clean-minimal",
-  name: "Clean Minimal Layout",
-  typography: { fontDisplay: "Outfit", fontBody: "Inter" },
-  radius: { sm: "2px", base: "4px", md: "6px", lg: "8px", xl: "12px" },
-  variants: {
-    hero: "image",
-    about: "text-only",
-    gallery: "grid",
-    cta: "minimal"
-  }
-};
+```bash
+npm run build
 ```
 
 ---
 
-## ♿ Accessibility & Performance Standards
-* **WCAG 2.1 AA Compliance**: Built using HTML5 semantic elements, linked labels, minimum 48px touch targets, skip links, and tab key focus outlines.
-* **Core Web Vitals**: Memoized style compiling, next/image optimization, and static layout generation support high lighthouse auditing benchmarks.
+# 👨‍💻 Developed For
+
+**Crowdera Hackathon 2026**
+
+**Problem Statement**
+
+> Build the Next Generation of Website Templates for Registered Non-Profit Organizations
 
 ---
 
-## 💻 Local Development Setup
+# ❤️ Vision
 
-### Prerequisites
-- Node.js version 18.x or 20.x
-- npm version 9.x or higher
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/crowdera/ngo-template.git
-   cd ngo-template
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Run the local development server:
-   ```bash
-   npm run dev
-   ```
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the templates.
+Empowering nonprofits with beautiful, accessible, and production-ready website templates that help organizations build trust, communicate impact, and inspire action.
 
 ---
 
-## 📝 License
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+## 📄 License
+
+Created for Crowdera Hackathon 2026.
