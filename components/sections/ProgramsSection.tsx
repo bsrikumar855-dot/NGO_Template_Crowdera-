@@ -21,7 +21,7 @@ import {
   CardFooter,
 } from "@/components/core/Card";
 import { Badge } from "@/components/core/Badge";
-import { Button } from "@/components/core/Button";
+import { Button, buttonVariants } from "@/components/core/Button";
 import { Section } from "@/components/core/Section";
 import { Container } from "@/components/core/Container";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
@@ -70,14 +70,16 @@ function ProgramCardItem({ program }: { program: ProgramCardType }) {
       </CardBody>
 
       <CardFooter>
-        <Link href={program.cta.href} tabIndex={-1} aria-hidden="true">
-          <Button
-            variant="secondary"
-            size="sm"
-            trailingIcon={<ArrowRight className="h-3.5 w-3.5" />}
-          >
-            {program.cta.label}
-          </Button>
+        <Link
+          href={program.cta.href}
+          className={cn(
+            buttonVariants({ variant: "secondary", size: "sm" }),
+            "group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-fast"
+          )}
+          aria-label={`Learn more about ${program.title}`}
+        >
+          {program.cta.label}
+          <ArrowRight className="ml-2 h-3.5 w-3.5" aria-hidden="true" />
         </Link>
       </CardFooter>
     </Card>

@@ -1,5 +1,8 @@
 # Crowdera NGO Website Template System
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8c8a1492-dce9-40de-a5d6-848e65abde04/deploy-status)](https://crowdera-ngo-templates.netlify.app)
+**Live Demo:** [https://crowdera-ngo-templates.netlify.app](https://crowdera-ngo-templates.netlify.app)
+
 > A professional, configuration-driven, multi-tenant website template system designed for registered non-profit organizations. Built with Next.js 14 (App Router), TypeScript, and TailwindCSS.
 
 ---
@@ -7,19 +10,21 @@
 ## 📖 Table of Contents
 1. [Project Overview](#project-overview)
 2. [Problem Statement & Solution](#problem-statement--solution)
-3. [Architecture Overview](#architecture-overview)
-4. [Design System & Theme Tokens](#design-system--theme-tokens)
-5. [Template Customization Engine](#template-customization-engine)
-6. [Folder Structure](#folder-structure)
-7. [Technology Stack](#technology-stack)
-8. [Configuration Guides](#configuration-guides)
+3. [Screenshots](#-screenshots)
+4. [Architecture Overview & Design Rationale](#-architecture-overview--design-rationale)
+5. [Design System & Theme Tokens](#design-system--theme-tokens)
+6. [Template Customization Engine](#template-customization-engine)
+7. [Cause Presets & Default Themes](#-cause-presets--default-themes)
+8. [Folder Structure](#folder-structure)
+9. [Technology Stack](#-technology-stack)
+10. [Configuration Guides](#configuration-guides)
     * [How to Add New Organizations](#how-to-add-new-organizations)
     * [How to Add New Themes](#how-to-add-new-themes)
     * [How to Add New Templates](#how-to-add-new-templates)
-9. [Accessibility & Performance Standards](#accessibility--performance-standards)
-10. [Local Development Setup](#local-development-setup)
-11. [Deployment Guide](#deployment-guide)
-12. [License & Contributors](#license--contributors)
+11. [Accessibility & Performance Standards](#accessibility--performance-standards)
+12. [Local Development Setup](#-local-development-setup)
+13. [Deployment Guide](#deployment-guide)
+14. [License & Contributors](#license--contributors)
 
 ---
 
@@ -50,12 +55,67 @@ A unified core component library that renders layout variations dynamically base
 
 ---
 
-## 🏛️ Architecture Overview
-For detailed documentation on the architecture and core design patterns of this template system, refer to:
+## 📸 Screenshots
+
+The template engine is responsive across desktop (1440px), tablet (768px), and mobile (375px) viewports:
+
+### Homepage Layouts
+* **Desktop (1440px)**
+  ![Homepage Desktop](./docs/screenshots/homepage-desktop.png)
+  *Full-bleed header and hero carousel, side-by-side about elements, and news cards.*
+
+* **Tablet (768px)**
+  ![Homepage Tablet](./docs/screenshots/homepage-tablet.png)
+  *Wrapped column metrics, adjusted spacing grids, and tab navigation layout.*
+
+* **Mobile (375px)**
+  ![Homepage Mobile](./docs/screenshots/homepage-mobile.png)
+  *Single-column visual hierarchy with responsive touch controls.*
+
+### Template Gallery Layouts
+* **Desktop (1440px)**
+  ![Gallery Desktop](./docs/screenshots/gallery-desktop.png)
+  *Grid profile with 3 columns showcasing presets with direct customize action buttons.*
+
+* **Tablet (768px)**
+  ![Gallery Tablet](./docs/screenshots/gallery-tablet.png)
+  *2-column grid wrapping cause badges and Unsplash thumbnails.*
+
+* **Mobile (375px)**
+  ![Gallery Mobile](./docs/screenshots/gallery-mobile.png)
+  *Standardized single column preview card stream.*
+
+> [!NOTE]
+> If these screenshot files are missing in your local directory, run `node copy_screenshots.js` to transfer the captured browser assets to your workspace folder.
+
+---
+
+## 🏛️ Architecture Overview & Design Rationale
+For detailed documentation on the architecture, engineering principles, and core design patterns of this template system, refer to:
+* **[Design Rationale Guide (docs/DESIGN_RATIONALE.md)](./docs/DESIGN_RATIONALE.md)**: Reviews the problem, decoupled architecture details, accessibility compliance, and design decisions.
+* **[Accessibility & Landmark Audit (docs/A11Y_AUDIT.md)](./docs/A11Y_AUDIT.md)**: Detailing headings structure, landmarks, focus outlines, and WCAG AA checklist.
 * **[Architecture Guide (docs/ARCHITECTURE.md)](./docs/ARCHITECTURE.md)**: Details the design patterns, page wrapper context, and layout lifecycle.
 * **[Template Engine (docs/TEMPLATE_ENGINE.md)](./docs/TEMPLATE_ENGINE.md)**: Reviews polymorphic rendering mechanics, layout rules, and selector states.
 * **[Theming Guide (docs/THEMING.md)](./docs/THEMING.md)**: Explains HSL variables mapping, dark mode setup, and browser runtime variables.
 * **[Design System Guide (docs/DESIGN_SYSTEM.md)](./docs/DESIGN_SYSTEM.md)**: Explores spacing, typography, scale rules, and component tokens.
+
+---
+
+## 📋 Cause Presets & Default Themes
+
+The template system bundles 9 production-ready cause presets, configured with cause-appropriate copy, statistics, media, and default themes:
+
+| Preset ID | Cause Name | Primary Organization | Default Theme | Font Preset |
+| :--- | :--- | :--- | :--- | :--- |
+| `education` | Education | Vidyalaya Foundation | Hope Blue (`hope-blue`) | Plus Jakarta Sans / Inter |
+| `healthcare` | Healthcare | HealAll Foundation | Healthcare Cyan (`healthcare-cyan`) | Plus Jakarta Sans / Inter |
+| `animal` | Animal Welfare | Paws & Claws | Sunrise Orange (`sunrise-orange`) | Plus Jakarta Sans / Inter |
+| `environment` | Environment | EcoShield | Forest Green (`forest-green`) | Plus Jakarta Sans / Inter |
+| `humanitarian` | Humanitarian | Bridgeway Relief | Hope Blue (`hope-blue`) | Plus Jakarta Sans / Inter |
+| `faithBased` | Faith-Based | Grace & Light | Hope Blue (`hope-blue`) | Plus Jakarta Sans / Inter |
+| `communityDevelopment` | Community | Forward Community | Forest Green (`forest-green`) | Plus Jakarta Sans / Inter |
+| `artsCulture` | Arts & Culture | Canvas Collective | Sunrise Orange (`sunrise-orange`) | Plus Jakarta Sans / Inter |
+| `disasterRelief` | Disaster Relief | Rapid Response Corps | Dark Neutral (`dark-neutral`) | Plus Jakarta Sans / Inter |
 
 ---
 
@@ -65,6 +125,8 @@ For detailed documentation on the architecture and core design patterns of this 
 │   ├── donate/               # Checkout / Payment Simulator Flow
 │   ├── programs/             # Program Search, Filters & Slugs Page
 │   ├── templates/demo/       # Live Personalization Sandbox / Customizer Panel
+│   ├── legal/[slug]/         # Reusable Legal Prose Template
+│   ├── style-guide/          # Interactive Design System Token Inspector
 │   ├── globals.css           # Global Style Declarations & Base Utility Classes
 │   ├── layout.tsx            # Global Shell (Navbar, Footer, Providers)
 │   └── page.tsx              # Dynamic Homepage Assembly
@@ -85,6 +147,7 @@ For detailed documentation on the architecture and core design patterns of this 
 * **Framework**: Next.js 14 (App Router)
 * **Language**: TypeScript (Strict Typings)
 * **Styling**: TailwindCSS & CSS Variables (HSL)
+* **Animations**: Framer Motion (Scroll reveal and hover scaling)
 * **Icons**: Lucide React
 * **Components**: Radix UI primitives / CVA (Class Variance Authority)
 
@@ -153,6 +216,12 @@ export const cleanMinimal: TemplatePreset = {
 ---
 
 ## 💻 Local Development Setup
+
+### Prerequisites
+- Node.js version 18.x or 20.x
+- npm version 9.x or higher
+
+### Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/crowdera/ngo-template.git
@@ -166,7 +235,7 @@ export const cleanMinimal: TemplatePreset = {
    ```bash
    npm run dev
    ```
-4. Access the application at `http://localhost:3000`.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the templates.
 
 ---
 
