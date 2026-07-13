@@ -18,6 +18,7 @@ import { organization } from "@/content/organization";
 import { navigation } from "@/content/navigation";
 import { footer } from "@/content/footer";
 import { defaultTheme } from "@/themes/default";
+import { LayoutBridge } from "@/components/layout/LayoutBridge";
 import "@/app/globals.css";
 
 /* ── SEO Metadata ───────────────────────────────────────────── */
@@ -90,33 +91,9 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider themeConfig={defaultTheme} defaultTheme="dark">
-          <PageWrapper>
-            {/* Production Navbar — transparent on hero, filled on scroll */}
-            <Navbar
-              nav={navigation}
-              org={{
-                name: organization.name,
-                logo: organization.logo,
-                logoDark: organization.logoDark,
-              }}
-            />
-
-            {/* Page content — pt-16 clears fixed 64px navbar */}
-            <MainContent>
-              {children}
-            </MainContent>
-
-            {/* Production Footer */}
-            <Footer
-              footer={footer}
-              org={{
-                name: organization.name,
-                tagline: organization.tagline,
-                contact: organization.contact,
-                social: organization.social,
-              }}
-            />
-          </PageWrapper>
+          <LayoutBridge>
+            {children}
+          </LayoutBridge>
         </ThemeProvider>
       </body>
     </html>

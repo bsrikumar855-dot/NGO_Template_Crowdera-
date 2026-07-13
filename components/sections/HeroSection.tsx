@@ -13,7 +13,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, ChevronDown, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/core/Button";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { HeroConfig, HeroSlide, ImageAsset, VideoAsset } from "@/types";
 
 /* ── Type guard helpers ──────────────────────────────────────── */
@@ -30,9 +30,11 @@ function overlayStyle(opacity: number = 0.5): React.CSSProperties {
 function VideoMedia({
   media,
   isMobile,
+  isActive,
 }: {
   media: VideoAsset;
   isMobile: boolean;
+  isActive: boolean;
 }) {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = React.useState(true);
@@ -47,6 +49,17 @@ function VideoMedia({
       v.play().catch(() => {/* autoplay blocked — fine */});
     }
   }, [isMobile, media.autoplay]);
+
+  // Pause when this carousel slide is hidden; resume when active
+  React.useEffect(() => {
+    const v = videoRef.current;
+    if (!v || isMobile) return;
+    if (isActive && media.autoplay !== false) {
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  }, [isActive, isMobile, media.autoplay]);
 
   if (isMobile && media.poster) {
     return (
@@ -102,28 +115,33 @@ const containerVariants = {
   },
 };
 
+const containerVariantsReduced = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0 } },
+};
+
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1], // easeOutExpo
-    },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
   },
+};
+
+const itemVariantsReduced = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
 };
 
 const ctaVariants = {
   hidden: { opacity: 0, y: 15 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const ctaVariantsReduced = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
 };
 
 /* ── Single Slide ────────────────────────────────────────────── */
@@ -136,7 +154,11 @@ function HeroSlideContent({
   isActive: boolean;
   isMobile: boolean;
 }) {
+  const prefersReduced = useReducedMotion();
   const { media, headline, subheadline, primaryCta, secondaryCta, overlayOpacity } = slide;
+  const cV = prefersReduced ? containerVariantsReduced : containerVariants;
+  const iV = prefersReduced ? itemVariantsReduced : itemVariants;
+  const cta = prefersReduced ? ctaVariantsReduced : ctaVariants;
 
   return (
     <div
@@ -159,7 +181,7 @@ function HeroSlideContent({
           sizes="100vw"
         />
       ) : (
-        <VideoMedia media={media} isMobile={isMobile} />
+        <VideoMedia media={media} isMobile={isMobile} isActive={isActive} />
       )}
 
       {/* Overlay */}
@@ -182,10 +204,10 @@ function HeroSlideContent({
             className="max-w-3xl"
             initial="hidden"
             animate={isActive ? "visible" : "hidden"}
-            variants={containerVariants}
+            variants={cV}
           >
             <motion.h1
-              variants={itemVariants}
+              variants={iV}
               className={cn(
                 "font-display font-bold text-white text-balance",
                 "text-[clamp(2.5rem,8vw,6.5rem)]",
@@ -198,7 +220,7 @@ function HeroSlideContent({
 
             {subheadline && (
               <motion.p
-                variants={itemVariants}
+                variants={iV}
                 className={cn(
                   "text-white/85 text-[clamp(1rem,1.5vw,1.375rem)]",
                   "leading-relaxed mb-8 max-w-xl drop-shadow-sm"
@@ -210,7 +232,7 @@ function HeroSlideContent({
 
             {(primaryCta || secondaryCta) && (
               <motion.div
-                variants={ctaVariants}
+                variants={cta}
                 className="flex flex-wrap gap-4"
               >
                 {primaryCta && (
@@ -306,7 +328,7 @@ export function HeroSection({ config }: HeroSectionProps) {
   return (
     <section
       aria-label="Hero banner"
-      className="relative w-full overflow-hidden bg-neutral-950"
+      className="relative w-full overflow-hidden bg-black"
       style={{ minHeight: "100dvh", height: "100dvh" }}
       onKeyDown={isMultiple ? handleKeyDown : undefined}
     >

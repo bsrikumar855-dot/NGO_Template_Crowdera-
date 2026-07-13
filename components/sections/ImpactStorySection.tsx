@@ -65,7 +65,7 @@ export function ImpactStorySection({ config }: ImpactStorySectionProps) {
     <Section
       surface="dark"
       padding="none"
-      className="relative bg-neutral-950 text-neutral-50 overflow-hidden"
+      className="relative bg-black text-neutral-100 overflow-hidden"
       ariaLabel="Our Impact Story"
     >
       {/* Dynamic style injection for native CSS scroll timeline if supported */}
@@ -116,7 +116,7 @@ export function ImpactStorySection({ config }: ImpactStorySectionProps) {
             )}
           >
             {/* Visual media container */}
-            <div className="w-full lg:w-1/2 relative aspect-square lg:aspect-video lg:h-[80vh] overflow-hidden rounded-2xl shadow-2xl bg-neutral-900 border border-white/10 scroll-scrub-media">
+            <div className="w-full lg:w-1/2 relative aspect-square lg:aspect-video lg:h-[80vh] overflow-hidden rounded-2xl shadow-2xl bg-zinc-900 border border-white/10 scroll-scrub-media">
               <Image
                 src={panel.image.src}
                 alt={panel.image.alt}
@@ -125,7 +125,7 @@ export function ImpactStorySection({ config }: ImpactStorySectionProps) {
                 className="object-cover transition-transform duration-[var(--motion-duration-slow)] ease-out"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-60 lg:opacity-40" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 lg:opacity-40" />
             </div>
 
             {/* Text description container */}

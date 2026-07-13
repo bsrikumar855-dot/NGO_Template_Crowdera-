@@ -79,7 +79,7 @@ function GalleryThumbnail({
 
       {/* Hover overlay */}
       <div className={cn(
-        "absolute inset-0 bg-neutral-950/0 group-hover:bg-neutral-950/40",
+        "absolute inset-0 bg-black/0 group-hover:bg-black/40",
         "flex items-center justify-center",
         "transition-all duration-base"
       )}>
@@ -106,7 +106,6 @@ function GalleryThumbnail({
   );
 }
 
-/* ── Lightbox ─────────────────────────────────────────────────── */
 function Lightbox({
   items,
   startIndex,
@@ -118,35 +117,73 @@ function Lightbox({
 }) {
   const [current, setCurrent] = React.useState(startIndex);
   const closeBtnRef = React.useRef<HTMLButtonElement>(null);
+  const dialogRef  = React.useRef<HTMLDivElement>(null);
 
-  const go = (i: number) => setCurrent((i + items.length) % items.length);
+  const go = React.useCallback(
+    (i: number) => setCurrent((i + items.length) % items.length),
+    [items.length]
+  );
 
-  // Focus close button on open, handle keyboard
+  /* Focus close button on open; keyboard nav + focus trap */
   React.useEffect(() => {
     closeBtnRef.current?.focus();
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") go(current - 1);
-      if (e.key === "ArrowRight") go(current + 1);
-    };
-    document.addEventListener("keydown", handler);
-    // Prevent body scroll
     document.body.style.overflow = "hidden";
+
+    const FOCUSABLE =
+      'button:not([disabled]), [href], input:not([disabled]), video, [tabindex]:not([tabindex="-1"])';
+
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape")      { onClose(); return; }
+      if (e.key === "ArrowLeft")   { go(current - 1); return; }
+      if (e.key === "ArrowRight")  { go(current + 1); return; }
+
+      /* ── Tab focus trap ── */
+      if (e.key === "Tab") {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+        const focusable = Array.from(
+          dialog.querySelectorAll<HTMLElement>(FOCUSABLE)
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last  = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handler);
     return () => {
       document.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [current]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [current, go, onClose]);
 
-  const item = items[current];
+  /* Click-outside: close when the dark backdrop itself is clicked */
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) onClose();
+  };
+
+  const item  = items[current];
   const media = item.media;
   const isImg = isImageAsset(media);
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
-      aria-label="Image lightbox"
+      aria-label="Media lightbox"
+      onClick={handleBackdropClick}
       className={cn(
         "fixed inset-0 z-50",
         "bg-black/95 backdrop-blur-md",
@@ -175,7 +212,7 @@ function Lightbox({
       {items.length > 1 && (
         <button
           onClick={() => go(current - 1)}
-          aria-label="Previous image"
+          aria-label="Previous item"
           className={cn(
             "absolute left-4 top-1/2 -translate-y-1/2 z-10",
             "h-11 w-11 rounded-full",
@@ -189,8 +226,12 @@ function Lightbox({
         </button>
       )}
 
-      {/* Media */}
-      <div className="relative w-full h-full max-w-5xl max-h-[85vh] mx-16 my-8">
+      {/* Media — pointer-events:none on wrapper so backdrop click still works */}
+      <div
+        className="relative w-full h-full max-w-5xl max-h-[85vh] mx-16 my-8 pointer-events-none"
+        onClick={(e) => e.stopPropagation()}
+        style={{ pointerEvents: "auto" }}
+      >
         {isImg ? (
           <Image
             src={(media as ImageAsset).src}
@@ -202,6 +243,7 @@ function Lightbox({
           />
         ) : (
           <video
+            key={(media as VideoAsset).src}
             src={(media as VideoAsset).src}
             poster={(media as VideoAsset).poster}
             controls
@@ -216,7 +258,7 @@ function Lightbox({
       {items.length > 1 && (
         <button
           onClick={() => go(current + 1)}
-          aria-label="Next image"
+          aria-label="Next item"
           className={cn(
             "absolute right-4 top-1/2 -translate-y-1/2 z-10",
             "h-11 w-11 rounded-full",
@@ -320,7 +362,7 @@ function GalleryCarousel({
                   )}
 
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-neutral-950/0 group-hover:bg-neutral-950/40 flex items-center justify-center transition-all duration-base">
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 flex items-center justify-center transition-all duration-base">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-base">
                       {item.type === "video" ? (
                         <Play className="h-10 w-10 text-white drop-shadow-lg fill-white" />

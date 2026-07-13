@@ -20,7 +20,7 @@ import type { TestimonialsConfig, TestimonialCard } from "@/types";
 /* ── Star Rating ─────────────────────────────────────────────── */
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="flex items-center gap-0.5" aria-label={`Rating: ${rating} out of 5`}>
+    <div className="flex items-center gap-0.5" aria-label={`Rated ${rating} out of 5`}>
       {[1, 2, 3, 4, 5].map((star) => (
         <Star
           key={star}
@@ -239,7 +239,7 @@ export function TestimonialsSection({ config }: TestimonialsSectionProps) {
               <div className="flex items-start justify-between gap-4">
                 <Quote className="h-12 w-12 text-white/30 flex-shrink-0 -scale-x-100" aria-hidden="true" />
                 {featuredItem.rating && (
-                  <div className="flex items-center gap-0.5" aria-label={`Rating: ${featuredItem.rating} out of 5`}>
+                  <div className="flex items-center gap-0.5" aria-label={`Rated ${featuredItem.rating} out of 5`}>
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}

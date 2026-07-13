@@ -123,8 +123,8 @@ export function Footer({ footer, org, className }: FooterProps) {
       id="footer"
       role="contentinfo"
       className={cn(
-        "relative bg-[hsl(240_20%_4%/0.95)] backdrop-blur-xl",
-        "border-t border-[hsl(38_95%_54%/0.15)]",
+        "relative bg-neutral-950/95 backdrop-blur-xl",
+        "border-t border-border/40",
         "shadow-[0_-4px_32px_-4px_rgb(0_0_0/0.7)]",
         className
       )}

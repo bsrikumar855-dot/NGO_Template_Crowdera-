@@ -19,6 +19,7 @@ import {
   Eye,
   EyeOff,
   Layout,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/core/Container";
@@ -82,6 +83,37 @@ function TemplateDemoShowcaseContent() {
   const [isAnimationEnabled, setIsAnimationEnabled] = React.useState<boolean>(true);
   const [isPanelVisible, setIsPanelVisible] = React.useState<boolean>(true);
   const [isSpecPanelExpanded, setIsSpecPanelExpanded] = React.useState<boolean>(false);
+  const [isMobile, setIsMobile] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    // Detect mobile viewport (lg breakpoint is 1024px, so < 1024px is mobile/tablet for customizer)
+    const mq = window.matchMedia("(max-width: 1023px)");
+    setIsMobile(mq.matches);
+    if (mq.matches) {
+      setIsPanelVisible(false); // Default to collapsed on mobile
+    }
+    const handler = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+      if (e.matches) {
+        setIsPanelVisible(false);
+      } else {
+        setIsPanelVisible(true);
+      }
+    };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  React.useEffect(() => {
+    if (isMobile) {
+      document.body.classList.toggle("overflow-hidden", isPanelVisible);
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isPanelVisible, isMobile]);
 
   // ── 4. Retrieve Active Config Layers ───────────────────────
   const activeOrg = demoOrganizations[selectedOrgKey] || demoOrganizations.education;
@@ -228,10 +260,192 @@ function TemplateDemoShowcaseContent() {
     { key: "impact-bold", name: "Impact Bold", desc: "Thick glass shapes & Jakarta font" },
   ];
 
+  // ── 7. Render Builder Panel Form Content ───────────────────
+  const builderForm = (
+    <>
+      {/* 1. SELECT TEMPLATE (Layout & Fonts) */}
+      <div className="flex flex-col gap-2.5">
+        <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+          1. Structural Template
+        </label>
+        <div className="flex flex-col gap-1.5">
+          {templateOptions.map((t) => {
+            const isSelected = selectedTemplateKey === t.key;
+            return (
+              <button
+                key={t.key}
+                onClick={() => setSelectedTemplateKey(t.key)}
+                className={cn(
+                  "w-full text-left p-3 rounded-xl border text-xs transition-all duration-base",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                  isSelected
+                    ? "border-primary bg-primary/5 font-semibold text-primary shadow-sm"
+                    : "border-border bg-muted/30 text-foreground hover:bg-muted/70"
+                )}
+              >
+                <span className="block font-bold">{t.name}</span>
+                <span className="text-[10px] text-muted-foreground block mt-0.5">{t.desc}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 2. SELECT THEME (HSL Colors) */}
+      <div className="flex flex-col gap-2.5">
+        <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+          2. Branding Theme
+        </label>
+        <div className="flex flex-wrap gap-2">
+          {themeOptions.map((th) => {
+            const isSelected = selectedThemeKey === th.key;
+            return (
+              <button
+                key={th.key}
+                onClick={() => setSelectedThemeKey(th.key)}
+                className={cn(
+                  "h-10 w-10 rounded-xl border flex items-center justify-center transition-all",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                  isSelected
+                    ? "border-primary ring-2 ring-primary/40 scale-105"
+                    : "border-border hover:scale-105"
+                )}
+                title={th.name}
+                aria-label={`Select ${th.name} theme`}
+              >
+                <span className={cn("h-6 w-6 rounded-lg shadow-inner", th.color)} />
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 3. SELECT ORGANIZATION CONTENT */}
+      <div className="flex flex-col gap-2.5">
+        <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+          3. Organization Copy
+        </label>
+        <div className="flex flex-col gap-1.5">
+          {orgOptions.map((o) => {
+            const isSelected = selectedOrgKey === o.key;
+            return (
+              <button
+                key={o.key}
+                onClick={() => setSelectedOrgKey(o.key)}
+                className={cn(
+                  "w-full text-left p-3 rounded-xl border text-xs transition-all duration-base",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                  isSelected
+                    ? "border-primary bg-primary/5 font-semibold text-primary shadow-sm"
+                    : "border-border bg-muted/30 text-foreground hover:bg-muted/70"
+                )}
+              >
+                <span className="block font-bold">{o.name}</span>
+                <span className="text-[10px] text-muted-foreground block mt-0.5">{o.desc}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 4. LAYOUT VARIANT OVERRIDES */}
+      <div className="flex flex-col gap-3 pt-3 border-t border-border">
+        <Heading as="h4" size="xs" className="font-bold text-[10px] text-muted-foreground uppercase tracking-widest">
+          4. Layout Overrides
+        </Heading>
+
+        {/* Hero Override */}
+        <div className="flex flex-col gap-1.5">
+          <label className="text-[10px] text-muted-foreground font-semibold">Hero Layout</label>
+          <select
+            value={heroVariant}
+            onChange={(e) => setHeroVariant(e.target.value as any)}
+            className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
+          >
+            <option value="default">Use Template Default ({activeTemplate.variants.hero})</option>
+            <option value="carousel">Carousel Slider</option>
+            <option value="video">Video Background</option>
+            <option value="image">Static Hero Image</option>
+          </select>
+        </div>
+
+        {/* About Override */}
+        <div className="flex flex-col gap-1.5">
+          <label className="text-[10px] text-muted-foreground font-semibold">About Layout</label>
+          <select
+            value={aboutVariant}
+            onChange={(e) => setAboutVariant(e.target.value as any)}
+            className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
+          >
+            <option value="default">Use Template Default ({activeTemplate.variants.about})</option>
+            <option value="text-image">Text left, Image right</option>
+            <option value="image-text">Image left, Text right</option>
+            <option value="text-only">Text Center Only</option>
+            <option value="icon-grid">Interactive Icon Grid</option>
+          </select>
+        </div>
+
+        {/* Gallery Override */}
+        <div className="flex flex-col gap-1.5">
+          <label className="text-[10px] text-muted-foreground font-semibold">Gallery Layout</label>
+          <select
+            value={galleryVariant}
+            onChange={(e) => setGalleryVariant(e.target.value as any)}
+            className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
+          >
+            <option value="default">Use Template Default ({activeTemplate.variants.gallery})</option>
+            <option value="masonry">Variable Height Masonry</option>
+            <option value="grid">Fixed Aspect Grid</option>
+            <option value="carousel">Horizontal Carousel</option>
+          </select>
+        </div>
+
+        {/* CTA Override */}
+        <div className="flex flex-col gap-1.5">
+          <label className="text-[10px] text-muted-foreground font-semibold">CTA Band Layout</label>
+          <select
+            value={ctaVariant}
+            onChange={(e) => setCtaVariant(e.target.value as any)}
+            className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
+          >
+            <option value="default">Use Template Default ({activeTemplate.variants.cta})</option>
+            <option value="split">Two Column Split</option>
+            <option value="centered">Center Action Box</option>
+            <option value="image-background">Overlay Image BG</option>
+            <option value="minimal">Compact Row</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Reset Defaults button */}
+      <Button
+        variant="outline"
+        size="xs"
+        onClick={() => {
+          setHeroVariant("default");
+          setAboutVariant("default");
+          setGalleryVariant("default");
+          setCtaVariant("default");
+        }}
+        className="mt-2"
+      >
+        Reset Variant Overrides
+      </Button>
+    </>
+  );
+
   return (
     <>
       {/* Inject Scoped Style overrides */}
-      <style dangerouslySetInnerHTML={{ __html: dynamicCss }} />
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes slideUp {
+          from { transform: translateY(100%); }
+          to { transform: translateY(0); }
+        }
+        .animate-slide-up {
+          animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      ` + dynamicCss }} />
 
       <main className="min-h-screen bg-muted/20 pt-24 pb-16 font-sans relative overflow-x-hidden">
         <Container size="xl" className="flex flex-col gap-8">
@@ -410,10 +624,10 @@ function TemplateDemoShowcaseContent() {
               </div>
             </div>
 
-            {/* Right Column: Floating/Sticky Builder Panel (Phase 5) */}
+            {/* Desktop-only: Floating/Sticky Builder Panel (Phase 5) */}
             {isPanelVisible && (
-              <aside className="lg:col-span-1 flex flex-col gap-6 animate-fade-in relative z-20">
-                <div className="bg-surface border border-border rounded-3xl p-5 shadow-elevation-3 sticky top-24 flex flex-col gap-6 max-h-[85vh] overflow-y-auto">
+              <aside className="hidden lg:flex lg:col-span-1 flex-col gap-6 animate-fade-in relative z-20">
+                <div className="bg-surface border border-border rounded-3xl p-5 shadow-elevation-3 sticky top-24 flex flex-col gap-6 max-h-[85vh] overflow-y-auto w-full">
                   
                   {/* Panel Title */}
                   <div className="flex justify-between items-center border-b border-border pb-3">
@@ -432,185 +646,63 @@ function TemplateDemoShowcaseContent() {
                     </button>
                   </div>
 
-                  {/* 1. SELECT TEMPLATE (Layout & Fonts) */}
-                  <div className="flex flex-col gap-2.5">
-                    <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
-                      1. Structural Template
-                    </label>
-                    <div className="flex flex-col gap-1.5">
-                      {templateOptions.map((t) => {
-                        const isSelected = selectedTemplateKey === t.key;
-                        return (
-                          <button
-                            key={t.key}
-                            onClick={() => setSelectedTemplateKey(t.key)}
-                            className={cn(
-                              "w-full text-left p-3 rounded-xl border text-xs transition-all duration-base",
-                              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
-                              isSelected
-                                ? "border-primary bg-primary/5 font-semibold text-primary shadow-sm"
-                                : "border-border bg-muted/30 text-foreground hover:bg-muted/70"
-                            )}
-                          >
-                            <span className="block font-bold">{t.name}</span>
-                            <span className="text-[10px] text-muted-foreground block mt-0.5">{t.desc}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* 2. SELECT THEME (HSL Colors) */}
-                  <div className="flex flex-col gap-2.5">
-                    <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
-                      2. Branding Theme
-                    </label>
-                    <div className="flex flex-wrap gap-2">
-                      {themeOptions.map((th) => {
-                        const isSelected = selectedThemeKey === th.key;
-                        return (
-                          <button
-                            key={th.key}
-                            onClick={() => setSelectedThemeKey(th.key)}
-                            className={cn(
-                              "h-10 w-10 rounded-xl border flex items-center justify-center transition-all",
-                              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                              isSelected
-                                ? "border-primary ring-2 ring-primary/40 scale-105"
-                                : "border-border hover:scale-105"
-                            )}
-                            title={th.name}
-                            aria-label={`Select ${th.name} theme`}
-                          >
-                            <span className={cn("h-6 w-6 rounded-lg shadow-inner", th.color)} />
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* 3. SELECT ORGANIZATION CONTENT */}
-                  <div className="flex flex-col gap-2.5">
-                    <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
-                      3. Organization Copy
-                    </label>
-                    <div className="flex flex-col gap-1.5">
-                      {orgOptions.map((o) => {
-                        const isSelected = selectedOrgKey === o.key;
-                        return (
-                          <button
-                            key={o.key}
-                            onClick={() => setSelectedOrgKey(o.key)}
-                            className={cn(
-                              "w-full text-left p-3 rounded-xl border text-xs transition-all duration-base",
-                              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
-                              isSelected
-                                ? "border-primary bg-primary/5 font-semibold text-primary shadow-sm"
-                                : "border-border bg-muted/30 text-foreground hover:bg-muted/70"
-                            )}
-                          >
-                            <span className="block font-bold">{o.name}</span>
-                            <span className="text-[10px] text-muted-foreground block mt-0.5">{o.desc}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* 4. LAYOUT VARIANT OVERRIDES */}
-                  <div className="flex flex-col gap-3 pt-3 border-t border-border">
-                    <Heading as="h4" size="xs" className="font-bold text-[10px] text-muted-foreground uppercase tracking-widest">
-                      4. Layout Overrides
-                    </Heading>
-
-                    {/* Hero Override */}
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] text-muted-foreground font-semibold">Hero Layout</label>
-                      <select
-                        value={heroVariant}
-                        onChange={(e) => setHeroVariant(e.target.value as any)}
-                        className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
-                      >
-                        <option value="default">Use Template Default ({activeTemplate.variants.hero})</option>
-                        <option value="carousel">Carousel Slider</option>
-                        <option value="video">Video Background</option>
-                        <option value="image">Static Hero Image</option>
-                      </select>
-                    </div>
-
-                    {/* About Override */}
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] text-muted-foreground font-semibold">About Layout</label>
-                      <select
-                        value={aboutVariant}
-                        onChange={(e) => setAboutVariant(e.target.value as any)}
-                        className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
-                      >
-                        <option value="default">Use Template Default ({activeTemplate.variants.about})</option>
-                        <option value="text-image">Text left, Image right</option>
-                        <option value="image-text">Image left, Text right</option>
-                        <option value="text-only">Text Center Only</option>
-                        <option value="icon-grid">Interactive Icon Grid</option>
-                      </select>
-                    </div>
-
-                    {/* Gallery Override */}
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] text-muted-foreground font-semibold">Gallery Layout</label>
-                      <select
-                        value={galleryVariant}
-                        onChange={(e) => setGalleryVariant(e.target.value as any)}
-                        className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
-                      >
-                        <option value="default">Use Template Default ({activeTemplate.variants.gallery})</option>
-                        <option value="masonry">Variable Height Masonry</option>
-                        <option value="grid">Fixed Aspect Grid</option>
-                        <option value="carousel">Horizontal Carousel</option>
-                      </select>
-                    </div>
-
-                    {/* CTA Override */}
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] text-muted-foreground font-semibold">CTA Band Layout</label>
-                      <select
-                        value={ctaVariant}
-                        onChange={(e) => setCtaVariant(e.target.value as any)}
-                        className="w-full p-2 bg-muted/40 border border-border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary outline-none"
-                      >
-                        <option value="default">Use Template Default ({activeTemplate.variants.cta})</option>
-                        <option value="split">Two Column Split</option>
-                        <option value="centered">Center Action Box</option>
-                        <option value="image-background">Overlay Image BG</option>
-                        <option value="minimal">Compact Row</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Reset Defaults button */}
-                  <Button
-                    variant="outline"
-                    size="xs"
-                    onClick={() => {
-                      setHeroVariant("default");
-                      setAboutVariant("default");
-                      setGalleryVariant("default");
-                      setCtaVariant("default");
-                    }}
-                    className="mt-2"
-                  >
-                    Reset Variant Overrides
-                  </Button>
+                  {builderForm}
                 </div>
               </aside>
             )}
           </div>
         </Container>
 
-        {/* Floating Customizer Button (if panel hidden) */}
+        {/* Mobile bottom sheet (toggled by panel visibility) */}
+        {isPanelVisible && (
+          <div className="fixed inset-0 z-50 flex items-end justify-center lg:hidden" role="dialog" aria-modal="true">
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-300"
+              onClick={() => setIsPanelVisible(false)}
+            />
+            
+            {/* Drawer Container */}
+            <div className="relative w-full md:max-w-xl bg-surface border-t border-border rounded-t-[2rem] shadow-elevation-5 flex flex-col max-h-[80vh] z-10 animate-slide-up">
+              {/* Drag Handle Indicator */}
+              <button
+                className="w-full flex justify-center py-4 cursor-pointer focus:outline-none"
+                onClick={() => setIsPanelVisible(false)}
+                aria-label="Close customizer bottom sheet"
+              >
+                <div className="w-16 h-1.5 bg-neutral-300 dark:bg-neutral-700 rounded-full" />
+              </button>
+              
+              {/* Header Title */}
+              <div className="flex justify-between items-center px-6 pb-4 border-b border-border">
+                <div className="flex items-center gap-2">
+                  <Settings className="h-4.5 w-4.5 text-primary" />
+                  <Heading as="h3" size="xs" className="font-bold">
+                    Live Config Customizer
+                  </Heading>
+                </div>
+                <button
+                  onClick={() => setIsPanelVisible(false)}
+                  className="text-muted-foreground hover:text-foreground p-1 rounded-full hover:bg-muted/40 transition-colors"
+                  aria-label="Close builder panel"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              
+              {/* Scrollable Form Body */}
+              <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 pb-12">
+                {builderForm}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Floating Customizer Button (if panel hidden or always on mobile when hidden) */}
         {!isPanelVisible && (
           <button
             onClick={() => setIsPanelVisible(true)}
-            className="fixed bottom-6 right-6 h-12 w-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-elevation-4 border border-primary/20 hover:scale-105 hover:shadow-elevation-5 transition-transform z-30 animate-bounce"
+            className="fixed bottom-6 right-6 h-12 w-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-elevation-4 border border-primary/20 hover:scale-105 hover:shadow-elevation-5 transition-all z-30 animate-bounce"
             title="Open customization customizer panel"
             aria-label="Open customization customizer panel"
           >

@@ -64,7 +64,7 @@ function StatCard({
         "flex flex-col items-center text-center gap-4 p-6 rounded-2xl",
         "transition-all duration-slow",
         isPrimary && "bg-white/10 backdrop-blur-md border border-[hsl(38_95%_54%/0.20)] shadow-[0_0_24px_4px_hsl(38_95%_54%/0.12)]",
-        !isPrimary && theme === "dark" && "bg-[hsl(240_14%_9%/0.80)] backdrop-blur-[16px] border border-[hsl(240_12%_22%/0.6)]",
+        !isPrimary && theme === "dark" && "bg-surface/80 backdrop-blur-[16px] border border-border/60",
         !isPrimary && theme === "light" && "glass-card"
       )}
     >

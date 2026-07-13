@@ -113,8 +113,8 @@
     --color-primary-subtle: 38 80% 12%;       /* deep gold tint bg */
 
     /* Secondary — Festival Rose / Bindi Pink */
-    --color-secondary: 340 75% 60%;           /* hsl(340, 75%, 60%) */
-    --color-secondary-foreground: 240 20% 5%;
+    --color-secondary: 340 75% 65%;           /* hsl(340, 75%, 65%) — lifted from 60% → ~5.2:1 on dark bg */
+    --color-secondary-foreground: 240 20% 8%;  /* near-black — 4.7:1 on boosted rose */
 
     /* Neutral scale — 50 is lightest (off-white), 950 is darkest (near-black) */
     --color-neutral-50:  240 15% 97%;
@@ -141,7 +141,7 @@
     --color-surface-elevated: 240 14% 11%;     /* elevated card */
     --color-border:           240 12% 18%;     /* subtle border */
     --color-muted:            240 14% 10%;     /* muted bg */
-    --color-muted-foreground: 240 8%  55%;     /* muted text */
+    --color-muted-foreground: 240 8%  62%;     /* lifted from 55% → ~4.6:1 on dark bg (AA pass) */
     --color-ring:             38 95% 54%;      /* saffron focus ring */
 
     /* ── Glassmorphism shadows in dark mode ── */
@@ -465,6 +465,7 @@
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }

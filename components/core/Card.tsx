@@ -16,8 +16,8 @@ const cardVariants = cva(
   [
     "relative flex flex-col",
     "rounded-xl overflow-hidden",
-    "bg-[hsl(240_14%_9%/0.80)] backdrop-blur-[16px]",
-    "border border-[hsl(240_12%_22%/0.6)]",
+    "bg-surface/80 backdrop-blur-[16px]",
+    "border border-border/60",
     "transition-all duration-[var(--motion-duration-fast)] ease-[var(--motion-ease-base)]",
     "motion-reduce:transition-none motion-reduce:transform-none",
   ],

@@ -49,8 +49,8 @@ export function MarqueeSection({
       aria-label="Core values marquee"
       className={cn(
         "relative w-full overflow-hidden py-6 lg:py-8",
-        "bg-[hsl(240_20%_4%/0.60)] backdrop-blur-md",
-        "border-y border-[hsl(38_95%_54%/0.12)]",
+        "bg-surface/60 backdrop-blur-md",
+        "border-y border-border/40",
         className
       )}
     >
