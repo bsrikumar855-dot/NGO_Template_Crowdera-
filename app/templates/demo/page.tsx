@@ -84,6 +84,101 @@ function TemplateDemoShowcaseContent() {
   const [isPanelVisible, setIsPanelVisible] = React.useState<boolean>(true);
   const [isSpecPanelExpanded, setIsSpecPanelExpanded] = React.useState<boolean>(false);
   const [isMobile, setIsMobile] = React.useState<boolean>(false);
+  const [importStatus, setImportStatus] = React.useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  React.useEffect(() => {
+    if (importStatus) {
+      const timer = setTimeout(() => setImportStatus(null), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [importStatus]);
+
+  const handleExport = () => {
+    const activeOrg = demoOrganizations[selectedOrgKey] || demoOrganizations.education;
+    const activeTheme = demoThemes[selectedThemeKey] || demoThemes["hope-blue"];
+    const state = {
+      org: selectedOrgKey,
+      cause: selectedOrgKey,
+      structuralTemplate: selectedTemplateKey,
+      theme: selectedThemeKey,
+      layoutOverrides: {
+        heroVariant,
+        aboutVariant,
+        galleryVariant,
+        ctaVariant,
+      },
+      branding: {
+        name: activeOrg.name,
+        color: activeTheme.id,
+        logo: activeOrg.logo?.src,
+      },
+      exportedAt: new Date().toISOString(),
+      schemaVersion: "1.0",
+    };
+    const jsonStr = JSON.stringify(state, null, 2);
+    const blob = new Blob([jsonStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${selectedOrgKey}-site-config.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const text = event.target?.result as string;
+        const config = JSON.parse(text);
+
+        if (!config || typeof config !== "object") {
+          throw new Error("Invalid configuration format.");
+        }
+
+        if (config.schemaVersion !== "1.0") {
+          throw new Error(`Unsupported schema version: ${config.schemaVersion || "Unknown"}`);
+        }
+
+        // Validate organization key
+        if (config.org && demoOrganizations[config.org]) {
+          setSelectedOrgKey(config.org);
+        } else {
+          throw new Error(`Invalid organization key: ${config.org}`);
+        }
+
+        // Validate theme key
+        if (config.theme && demoThemes[config.theme]) {
+          setSelectedThemeKey(config.theme);
+        }
+
+        // Validate template key
+        if (config.structuralTemplate && demoTemplates[config.structuralTemplate]) {
+          setSelectedTemplateKey(config.structuralTemplate);
+        }
+
+        // Apply overrides
+        if (config.layoutOverrides) {
+          const overrides = config.layoutOverrides;
+          if (overrides.heroVariant) setHeroVariant(overrides.heroVariant);
+          if (overrides.aboutVariant) setAboutVariant(overrides.aboutVariant);
+          if (overrides.galleryVariant) setGalleryVariant(overrides.galleryVariant);
+          if (overrides.ctaVariant) setCtaVariant(overrides.ctaVariant);
+        }
+
+        setImportStatus({ type: "success", message: "Config imported successfully!" });
+        e.target.value = "";
+      } catch (err: any) {
+        setImportStatus({ type: "error", message: err.message || "Failed to parse configuration file." });
+      }
+    };
+    reader.readAsText(file);
+  };
 
   React.useEffect(() => {
     // Detect mobile viewport (lg breakpoint is 1024px, so < 1024px is mobile/tablet for customizer)
@@ -433,6 +528,55 @@ function TemplateDemoShowcaseContent() {
       >
         Reset Variant Overrides
       </Button>
+
+      {/* 5. PORTABLE CONFIG ENGINE (Export/Import) */}
+      <div className="flex flex-col gap-3 pt-4 border-t border-border mt-3">
+        <label className="block text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+          5. Portable Config Engine
+        </label>
+        
+        <p className="text-[10px] text-muted-foreground leading-normal">
+          Export your site as a portable config Crowdera can host and re-render.
+        </p>
+
+        <div className="flex gap-2">
+          {/* Export Button */}
+          <Button
+            type="button"
+            variant="primary"
+            size="xs"
+            onClick={handleExport}
+            className="flex-1 text-center justify-center font-bold"
+          >
+            Export Site
+          </Button>
+
+          {/* Import Label acting as a button */}
+          <label className="flex-1 cursor-pointer">
+            <span className="inline-flex w-full items-center justify-center rounded-lg border border-border bg-background hover:bg-muted/50 px-3 py-1.5 text-xs font-bold transition-all text-center h-full">
+              Import Config
+            </span>
+            <input
+              type="file"
+              accept=".json"
+              onChange={handleImport}
+              className="hidden"
+            />
+          </label>
+        </div>
+
+        {/* Feedback Alert banner */}
+        {importStatus && (
+          <div className={cn(
+            "p-2.5 rounded-lg text-[10px] font-medium border animate-fade-in",
+            importStatus.type === "success" 
+              ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400" 
+              : "bg-destructive/10 border-destructive/20 text-destructive"
+          )}>
+            {importStatus.message}
+          </div>
+        )}
+      </div>
     </>
   );
 
