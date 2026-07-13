@@ -5,6 +5,14 @@
 
 > A professional, configuration-driven, multi-tenant website template system designed for registered non-profit organizations. Built with Next.js 14 (App Router), TypeScript, and TailwindCSS.
 
+### 🚀 Quick Links
+* **Live Deployed Site**: [https://crowdera-ngo-templates.netlify.app](https://crowdera-ngo-templates.netlify.app)
+* **Template Gallery**: [/templates](https://crowdera-ngo-templates.netlify.app/templates) (Browse all 9 causes and their standalone sites)
+* **Sample Standalone Site**: [/sites/education](https://crowdera-ngo-templates.netlify.app/sites/education) (The clean production Vidyalaya Foundation site)
+* **Live Customizer (No-Code Builder)**: [/templates/demo](https://crowdera-ngo-templates.netlify.app/templates/demo) (Interactive brand & layout personalizer)
+* **Style Guide**: [/style-guide](https://crowdera-ngo-templates.netlify.app/style-guide) (Inspect the design system and theme tokens)
+* **GitHub Repository**: [https://github.com/bsrikumar855-dot/NGO_Template_Crowdera-](https://github.com/bsrikumar855-dot/NGO_Template_Crowdera-)
+
 ---
 
 ## 📖 Table of Contents
