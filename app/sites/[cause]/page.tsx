@@ -5,6 +5,7 @@ import {
   demoOrganizations,
   demoThemes,
   demoTemplates,
+  TemplatePreset,
 } from "@/content/demo_configs";
 import {
   HeroSection,
@@ -21,7 +22,6 @@ import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/footer/Footer";
 import type {
   ThemeConfig,
-  TemplatePreset,
   HeroConfig,
   AboutConfig,
   GalleryConfig,
@@ -63,7 +63,10 @@ export async function generateMetadata({
   params: { cause: string };
 }): Promise<Metadata> {
   const { cause } = params;
-  const activeOrg = demoOrganizations[cause];
+  const normalizedCause = Object.keys(demoOrganizations).find(
+    (k) => k.toLowerCase() === cause.toLowerCase()
+  ) || cause;
+  const activeOrg = demoOrganizations[normalizedCause];
 
   if (!activeOrg) {
     return {
@@ -199,14 +202,17 @@ interface PageProps {
 
 export default function StandaloneCausePage({ params }: PageProps) {
   const { cause } = params;
-  const activeOrg = demoOrganizations[cause];
+  const normalizedCause = Object.keys(demoOrganizations).find(
+    (k) => k.toLowerCase() === cause.toLowerCase()
+  ) || cause;
+  const activeOrg = demoOrganizations[normalizedCause];
 
   if (!activeOrg) {
     notFound();
   }
 
   // 1. Resolve Theme and Template configurations
-  const configMap = defaultConfigs[cause] || defaultConfigs.education;
+  const configMap = defaultConfigs[normalizedCause] || defaultConfigs.education;
   const activeTheme = demoThemes[configMap.theme] || demoThemes["hope-blue"];
   const activeTemplate =
     demoTemplates[configMap.template] || demoTemplates["hope-modern"];

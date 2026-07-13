@@ -11,12 +11,7 @@
 import type { Metadata, Viewport } from "next";
 import { fontVariables } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/core/ThemeProvider";
-import { Navbar } from "@/components/navigation/Navbar";
-import { Footer } from "@/components/footer/Footer";
-import { PageWrapper, MainContent } from "@/components/layout/PageWrapper";
 import { organization } from "@/content/organization";
-import { navigation } from "@/content/navigation";
-import { footer } from "@/content/footer";
 import { defaultTheme } from "@/themes/default";
 import { LayoutBridge } from "@/components/layout/LayoutBridge";
 import "@/app/globals.css";

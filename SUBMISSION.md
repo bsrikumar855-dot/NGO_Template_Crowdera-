@@ -9,15 +9,16 @@
 * **Template Gallery**: [/templates](https://crowdera-ngo-templates.netlify.app/templates) (Browse all 9 causes and their standalone sites)
 * **Sample Standalone Site**: [/sites/education](https://crowdera-ngo-templates.netlify.app/sites/education) (The clean production Vidyalaya Foundation site)
 * **Live Customizer (No-Code Builder)**: [/templates/demo](https://crowdera-ngo-templates.netlify.app/templates/demo) (Interactive brand & layout personalizer)
+* **Style Guide**: [/style-guide](https://crowdera-ngo-templates.netlify.app/style-guide) (Inspect the design system and theme tokens)
 * **Information Architecture**: [INFORMATION_ARCHITECTURE.md](./docs/INFORMATION_ARCHITECTURE.md) (Architecture of layout engine and data models)
 * **Target User Personas**: [USER_PERSONA.md](./docs/USER_PERSONA.md) (Profiles and needs of NGOs, Donors, and Volunteers)
-* **Style Guide**: [/style-guide](https://crowdera-ngo-templates.netlify.app/style-guide) (Inspect the design system and theme tokens)
 * **GitHub Repository**: [https://github.com/bsrikumar855-dot/NGO_Template_Crowdera-](https://github.com/bsrikumar855-dot/NGO_Template_Crowdera-)
+* **Demo Video**: *(recording of the live customizer, export/import flow, and all 9 standalone sites — add link here before submission)*
 
 ---
 
 ### 🏆 Why This Wins
-Instead of 10 static design mockups, this project delivers a **config-driven template engine**. Each of the 9 NGO cause presets (education, healthcare, animal welfare, environment, humanitarian, faith-based, community development, arts & culture, and disaster relief) generates a fully complete, standalone production website with no builder chrome or leakage. The exact same polymorphic component engine powers the live builder, allowing organizations to personalize typography, shapes, colors, and section structures, and export a clean site in minutes. This maps directly to Crowdera's actual business model as a website builder platform, delivering reusable software architecture rather than single-use code templates.
+Instead of 10 static design mockups, this project delivers a **config-driven template engine**. Each of the 9 NGO cause presets (education, healthcare, animal welfare, environment, humanitarian, faith-based, community development, arts & culture, and disaster relief) generates a fully complete, standalone production website with no builder chrome or leakage. The exact same polymorphic component engine powers the live builder, allowing organizations to personalize typography, shapes, colors, and section structures, and export a clean site in minutes. Sites export as portable JSON configs — the same format a no-code platform stores and re-renders. This maps directly to Crowdera's actual business model as a website builder platform, delivering reusable software architecture rather than single-use code templates.
 
 ---
 
@@ -31,6 +32,7 @@ Instead of 10 static design mockups, this project delivers a **config-driven tem
 | **Responsive Homepage** | Dynamic routing renders a complete production homepage for any selected cause slug under `/sites/[cause]`. | [sites/[cause]/page.tsx](./app/sites/%5Bcause%5D/page.tsx) |
 | **Template Gallery Page** | Grid gallery of all 9 NGO cause cards. "View Full Template" links to standalone sites, and "Customize" links to the builder. | [templates/page.tsx](./app/templates/page.tsx) |
 | **Style Guide** | Interactive token inspector for typography, spacing, elevations, radius variants, and HSL color variables. | [style-guide/page.tsx](./app/style-guide/page.tsx) |
+| **Portable Config Export/Import** | Builder state serializes to a versioned JSON (`schemaVersion: "1.0"`) downloaded client-side. Import re-hydrates org, theme, template, and layout overrides. Malformed files show a graceful error alert. | [demo/page.tsx](./app/templates/demo/page.tsx) |
 | **Design Rationale** | Full architectural summary, design decisions, folder structure, and accessibility review. | [DESIGN_RATIONALE.md](./docs/DESIGN_RATIONALE.md) |
 | **Accessibility Audit** | Audit checklist covering WCAG 2.1 AA hierarchy, landmarks, ARIA labels, focus states, and tab-trap details. | [A11Y_AUDIT.md](./docs/A11Y_AUDIT.md) |
 | **Dark Mode & Styling** | Active theme variables compile dynamically on `.site-scope` scope, enabling instant dark/light presets and builder personalization. | [THEMING.md](./docs/THEMING.md) |

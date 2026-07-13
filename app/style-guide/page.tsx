@@ -10,14 +10,13 @@ import * as React from "react";
 import { Container } from "@/components/core/Container";
 import { Section } from "@/components/core/Section";
 import { Heading } from "@/components/core/Heading";
-import { Text } from "@/components/core/Text";
 import { Button } from "@/components/core/Button";
 import { Badge } from "@/components/core/Badge";
 import { Card, CardHeader, CardBody, CardTitle, CardDescription, CardFooter } from "@/components/core/Card";
 import { Input, Label, FieldError, FieldHint } from "@/components/core/Input";
 import { Textarea } from "@/components/core/Textarea";
 import { defaultTheme } from "@/themes/default";
-import { Palette, Type, Square, Sliders, Layers, Monitor, HelpCircle } from "lucide-react";
+import { Palette, Type, Square, Sliders, Layers, Monitor } from "lucide-react";
 
 // Spacing scale from tailwind.config.ts
 const SPACING_SCALE = [
