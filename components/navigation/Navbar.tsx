@@ -93,6 +93,19 @@ export function Navbar({ nav, org, className }: NavbarProps) {
   const [activeSection, setActiveSection] = React.useState<string>("");
   const drawerRef = React.useRef<HTMLDivElement>(null);
 
+  // Expose Templates gallery link if not already in the nav items
+  const navItems = React.useMemo(() => {
+    const items = [...nav.items];
+    if (!items.some((item) => item.href === "/templates" || item.href === "templates")) {
+      items.push({
+        id: "nav-templates-auto",
+        label: "Templates",
+        href: "/templates",
+      });
+    }
+    return items;
+  }, [nav.items]);
+
   /* ── Scroll detection ── */
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -198,7 +211,7 @@ export function Navbar({ nav, org, className }: NavbarProps) {
 
           {/* ── Desktop nav items ── */}
           <ul role="list" className="hidden lg:flex items-center gap-0.5" aria-label="Site navigation links">
-            {nav.items.map((item) => {
+            {navItems.map((item) => {
               const active = isActive(item.href);
               return (
                 <li key={item.id}>
@@ -324,7 +337,7 @@ export function Navbar({ nav, org, className }: NavbarProps) {
           <Container className="flex flex-col gap-2 py-6 flex-1 overflow-y-auto">
             {/* Mobile nav links */}
             <ul role="list" className="flex flex-col gap-1">
-              {nav.items.map((item) => {
+              {navItems.map((item) => {
                 const active = isActive(item.href);
                 return (
                   <li key={item.id}>

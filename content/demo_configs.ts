@@ -771,6 +771,7 @@ export const demoOrganizations: Record<string, OrgDemoPreset> = {
           { id: "g3", type: "image", media: { src: "/images/orgs/outreach-health-diagnostics-camp-photo-1516574187841-cb9cc2ca948b.jpg", alt: "Doctors diagnosing patient in mobile van" }, category: "Mobile Clinic" },
           { id: "g4", type: "image", media: { src: "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?q=80&w=800&auto=format&fit=crop", alt: "Underprivileged patients queueing" }, category: "Camp Outreach" },
           { id: "g5", type: "image", media: { src: "/images/orgs/clinical-checkup-equipment-photo-1505751172876-fa1923c5c528.jpg", alt: "Clinical checkup equipment" }, category: "Equipment" },
+          { id: "g6", type: "video", caption: "Mobile clinic delivering health checkups in rural Rajasthan", media: { src: "https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4", poster: "/images/orgs/outreach-health-diagnostics-camp-photo-1516574187841-cb9cc2ca948b.jpg" }, category: "Mobile Clinic" },
         ],
       },
       news: {
